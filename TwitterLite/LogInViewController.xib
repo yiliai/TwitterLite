@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInViewController" customModule="TwitterLite" customModuleProvider="target">
             <connections>
+                <outlet property="signinButton" destination="rVK-KB-fZj" id="Tix-eT-ZyP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -30,9 +31,12 @@
                             <state key="normal" title="Sign In" backgroundImage="signin_button">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="onTapSignin:" destination="-1" eventType="touchUpInside" id="GCn-XK-B1L"/>
+                            </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.70000000000000007" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="rVK-KB-fZj" secondAttribute="centerY" id="dS2-WO-cmi"/>
                         <constraint firstAttribute="centerX" secondItem="rVK-KB-fZj" secondAttribute="centerX" id="mO5-ZI-nvK"/>

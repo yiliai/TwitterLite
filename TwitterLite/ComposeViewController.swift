@@ -1,5 +1,5 @@
 //
-//  LogInViewController.swift
+//  ComposeViewController.swift
 //  TwitterLite
 //
 //  Created by Yili Aiwazian on 9/25/14.
@@ -8,10 +8,8 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class ComposeViewController: UIViewController {
 
-    @IBOutlet weak var signinButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,10 +21,7 @@ class LogInViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onTapSignin(sender: AnyObject) {
-        println("tapped on log in")
-        TwitterLiteClient.sharedInstance.signin()
-    }
+
     /*
     // MARK: - Navigation
 
