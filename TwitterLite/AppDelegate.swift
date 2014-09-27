@@ -30,7 +30,6 @@ extension NSURL {
     }
 }
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -47,6 +46,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = loginViewController
         self.window!.makeKeyAndVisible()
         
+        /*TwitterLiteClient.sharedInstance.getHomeTimelineWithSuccess({(operation: AFHTTPRequestOperation!, response: AnyObject!) -> () in
+            NSLog("Home timeline: \(response)")
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> () in
+                
+                NSLog("Failure to get home timeline")
+        })*/
         return true
     }
     
@@ -81,14 +86,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     TwitterLiteClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: url.query), success: { (accessToken: BDBOAuthToken!) -> Void in
                         NSLog("Got the access token")
                         TwitterLiteClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
+                       
+                        
+                                                
+                        
                         TwitterLiteClient.sharedInstance.getHomeTimelineWithSuccess({(operation: AFHTTPRequestOperation!, response: AnyObject!) -> () in
-                            NSLog("\(response)")
+                            NSLog("Home timeline: \(response)")
                             }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> () in
                             
-                            NSLog("boo")
+                            NSLog("Failure to get home timeline")
                         })
-                        }, failure: { (error: NSError!) -> Void in
-                            NSLog("Failure to get the access token \(error)")
+                        
+                        /*TwitterLiteClient.sharedInstance.getUserInfo({ (operation, response) -> () in
+                            NSLog("User info: \(response)")
+                        }, failure: { (operation, error) -> () in
+                            NSLog("Failure to get user info")
+                        })*/
+                        TwitterLiteClient.sharedInstance.getHomeTimelineWithSuccess({(operation: AFHTTPRequestOperation!, response: AnyObject!) -> () in
+                            NSLog("Home timeline: \(response)")
+                            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> () in
+                                
+                                NSLog("Failure to get home timeline")
+                        })
+                        
+                    }, failure: { (error: NSError!) -> Void in
+                        NSLog("Failure to get the access token \(error)")
                     })
                 }
             }

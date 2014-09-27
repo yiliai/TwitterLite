@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 Yili Aiwazian. All rights reserved.
 //
 
+let BASE_URL = "https://api.twitter.com"
+let CONSUMER_KEY = "twn2AJHjJ1QV8VGldiJws2QlG"
+let CONSUMER_SECRET = "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA"
+
 class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
     // MARK: Singleton instance
@@ -15,7 +19,7 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
             static var instance : TwitterLiteClient? = nil
         }
         dispatch_once(&Static.onceToken) {
-            Static.instance = TwitterLiteClient(baseURL: NSURL(string: "https://api.twitter.com"), consumerKey: "twn2AJHjJ1QV8VGldiJws2QlG", consumerSecret: "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA")
+            Static.instance = TwitterLiteClient(baseURL: NSURL(string: BASE_URL), consumerKey: CONSUMER_KEY, consumerSecret: CONSUMER_SECRET)
         }
         return Static.instance!
     }
@@ -38,7 +42,36 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     // MARK: Get home timeline
     func getHomeTimelineWithSuccess(
         success: ((operation: AFHTTPRequestOperation!, response: AnyObject!)->()),
+        failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())) -> [Status] {
+            
+        var statusArray = [Status]()
+        
+        if let json: AnyObject = JsonDiskCache.cached() {
+            println("Got cache data")
+            //println(json)
+        }
+        else
+        {
+            self.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+                // Cache the response
+                if response != nil {
+                    let result = JsonDiskCache.cache(response)
+                    println("Cache result: \(result)")
+                }
+                // Call the success block
+                success(operation: operation, response: response)
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                // Call the failure block
+                failure(operation: operation, error: error)
+            })
+        }
+        return statusArray
+    }
+    
+    // MARK: Get user info
+    func getUserInfo(
+        success: ((operation: AFHTTPRequestOperation!, response: AnyObject!)->()),
         failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())) -> AFHTTPRequestOperation {
-        return self.GET("1.1/statuses/home_timeline.json", parameters: nil, success: success, failure: failure)
+            return self.GET("1.1/account/verify_credentials.json", parameters: nil, success: success, failure: failure)
     }
 }

@@ -24,6 +24,11 @@
 		3AE56B5019D4C54C000CF0CB /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B4E19D4C54C000CF0CB /* ComposeViewController.swift */; };
 		3AE56B5119D4C54C000CF0CB /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B4F19D4C54C000CF0CB /* ComposeViewController.xib */; };
 		3AE56B5619D54DAD000CF0CB /* TwitterLiteClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B5519D54DAD000CF0CB /* TwitterLiteClient.swift */; };
+		3AE78DC319D6549200C008EF /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE78DC219D6549200C008EF /* Status.swift */; };
+		3AE78DC519D6558A00C008EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE78DC419D6558A00C008EF /* User.swift */; };
+		3AE78DD419D6661100C008EF /* mock_home_timeline.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AE78DD219D6661100C008EF /* mock_home_timeline.json */; };
+		3AE78DD519D6661100C008EF /* mock_user_info.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AE78DD319D6661100C008EF /* mock_user_info.json */; };
+		3AE78DD819D6836600C008EF /* JsonDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE78DD719D6836600C008EF /* JsonDiskCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +63,12 @@
 		3AE56B4F19D4C54C000CF0CB /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		3AE56B5519D54DAD000CF0CB /* TwitterLiteClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterLiteClient.swift; sourceTree = "<group>"; };
 		3AE56B5719D54E22000CF0CB /* TwitterLite-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TwitterLite-Bridging-Header.h"; sourceTree = "<group>"; };
+		3AE78DC219D6549200C008EF /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		3AE78DC419D6558A00C008EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3AE78DD219D6661100C008EF /* mock_home_timeline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock_home_timeline.json; sourceTree = "<group>"; };
+		3AE78DD319D6661100C008EF /* mock_user_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock_user_info.json; sourceTree = "<group>"; };
+		3AE78DD719D6836600C008EF /* JsonDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonDiskCache.m; sourceTree = "<group>"; };
+		3AE78DD919D6839100C008EF /* JsonDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonDiskCache.h; sourceTree = "<group>"; };
 		90498C6D4447471C889746A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BFC9A89D9C664C748C17B06E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -109,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				3AE56B5419D54A99000CF0CB /* API */,
-				3AE56B3D19D3B9D4000CF0CB /* Model */,
+				3AE56B3D19D3B9D4000CF0CB /* Models */,
 				3AE56B3519D29429000CF0CB /* Views */,
 				3AE56B3A19D2945B000CF0CB /* ViewControllers */,
 				3AE56B1519D292C9000CF0CB /* AppDelegate.swift */,
@@ -123,6 +134,7 @@
 		3AE56B1319D292C9000CF0CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3AE78DD119D6661100C008EF /* Resource */,
 				3AE56B1419D292C9000CF0CB /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -168,20 +180,33 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		3AE56B3D19D3B9D4000CF0CB /* Model */ = {
+		3AE56B3D19D3B9D4000CF0CB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3AE78DC419D6558A00C008EF /* User.swift */,
+				3AE78DC219D6549200C008EF /* Status.swift */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		3AE56B5419D54A99000CF0CB /* API */ = {
 			isa = PBXGroup;
 			children = (
 				3AE56B5519D54DAD000CF0CB /* TwitterLiteClient.swift */,
+				3AE78DD919D6839100C008EF /* JsonDiskCache.h */,
+				3AE78DD719D6836600C008EF /* JsonDiskCache.m */,
 				3AE56B5719D54E22000CF0CB /* TwitterLite-Bridging-Header.h */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		3AE78DD119D6661100C008EF /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				3AE78DD219D6661100C008EF /* mock_home_timeline.json */,
+				3AE78DD319D6661100C008EF /* mock_user_info.json */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		E77ACA8BC8834284B68173DE /* Frameworks */ = {
@@ -279,6 +304,8 @@
 				3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */,
 				3AE56B5119D4C54C000CF0CB /* ComposeViewController.xib in Resources */,
 				3AE56B1D19D292C9000CF0CB /* Images.xcassets in Resources */,
+				3AE78DD419D6661100C008EF /* mock_home_timeline.json in Resources */,
+				3AE78DD519D6661100C008EF /* mock_user_info.json in Resources */,
 				3AE56B3919D29455000CF0CB /* TweetTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,8 +360,11 @@
 				3AE56B5619D54DAD000CF0CB /* TwitterLiteClient.swift in Sources */,
 				3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */,
 				3AE56B3819D29455000CF0CB /* TweetTableViewCell.swift in Sources */,
+				3AE78DC319D6549200C008EF /* Status.swift in Sources */,
 				3AE56B3C19D2A8AE000CF0CB /* TwitterTableViewController.swift in Sources */,
+				3AE78DC519D6558A00C008EF /* User.swift in Sources */,
 				3AE56B5019D4C54C000CF0CB /* ComposeViewController.swift in Sources */,
+				3AE78DD819D6836600C008EF /* JsonDiskCache.m in Sources */,
 				3AE56B4C19D4135E000CF0CB /* LogInViewController.swift in Sources */,
 				3AE56B4819D408CE000CF0CB /* TweetItemViewController.swift in Sources */,
 			);
