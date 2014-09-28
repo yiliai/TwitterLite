@@ -84,7 +84,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/AppDelegate.swift"
-            timestampString = "433559024.14229"
+            timestampString = "433568392.549889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -100,11 +100,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/HomeTimelineViewController.swift"
-            timestampString = "433559831.665245"
+            timestampString = "433573601.173824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "numberOfSectionsInTableView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/HomeTimelineViewController.swift"
-            timestampString = "433559831.665245"
+            timestampString = "433573708.089036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -132,11 +132,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/HomeTimelineViewController.swift"
-            timestampString = "433559831.665245"
+            timestampString = "433573601.173824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TweetTableViewCell.swift"
-            timestampString = "433565724.565271"
+            timestampString = "433574893.114808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "setAuthorName(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TweetTableViewCell.swift"
-            timestampString = "433565724.565271"
+            timestampString = "433574893.114808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "setStatusText(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TweetTableViewCell.swift"
-            timestampString = "433565724.565271"
+            timestampString = "433574893.114808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "setSelected(_:animated:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TweetTableViewCell.swift"
-            timestampString = "433565724.565271"
+            timestampString = "433574893.114808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "setScreenName(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -228,13 +228,121 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/HomeTimelineViewController.swift"
-            timestampString = "433567011.150337"
+            timestampString = "433573708.089036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/HomeTimelineViewController.swift"
+            timestampString = "433573797.847414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterLite.HomeTimelineViewController.viewDidLoad (TwitterLite.HomeTimelineViewController)() -&gt; ()"
+                  moduleName = "TwitterLite"
+                  urlString = "file:///Users/yiliaiwazian/Documents/Developer/codepath/TwitterLite/TwitterLite/HomeTimelineViewController.swift"
+                  timestampString = "433573979.753607"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "6090">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterLite.HomeTimelineViewController.(viewDidLoad (TwitterLite.HomeTimelineViewController) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "TwitterLite"
+                  urlString = "file:///Users/yiliaiwazian/Documents/Developer/codepath/TwitterLite/TwitterLite/HomeTimelineViewController.swift"
+                  timestampString = "433573979.753821"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "23">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/TwitterLiteClient.swift"
+            timestampString = "433573847.131715"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "getHomeTimelineWithParams(_:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/TwitterLiteClient.swift"
+            timestampString = "433573848.434715"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "getHomeTimelineWithParams(_:completion:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterLite.TwitterLiteClient.getHomeTimelineWithParams (TwitterLite.TwitterLiteClient)(Swift.Optional&lt;ObjectiveC.NSDictionary&gt;, completion : (statuses : Swift.Optional&lt;Swift.Array&lt;TwitterLite.Status&gt;&gt;, error : Swift.Optional&lt;ObjectiveC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TwitterLite"
+                  urlString = "file:///Users/yiliaiwazian/Documents/Developer/codepath/TwitterLite/TwitterLite/TwitterLiteClient.swift"
+                  timestampString = "433573893.097739"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "66">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterLite.TwitterLiteClient.getHomeTimelineWithParams (TwitterLite.TwitterLiteClient)(Swift.Optional&lt;ObjectiveC.NSDictionary&gt;, completion : (statuses : Swift.Optional&lt;Swift.Array&lt;TwitterLite.Status&gt;&gt;, error : Swift.Optional&lt;ObjectiveC.NSError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TwitterLite"
+                  urlString = "file:///Users/yiliaiwazian/Documents/Developer/codepath/TwitterLite/TwitterLite/TwitterLiteClient.swift"
+                  timestampString = "433573893.098053"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "95"
+                  endingLineNumber = "95"
+                  offsetFromSymbolStart = "772">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

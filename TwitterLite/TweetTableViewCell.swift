@@ -40,6 +40,7 @@ class TweetTableViewCell: UITableViewCell {
         decimalFormatter.numberStyle = .DecimalStyle
         retweetCount.textColor = BLUE_GRAY
         favoriteCount.textColor = BLUE_GRAY
+        reasonLabel.textColor = BLUE_GRAY
         
         retweetButton.setImage(UIImage(named: "retweet_highlighted"), forState: .Selected)
         favoriteButton.setImage(UIImage(named: "star_highlighted"), forState: .Selected)
@@ -49,6 +50,17 @@ class TweetTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setStatus(status: Status) {
+        setAuthorName(status.author!.name)
+        setScreenName(status.author!.screenName)
+        setStatusText(status.text)
+        setAuthorImage(status.author!.profileImageUrl)
+        setRetweetCount(status.retweetCount)
+        setFavoriteCount(status.favoriteCount)
+        setRetweetButton(status.retweeted)
+        setFavoriteButton(status.favorited)
     }
     
     func setAuthorName(name: String?) {
@@ -113,11 +125,19 @@ class TweetTableViewCell: UITableViewCell {
             self.retweetButton.selected = true
             self.retweetCount.textColor = HIGHLIGHT
         }
+        else {
+            self.retweetButton.selected = false
+            self.retweetCount.textColor = BLUE_GRAY
+        }
     }
     func setFavoriteButton(favorited: Bool?) {
         if (favorited != nil && favorited == true) {
             self.favoriteButton.selected = true
             self.favoriteCount.textColor = HIGHLIGHT
+        }
+        else {
+            self.favoriteButton.selected = false
+            self.favoriteCount.textColor = BLUE_GRAY
         }
     }
     @IBAction func onTapRetweet(sender: AnyObject) {

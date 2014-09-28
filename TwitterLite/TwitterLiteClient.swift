@@ -97,25 +97,24 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
                 var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
                 // Call the completion block
                 completion(statuses: statuses, error: nil)
+                return
             }
         }
-        else
-        {
-            self.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-                // Cache the response
-                if response != nil {
-                    let result = JsonDiskCache.cache(response)
-                    println("Cache home timeline")
+       
+        self.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            // Cache the response
+            if response != nil {
+                let result = JsonDiskCache.cache(response)
+                println("Cache home timeline")
                     
-                    var statuses = Status.parseStatusesFromArray(response as [NSDictionary])
-                    // Call the completion block
-                    completion(statuses: statuses, error: nil)
-                }
-                }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                    // Call the completion block with error
-                    completion(statuses: nil, error: error)
-            })
-        }
+                var statuses = Status.parseStatusesFromArray(response as [NSDictionary])
+                // Call the completion block
+                completion(statuses: statuses, error: nil)
+            }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                // Call the completion block with error
+                completion(statuses: nil, error: error)
+        })
     }
     
     // MARK: Get user info

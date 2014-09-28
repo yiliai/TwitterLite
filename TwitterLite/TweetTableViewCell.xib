@@ -36,7 +36,7 @@
                             <constraint firstAttribute="width" constant="48" id="kKS-06-7gW"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Gurley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evC-qe-nC8">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Bill Gurley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evC-qe-nC8">
                         <rect key="frame" x="70" y="33" width="66" height="17"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -55,8 +55,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-6m-wpe">
-                        <rect key="frame" x="398" y="35" width="14" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="1h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-6m-wpe">
+                        <rect key="frame" x="202" y="35" width="210" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -121,6 +121,7 @@
                     <constraint firstItem="FTR-KR-v4S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="FK6-Tm-rvm"/>
                     <constraint firstItem="evC-qe-nC8" firstAttribute="leading" secondItem="l0R-Cj-lBD" secondAttribute="trailing" constant="10" id="GRL-Jj-nX5"/>
                     <constraint firstItem="alW-Kd-hfN" firstAttribute="centerY" secondItem="k8F-6c-C1J" secondAttribute="centerY" id="IAX-aJ-JKK"/>
+                    <constraint firstItem="t0B-6m-wpe" firstAttribute="leading" secondItem="vRp-oR-2He" secondAttribute="trailing" constant="10" id="IQl-su-1Tt"/>
                     <constraint firstItem="cqZ-1a-YtZ" firstAttribute="top" secondItem="evC-qe-nC8" secondAttribute="bottom" constant="2" id="KoK-wK-ex1"/>
                     <constraint firstAttribute="bottom" secondItem="alW-Kd-hfN" secondAttribute="bottom" constant="10" id="N9Q-jB-fhO"/>
                     <constraint firstItem="Lq4-qv-aiS" firstAttribute="centerY" secondItem="k8F-6c-C1J" secondAttribute="centerY" id="PTl-zM-SIv"/>

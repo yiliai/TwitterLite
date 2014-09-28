@@ -7,6 +7,7 @@
 //
 
 import UIKit
+let TWITTER_BLUE = UIColor(red: 0.345, green: 0.6823, blue: 0.937, alpha: 1.0)
 
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -17,7 +18,19 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Skin the navigation bar
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.barTintColor = TWITTER_BLUE
+        navigationBar?.tintColor = UIColor.whiteColor()
+        navigationBar?.topItem?.title = "Home"
+        let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationBar?.titleTextAttributes = titleSytle
+        
+        // Add the signout button
+        let signoutButton = UIBarButtonItem(title: "Sign Out", style: .Plain, target: self, action: "signout")
+        self.navigationItem.setLeftBarButtonItem(signoutButton, animated: true)
+        
         // Setting up the table view and table cells
         let statusCellNib = UINib(nibName: "TweetTableViewCell", bundle: nil);
         homeTimelineTable.registerNib(statusCellNib, forCellReuseIdentifier: "statusCell")
@@ -28,6 +41,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         
         // Do any additional setup after loading the view.
         TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(nil, completion: { (statuses, error) -> () in
+            println("Get home timeline")
             self.homeStatuses = statuses
             self.homeTimelineTable.reloadData()
         })
@@ -47,6 +61,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println(homeStatuses?.count)
         return (homeStatuses != nil) ? homeStatuses!.count : 0
     }
     
@@ -62,35 +77,38 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         // First check to see if this is a retweet
         if status.retweetedStatus != nil {
             cell.setRetweetReason(status.author!.name)
-            
             let retweet = status.retweetedStatus! as Status
-            cell.setAuthorName(retweet.author!.name)
-            cell.setScreenName(retweet.author!.screenName)
-            cell.setStatusText(retweet.text)
-            cell.setAuthorImage(retweet.author!.profileImageUrl)
-            cell.setRetweetCount(retweet.retweetCount)
-            cell.setFavoriteCount(retweet.favoriteCount)
-            cell.setRetweetButton(retweet.retweeted)
-            cell.setFavoriteButton(retweet.favorited)
+            cell.setStatus(retweet)
         }
         else {
             cell.setRetweetReason(nil)
-            cell.setAuthorName(status.author!.name)
-            cell.setScreenName(status.author!.screenName)
-            cell.setStatusText(status.text)
-            cell.setAuthorImage(status.author!.profileImageUrl)
-            cell.setRetweetCount(status.retweetCount)
-            cell.setFavoriteCount(status.favoriteCount)
-            cell.setRetweetButton(status.retweeted)
-            cell.setFavoriteButton(status.favorited)
+            cell.setStatus(status)
         }
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        println("tapped on item: \(indexPath.row)")
+        
+        let itemViewController = TweetItemViewController(nibName: "TweetItemViewController", bundle: nil)
+        let status = homeStatuses![indexPath.row] as Status
+        if (status.retweetedStatus != nil) {
+            itemViewController.status = status.retweetedStatus!
+        }
+        else {
+            itemViewController.status = status
+        }
+        
+        self.navigationController?.pushViewController(itemViewController, animated: true)
+        
         /*tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
         tableView.beginUpdates()
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         tableView.endUpdates()*/
+    }
+    
+    func signout() {
+        User.currentUser?.signout()
     }
 }
