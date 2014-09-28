@@ -12,6 +12,10 @@ let CONSUMER_SECRET = "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA"
 
 class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
+    var statusArray = [Status]()
+
+    var signinCompletion: ((user: User?, error: NSError?)->())?
+    
     // MARK: Singleton instance
     class var sharedInstance : TwitterLiteClient {
         struct Static {
@@ -39,16 +43,58 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
         }
     }
     
-    // MARK: Get home timeline
-    func getHomeTimelineWithSuccess(
-        success: ((operation: AFHTTPRequestOperation!, response: AnyObject!)->()),
-        failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())) -> [Status] {
-            
-        var statusArray = [Status]()
+    // MARK: Signin with completion block
+    func signinWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
+        self.signinCompletion = completion
         
+        self.requestSerializer.removeAccessToken()
+        // 1. Get the request token
+        self.fetchRequestTokenWithPath("oauth/request_token", method: "POST", callbackURL: NSURL(string: "twitterlite://oauth"), scope: nil, success: { (requestToken: BDBOAuthToken!) -> Void in
+            NSLog("Got the request token")
+            // 2. Go to the Twitter sign in URL
+            let authURL = NSString(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
+            UIApplication.sharedApplication().openURL(NSURL(string: authURL))
+            }) { (error: NSError!) -> Void in
+                NSLog ("Failure to get the token \(error)")
+                self.signinCompletion?(user: nil, error: error)
+        }
+    }
+    
+    func openURL(url: NSURL) {
+        var parameters = url.dictionaryFromQueryString()
+        if (parameters["oauth_token"] != nil) && (parameters["oauth_verifier"] != nil) {
+            
+            //3. Fetch access token
+            fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: url.query), success: { (accessToken: BDBOAuthToken!) -> Void in
+                NSLog("Got the access token")
+                TwitterLiteClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
+
+                //4. Get the user credentials
+                TwitterLiteClient.sharedInstance.getUserInfo({ (operation, response) -> () in
+                    NSLog("User info: \(response)")
+                    var user = User(dictionary: response as NSDictionary)
+                    //5. Persist the signed in user as the current user
+                    User.currentUser = user
+                    self.signinCompletion?(user:user, error:nil)
+                    }, failure: { (operation, error) -> () in
+                        NSLog("Failure to get user info")
+                        self.signinCompletion?(user: nil, error: error)
+                })
+                
+                }, failure: { (error: NSError!) -> Void in
+                    NSLog("Failure to get the access token \(error)")
+                    self.signinCompletion?(user: nil, error: error)
+            })
+        }
+    }
+    
+    // MARK: Get the home timeline with optional parameters
+    func getHomeTimelineWithParams(params: NSDictionary?, completion: (statuses: [Status]?, error: NSError?) -> ()) {
         if let json: AnyObject = JsonDiskCache.cached() {
             println("Got cache data")
-            //println(json)
+            var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
+            // Call the completion block
+            completion(statuses: statuses, error: nil)
         }
         else
         {
@@ -56,16 +102,17 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
                 // Cache the response
                 if response != nil {
                     let result = JsonDiskCache.cache(response)
-                    println("Cache result: \(result)")
+                    println("Cache home timeline")
+                    
+                    var statuses = Status.parseStatusesFromArray(response as [NSDictionary])
+                    // Call the completion block
+                    completion(statuses: statuses, error: nil)
                 }
-                // Call the success block
-                success(operation: operation, response: response)
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-                // Call the failure block
-                failure(operation: operation, error: error)
+                }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                    // Call the completion block with error
+                    completion(statuses: nil, error: error)
             })
         }
-        return statusArray
     }
     
     // MARK: Get user info

@@ -8,28 +8,6 @@
 
 import UIKit
 
-extension NSURL {
-    func dictionaryFromQueryString() -> NSDictionary {
-        var dictionary = NSMutableDictionary()
-        var pairs = self.query?.componentsSeparatedByString("&")
-        
-        if (pairs != nil) {
-            for pair in pairs! {
-                
-                let elements = pair.componentsSeparatedByString("=") as [String]
-                let key = elements[0].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-                let val = elements[1].stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-                println("key: \(key)")
-                println("val: \(val)")
-                
-                dictionary[key!] = val
-                println(dictionary[key!])
-            }
-        }
-        return dictionary
-    }
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -42,17 +20,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidSignout", name: userDidSignoutNotification, object: nil)
+        
+        if User.currentUser != nil {
+            // Go to the home timeline screen
+            println("current user detected: \(User.currentUser?.name)")
+            let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
+            self.window!.rootViewController = homeViewController            
+        }
+        else {
+            let loginViewController = LogInViewController(nibName: "LogInViewController", bundle: nil)
+            self.window!.rootViewController = loginViewController
+        }
+        self.window!.makeKeyAndVisible()
+
+        return true
+    }
+    
+    func userDidSignout() {
         let loginViewController = LogInViewController(nibName: "LogInViewController", bundle: nil)
         self.window!.rootViewController = loginViewController
-        self.window!.makeKeyAndVisible()
-        
-        /*TwitterLiteClient.sharedInstance.getHomeTimelineWithSuccess({(operation: AFHTTPRequestOperation!, response: AnyObject!) -> () in
-            NSLog("Home timeline: \(response)")
-            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> () in
-                
-                NSLog("Failure to get home timeline")
-        })*/
-        return true
     }
     
     func applicationWillResignActive(application: UIApplication) {
@@ -81,38 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NSLog("callback url:\(url)")
         if (url.scheme? == "twitterlite") {
             if (url.host? == "oauth") {
-                var parameters = url.dictionaryFromQueryString()
-                if (parameters["oauth_token"] != nil) && (parameters["oauth_verifier"] != nil) {
-                    TwitterLiteClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: BDBOAuthToken(queryString: url.query), success: { (accessToken: BDBOAuthToken!) -> Void in
-                        NSLog("Got the access token")
-                        TwitterLiteClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-                       
-                        
-                                                
-                        
-                        TwitterLiteClient.sharedInstance.getHomeTimelineWithSuccess({(operation: AFHTTPRequestOperation!, response: AnyObject!) -> () in
-                            NSLog("Home timeline: \(response)")
-                            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> () in
-                            
-                            NSLog("Failure to get home timeline")
-                        })
-                        
-                        /*TwitterLiteClient.sharedInstance.getUserInfo({ (operation, response) -> () in
-                            NSLog("User info: \(response)")
-                        }, failure: { (operation, error) -> () in
-                            NSLog("Failure to get user info")
-                        })*/
-                        TwitterLiteClient.sharedInstance.getHomeTimelineWithSuccess({(operation: AFHTTPRequestOperation!, response: AnyObject!) -> () in
-                            NSLog("Home timeline: \(response)")
-                            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> () in
-                                
-                                NSLog("Failure to get home timeline")
-                        })
-                        
-                    }, failure: { (error: NSError!) -> Void in
-                        NSLog("Failure to get the access token \(error)")
-                    })
-                }
+                TwitterLiteClient.sharedInstance.openURL(url)
             }
             return true
         }

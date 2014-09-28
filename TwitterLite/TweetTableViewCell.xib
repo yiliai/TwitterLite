@@ -26,19 +26,13 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bill Gurley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evC-qe-nC8">
-                        <rect key="frame" x="70" y="33" width="66" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Bill Gurley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evC-qe-nC8">
+                        <rect key="frame" x="70" y="33" width="66" height="28"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@bgurley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRp-oR-2He">
-                        <rect key="frame" x="142" y="37" width="50" height="14"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqZ-1a-YtZ">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cqZ-1a-YtZ">
                         <rect key="frame" x="70" y="63" width="342" height="49"/>
                         <string key="text">If you are looking for a great documentary, try "Jiro Dreams of Sushi," http://en.wikipedia.org/wiki/Jiro_Dreams_of_Sushi … Amazing.</string>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
@@ -52,8 +46,8 @@
                             <constraint firstAttribute="height" constant="15" id="PDM-ti-amV"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-6m-wpe">
-                        <rect key="frame" x="398" y="37" width="14" height="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-6m-wpe">
+                        <rect key="frame" x="398" y="40" width="14" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -100,6 +94,12 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="@bgurley" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRp-oR-2He">
+                        <rect key="frame" x="142" y="40" width="50" height="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="vRp-oR-2He" firstAttribute="leading" secondItem="evC-qe-nC8" secondAttribute="trailing" constant="6" id="00c-ho-S9k"/>
@@ -112,9 +112,8 @@
                     <constraint firstItem="FTR-KR-v4S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="FK6-Tm-rvm"/>
                     <constraint firstItem="evC-qe-nC8" firstAttribute="leading" secondItem="l0R-Cj-lBD" secondAttribute="trailing" constant="10" id="GRL-Jj-nX5"/>
                     <constraint firstItem="alW-Kd-hfN" firstAttribute="centerY" secondItem="k8F-6c-C1J" secondAttribute="centerY" id="IAX-aJ-JKK"/>
-                    <constraint firstItem="cqZ-1a-YtZ" firstAttribute="top" secondItem="evC-qe-nC8" secondAttribute="bottom" constant="8" id="KoK-wK-ex1"/>
+                    <constraint firstItem="cqZ-1a-YtZ" firstAttribute="top" secondItem="evC-qe-nC8" secondAttribute="bottom" constant="2" id="KoK-wK-ex1"/>
                     <constraint firstAttribute="bottom" secondItem="alW-Kd-hfN" secondAttribute="bottom" constant="10" id="N9Q-jB-fhO"/>
-                    <constraint firstItem="vRp-oR-2He" firstAttribute="leading" secondItem="l0R-Cj-lBD" secondAttribute="trailing" constant="6" id="NFN-ht-8XT"/>
                     <constraint firstItem="Lq4-qv-aiS" firstAttribute="centerY" secondItem="k8F-6c-C1J" secondAttribute="centerY" id="PTl-zM-SIv"/>
                     <constraint firstItem="FTR-KR-v4S" firstAttribute="top" secondItem="rLO-ha-rYK" secondAttribute="top" id="Wct-or-n29"/>
                     <constraint firstItem="f0p-NO-jKM" firstAttribute="centerY" secondItem="k8F-6c-C1J" secondAttribute="centerY" id="YTt-9X-gip"/>
@@ -127,17 +126,18 @@
                     <constraint firstItem="48E-CE-ZWx" firstAttribute="leading" secondItem="f0p-NO-jKM" secondAttribute="trailing" constant="3" id="qZI-84-CCg"/>
                     <constraint firstItem="f0p-NO-jKM" firstAttribute="centerY" secondItem="48E-CE-ZWx" secondAttribute="centerY" id="sK1-uT-J0x"/>
                     <constraint firstItem="evC-qe-nC8" firstAttribute="top" secondItem="l0R-Cj-lBD" secondAttribute="top" constant="-2" id="ufZ-md-0yC"/>
-                    <constraint firstItem="evC-qe-nC8" firstAttribute="leading" secondItem="rLO-ha-rYK" secondAttribute="leading" id="w5v-ZU-smh"/>
                     <constraint firstItem="evC-qe-nC8" firstAttribute="centerY" secondItem="t0B-6m-wpe" secondAttribute="centerY" id="y0Y-YF-Vy7"/>
                     <constraint firstItem="vRp-oR-2He" firstAttribute="centerY" secondItem="evC-qe-nC8" secondAttribute="centerY" id="zc2-AV-960"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="w5v-ZU-smh"/>
-                        <exclude reference="NFN-ht-8XT"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="authorImage" destination="l0R-Cj-lBD" id="ndw-D3-h6m"/>
+                <outlet property="authorNameLabel" destination="evC-qe-nC8" id="dU0-0h-Acb"/>
+                <outlet property="authorScreenNameLabel" destination="vRp-oR-2He" id="wA6-xA-ycF"/>
+                <outlet property="reasonImage" destination="FTR-KR-v4S" id="GDq-KA-RpE"/>
+                <outlet property="reasonLabel" destination="rLO-ha-rYK" id="rcz-aq-OH6"/>
+                <outlet property="statusTextLabel" destination="cqZ-1a-YtZ" id="x0s-3O-AY3"/>
+            </connections>
             <point key="canvasLocation" x="191" y="199.5"/>
         </tableViewCell>
     </objects>

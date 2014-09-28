@@ -25,7 +25,20 @@ class LogInViewController: UIViewController {
     
     @IBAction func onTapSignin(sender: AnyObject) {
         println("tapped on log in")
-        TwitterLiteClient.sharedInstance.signin()
+        //TwitterLiteClient.sharedInstance.signin()
+        TwitterLiteClient.sharedInstance.signinWithCompletion() {
+            (user: User?, error: NSError?) in
+            if user != nil {
+                
+                let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
+                self.presentViewController(homeViewController, animated: true, completion: { () -> Void in
+                    NSLog("Successfully pushed the home view")
+                })
+            }
+            else {
+                //handle login error
+            }
+        }
     }
     /*
     // MARK: - Navigation
