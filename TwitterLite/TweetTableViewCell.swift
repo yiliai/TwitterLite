@@ -22,6 +22,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var authorScreenNameLabel: UILabel!
     @IBOutlet weak var statusTextLabel: UILabel!
+    @IBOutlet weak var timeSinceCreation: UILabel!
     
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
@@ -41,6 +42,11 @@ class TweetTableViewCell: UITableViewCell {
         retweetCount.textColor = BLUE_GRAY
         favoriteCount.textColor = BLUE_GRAY
         reasonLabel.textColor = BLUE_GRAY
+        authorScreenNameLabel.textColor = BLUE_GRAY
+        timeSinceCreation.textColor = BLUE_GRAY
+        
+        authorImage.layer.cornerRadius = 6.0
+        authorImage.layer.masksToBounds = true
         
         retweetButton.setImage(UIImage(named: "retweet_highlighted"), forState: .Selected)
         favoriteButton.setImage(UIImage(named: "star_highlighted"), forState: .Selected)
@@ -70,9 +76,7 @@ class TweetTableViewCell: UITableViewCell {
     }
     
     func setScreenName(screenName: String?) {
-        self.authorScreenNameLabel.numberOfLines = 0
         self.authorScreenNameLabel.text = screenName != nil ? "@\(screenName!)" : ""
-        self.authorScreenNameLabel.sizeToFit()
     }
     
     func setStatusText(text: String?) {

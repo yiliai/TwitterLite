@@ -51,6 +51,9 @@ class TweetItemViewController: UIViewController {
         favoritesLabel.textColor = BLUE_GRAY
         timeStampLabel.textColor = BLUE_GRAY
         
+        authorImage.layer.cornerRadius = 6.0
+        authorImage.layer.masksToBounds = true
+        
     }
 
     override func didReceiveMemoryWarning() {

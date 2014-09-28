@@ -55,7 +55,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="1h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-6m-wpe">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1h" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-6m-wpe">
                         <rect key="frame" x="202" y="35" width="210" height="14"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -154,6 +154,7 @@
                 <outlet property="retweetButton" destination="k8F-6c-C1J" id="Plj-6K-DTG"/>
                 <outlet property="retweetCount" destination="Lq4-qv-aiS" id="Vfi-t0-bwm"/>
                 <outlet property="statusTextLabel" destination="cqZ-1a-YtZ" id="x0s-3O-AY3"/>
+                <outlet property="timeSinceCreation" destination="t0B-6m-wpe" id="go2-pO-lHi"/>
                 <outlet property="topMarginConstraint" destination="FK6-Tm-rvm" id="wcY-9K-Lbn"/>
             </connections>
             <point key="canvasLocation" x="191" y="199.5"/>
