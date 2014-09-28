@@ -58,7 +58,17 @@ class TweetTableViewCell: UITableViewCell {
         self.authorImage.fadeInImageFromURL(url)
     }
     
-    func setRetweetReason(text: String) {
-        
+    func setRetweetReason(text: String?) {
+        if (text != nil) {
+            reasonLabel.text = text
+            topMarginConstraint.constant = 12
+            reasonImageHeightConstraint.constant = 15
+            reasonHeightConstraint.constant = 15
+        }
+        else {
+            topMarginConstraint.constant = 4
+            reasonImageHeightConstraint.constant = 0
+            reasonHeightConstraint.constant = 0
+        }
     }
 }

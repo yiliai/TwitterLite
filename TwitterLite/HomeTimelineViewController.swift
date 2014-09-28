@@ -59,14 +59,23 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView.dequeueReusableCellWithIdentifier("statusCell", forIndexPath: indexPath) as TweetTableViewCell
         let status = homeStatuses![indexPath.row] as Status
         
-        cell.setAuthorName(status.author!.name!)
-        cell.setScreenName("@\(status.author!.screenName!)")
-        cell.setStatusText(status.text!)
-        cell.setAuthorImage(status.author!.profileImageUrl!)
+        // First check to see if this is a retweet
         if status.retweetedStatus != nil {
+            cell.setRetweetReason("\(status.author!.name!) retweeted")
             
+            let retweet = status.retweetedStatus! as Status
+            cell.setAuthorName(retweet.author!.name!)
+            cell.setScreenName("@\(retweet.author!.screenName!)")
+            cell.setStatusText(retweet.text!)
+            cell.setAuthorImage(retweet.author!.profileImageUrl!)
         }
-        
+        else {
+            cell.setRetweetReason(nil)
+            cell.setAuthorName(status.author!.name!)
+            cell.setScreenName("@\(status.author!.screenName!)")
+            cell.setStatusText(status.text!)
+            cell.setAuthorImage(status.author!.profileImageUrl!)
+        }
         return cell
     }
 }

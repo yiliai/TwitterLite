@@ -90,8 +90,8 @@ class Status: NSObject {
         for item in array {
             let status = Status(dictionary: item)
             statusArray.append(status)
-            //println(statusArray.count)
-            //println(status.description())
+            println(statusArray.count)
+            println(status.description())
         }
         NSLog ("Finished parsing status array")
         return statusArray
