@@ -9,12 +9,21 @@
 import UIKit
 let TWITTER_BLUE = UIColor(red: 0.345, green: 0.6823, blue: 0.937, alpha: 1.0)
 
-class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol ComposeDelegate {
+    func dismissComposeView(newStatus: Status?)
+}
+protocol StatusUpdateDelegate {
+    func toggleFavorite(indexPath: NSIndexPath)
+    //func unfavoriteStatus(status: Status)
+    //func retweetStatus(status: Status)
+}
+class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
 
     @IBOutlet weak var homeNavigationBar: UINavigationBar!
     @IBOutlet weak var homeTimelineTable: UITableView!
     
     var homeStatuses: [Status]?
+    var composeViewController: ComposeViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +39,11 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         // Add the signout button
         let signoutButton = UIBarButtonItem(title: "Sign Out", style: .Plain, target: self, action: "signout")
         self.navigationItem.setLeftBarButtonItem(signoutButton, animated: true)
+        
+        // Add the compose button
+        let composeButton = UIBarButtonItem(image: UIImage(named: "compose"), style: UIBarButtonItemStyle.Plain, target: self, action: "compose")
+        self.navigationItem.setRightBarButtonItem(composeButton, animated: true)
+        
         
         // Setting up the table view and table cells
         let statusCellNib = UINib(nibName: "TweetTableViewCell", bundle: nil);
@@ -61,7 +75,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(homeStatuses?.count)
         return (homeStatuses != nil) ? homeStatuses!.count : 0
     }
     
@@ -72,6 +85,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("statusCell", forIndexPath: indexPath) as TweetTableViewCell
+        cell.statusUpdateDelegate = self
         let status = homeStatuses![indexPath.row] as Status
         
         // First check to see if this is a retweet
@@ -92,6 +106,9 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         println("tapped on item: \(indexPath.row)")
         
         let itemViewController = TweetItemViewController(nibName: "TweetItemViewController", bundle: nil)
+        itemViewController.statusUpdateDelegate = self
+        itemViewController.indexPath = indexPath
+
         let status = homeStatuses![indexPath.row] as Status
         if (status.retweetedStatus != nil) {
             itemViewController.status = status.retweetedStatus!
@@ -99,7 +116,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         else {
             itemViewController.status = status
         }
-        
         self.navigationController?.pushViewController(itemViewController, animated: true)
         
         /*tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
@@ -110,5 +126,36 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     func signout() {
         User.currentUser?.signout()
+    }
+    
+    func compose() {
+        self.composeViewController = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
+        self.composeViewController!.composeDelegate = self
+        self.navigationController?.presentViewController(composeViewController!, animated: true, completion: { () -> Void in
+            println("Launched the compose view")
+        })
+    }
+    
+    func dismissComposeView(newStatus: Status?) {
+        if (newStatus != nil) {
+            // Actually post the status to Twitter
+            Status.postStatus(newStatus!)
+
+            // Insert the newly posted status in view
+            homeStatuses?.insert(newStatus!, atIndex: 0)
+            homeTimelineTable.beginUpdates()
+            homeTimelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
+            homeTimelineTable.endUpdates()
+        }
+        self.composeViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+            println("Dismissed the compose view")
+        })
+    }
+    
+    func toggleFavorite(indexPath: NSIndexPath) {
+        
+        homeTimelineTable.beginUpdates()
+        homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        homeTimelineTable.endUpdates()
     }
 }

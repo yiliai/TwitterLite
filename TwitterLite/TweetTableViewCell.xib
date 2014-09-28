@@ -79,22 +79,9 @@
                             <constraint firstAttribute="width" constant="20" id="Dvl-gM-FZo"/>
                             <constraint firstAttribute="height" constant="20" id="mvr-TO-KmA"/>
                         </constraints>
-                        <state key="normal" image="reply_light">
+                        <state key="normal" title="replyButton" image="reply">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0p-NO-jKM">
-                        <rect key="frame" x="206" y="122" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="RHz-jl-khw"/>
-                            <constraint firstAttribute="height" constant="20" id="ldS-Kf-nWm"/>
-                        </constraints>
-                        <state key="normal" image="star_light">
-                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                        <connections>
-                            <action selector="onTapFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YFx-8e-Yka"/>
-                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8F-6c-C1J">
                         <rect key="frame" x="138" y="122" width="20" height="20"/>
@@ -102,11 +89,24 @@
                             <constraint firstAttribute="height" constant="20" id="47w-0c-FQf"/>
                             <constraint firstAttribute="width" constant="20" id="FQb-Z0-Vju"/>
                         </constraints>
-                        <state key="normal" image="retweet_light">
+                        <state key="normal" title="retweetButton" image="retweet">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
                             <action selector="onTapRetweet:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JdP-LV-5z2"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0p-NO-jKM">
+                        <rect key="frame" x="206" y="122" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="RHz-jl-khw"/>
+                            <constraint firstAttribute="height" constant="20" id="ldS-Kf-nWm"/>
+                        </constraints>
+                        <state key="normal" title="favoriteButton" image="favorite">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onTapFavorite:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="YFx-8e-Yka"/>
                         </connections>
                     </button>
                 </subviews>
@@ -161,9 +161,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="reply_light" width="54" height="54"/>
+        <image name="favorite" width="54" height="54"/>
+        <image name="reply" width="54" height="54"/>
         <image name="retweet" width="54" height="54"/>
-        <image name="retweet_light" width="54" height="54"/>
-        <image name="star_light" width="54" height="54"/>
     </resources>
 </document>

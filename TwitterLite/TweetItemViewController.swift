@@ -11,6 +11,8 @@ import UIKit
 class TweetItemViewController: UIViewController {
 
     var status: Status?
+    var statusUpdateDelegate: StatusUpdateDelegate?
+    var indexPath: NSIndexPath?
     
     @IBOutlet weak var reasonImage: UIImageView!
     @IBOutlet weak var reasonLabel: UILabel!
@@ -24,7 +26,8 @@ class TweetItemViewController: UIViewController {
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteButton: UIButton!
-    
+    @IBOutlet weak var moreButton: UIButton!
+
     @IBOutlet weak var retweetCount: UILabel!
     @IBOutlet weak var favoriteCount: UILabel!
     
@@ -43,6 +46,7 @@ class TweetItemViewController: UIViewController {
             setStatus(self.status!)
         }
         
+        // Set up text label colors
         reasonLabel.textColor = BLUE_GRAY
         separator1.backgroundColor = LIGHT_GRAY
         separator2.backgroundColor = LIGHT_GRAY
@@ -51,6 +55,17 @@ class TweetItemViewController: UIViewController {
         favoritesLabel.textColor = BLUE_GRAY
         timeStampLabel.textColor = BLUE_GRAY
         
+        // Set up images to allow tint color
+        reasonImage.image = UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        reasonImage.tintColor = BLUE_GRAY
+        favoriteButton.setImage(UIImage(named: "favorite").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        retweetButton.setImage(UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        replyButton.setImage(UIImage(named: "reply").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        replyButton.tintColor = BLUE_GRAY
+        moreButton.setImage(UIImage(named: "dots").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        moreButton.tintColor = BLUE_GRAY
+        
+        // Set up rounded corners on the profile image
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
         
@@ -118,21 +133,32 @@ class TweetItemViewController: UIViewController {
     func setRetweetButton(retweeted: Bool?) {
         if (retweeted != nil && retweeted == true) {
             self.retweetButton.selected = true
+            self.retweetButton.tintColor = HIGHLIGHT
             self.retweetCount.textColor = HIGHLIGHT
         }
         else {
             self.retweetButton.selected = false
-            self.retweetCount.textColor = UIColor.blackColor()
+            self.retweetButton.tintColor = BLUE_GRAY
+            self.retweetCount.textColor = BLUE_GRAY
         }
     }
     func setFavoriteButton(favorited: Bool?) {
         if (favorited != nil && favorited == true) {
             self.favoriteButton.selected = true
+            self.favoriteButton.tintColor = HIGHLIGHT
             self.favoriteCount.textColor = HIGHLIGHT
         }
         else {
             self.favoriteButton.selected = false
-            self.favoriteCount.textColor = UIColor.blackColor()
+            self.favoriteButton.tintColor = BLUE_GRAY
+            self.favoriteCount.textColor = BLUE_GRAY
         }
+    }
+    
+    @IBAction func onTapFavorite(sender: AnyObject) {
+        status!.toggleFavorite()
+        setFavoriteCount(status?.favoriteCount)
+        setFavoriteButton(status?.favorited)
+        statusUpdateDelegate?.toggleFavorite(indexPath!)
     }
 }

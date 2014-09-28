@@ -35,6 +35,9 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var reasonImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var reasonHeightConstraint: NSLayoutConstraint!
 
+    var status: Status?
+    var statusUpdateDelegate: StatusUpdateDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -47,9 +50,14 @@ class TweetTableViewCell: UITableViewCell {
         
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
-        
-        retweetButton.setImage(UIImage(named: "retweet_highlighted"), forState: .Selected)
-        favoriteButton.setImage(UIImage(named: "star_highlighted"), forState: .Selected)
+
+        // Set up images to allow tint color
+        reasonImage.image = UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        reasonImage.tintColor = BLUE_GRAY
+        favoriteButton.setImage(UIImage(named: "favorite").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        retweetButton.setImage(UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        replyButton.setImage(UIImage(named: "reply").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+        replyButton.tintColor = LIGHT_GRAY
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -59,6 +67,7 @@ class TweetTableViewCell: UITableViewCell {
     }
     
     func setStatus(status: Status) {
+        self.status = status
         setAuthorName(status.author!.name)
         setScreenName(status.author!.screenName)
         setStatusText(status.text)
@@ -127,20 +136,24 @@ class TweetTableViewCell: UITableViewCell {
     func setRetweetButton(retweeted: Bool?) {
         if (retweeted != nil && retweeted == true) {
             self.retweetButton.selected = true
+            self.retweetButton.tintColor = HIGHLIGHT
             self.retweetCount.textColor = HIGHLIGHT
         }
         else {
             self.retweetButton.selected = false
+            self.retweetButton.tintColor = LIGHT_GRAY
             self.retweetCount.textColor = BLUE_GRAY
         }
     }
     func setFavoriteButton(favorited: Bool?) {
         if (favorited != nil && favorited == true) {
             self.favoriteButton.selected = true
+            self.favoriteButton.tintColor = HIGHLIGHT
             self.favoriteCount.textColor = HIGHLIGHT
         }
         else {
             self.favoriteButton.selected = false
+            self.favoriteButton.tintColor = LIGHT_GRAY
             self.favoriteCount.textColor = BLUE_GRAY
         }
     }
@@ -149,6 +162,8 @@ class TweetTableViewCell: UITableViewCell {
     }
     
     @IBAction func onTapFavorite(sender: AnyObject) {
-        println("tapped on favorite")
+        status!.toggleFavorite()
+        setFavoriteCount(status?.favoriteCount)
+        setFavoriteButton(status?.favorited)
     }
 }

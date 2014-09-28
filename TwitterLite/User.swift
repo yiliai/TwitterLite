@@ -9,6 +9,7 @@
 import Foundation
 
 var _currentUser: User?
+
 let currentUserKey = "kCurrentUserKey"
 let userDidSigninNotification = "userDidSigninNotification"
 let userDidSignoutNotification = "userDidSignoutNotification"
@@ -78,6 +79,23 @@ class User: NSObject {
         }
     }
     
+    class var currentUserDictionary: NSDictionary? {
+        get {
+            if _currentUser == nil {
+                return nil
+            }
+            else {
+                let dictionary = NSMutableDictionary()
+                dictionary["id"] = _currentUser!.userId
+                dictionary["name"] = _currentUser!.name
+                dictionary["screen_name"] = _currentUser!.screenName
+                dictionary["profile_image_url"] = _currentUser!.profileImageUrl?.description
+                dictionary["following"] = _currentUser!.following
+                println(_currentUser!)
+                return dictionary
+            }
+        }
+    }
     
     func description() -> String {
         let lineBreak = "\n"

@@ -84,6 +84,32 @@ class Status: NSObject {
         return "Status ID:\(id), Created at:\(c)\(lineBreak)User:\(u)\(lineBreak)Text:\(t)\(lineBreak)favoriteCount: \(fc), retweetCount: \(rc), favorited: \(f), retweeted: \(r)\(lineBreak)Retweet: \(rs)"
     }
     
+    func toggleFavorite() {
+        if favorited == true {
+            favorited = false
+            decrementFavoriteCount()
+            unfavoriteStatus()
+        }
+        else {
+            favorited = true
+            incrementFavoriteCount()
+            favoriteStatus()
+        }
+    }
+    private func incrementFavoriteCount() {
+        if self.favoriteCount == nil {
+            self.favoriteCount = 1
+        }
+        else {
+            self.favoriteCount = self.favoriteCount! + 1
+        }
+    }
+    private func decrementFavoriteCount() {
+        if self.favoriteCount != nil && self.favoriteCount > 0 {
+            self.favoriteCount = self.favoriteCount! - 1
+        }
+    }
+    
     class func parseStatusesFromArray(array: [NSDictionary]) -> [Status] {
         var statusArray = [Status]()
         
@@ -95,5 +121,35 @@ class Status: NSObject {
         }
         NSLog ("Finished parsing status array")
         return statusArray
+    }
+    
+    class func createStatusFromCurrentUser(text: String) -> Status {
+        let dictionary = NSMutableDictionary()
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = STATUS_DATE_FORMAT
+        dictionary["created_at"] = dateFormatter.stringFromDate(NSDate())
+        
+        // TODO: Need to add retweet
+        
+        dictionary["user"] = User.currentUserDictionary
+        dictionary["text"] = text
+        
+        return Status(dictionary: dictionary)
+    }
+    
+    // TODO: Implement me
+    class func postStatus(status: Status) {
+        println("NOT YET IMPLEMENTED: postStatus(status: Status)")
+    }
+    
+    // TODO: Implement me
+    private func favoriteStatus() {
+        println("NOT YET IMPLEMENTED: favoriteStatus: \(self.statusId)")
+    }
+    
+    // TODO: Implement me
+    private func unfavoriteStatus() {
+        println("NOT YET IMPLEMENTED: unfavoriteStatus \(self.statusId)")
     }
 }

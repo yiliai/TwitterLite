@@ -6,6 +6,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController" customModule="TwitterLite" customModuleProvider="target">
             <connections>
+                <outlet property="characterCountLabel" destination="vMY-Ks-2P9" id="7Jg-Qh-KnJ"/>
+                <outlet property="closeButton" destination="3vO-gE-yD3" id="RjP-vx-J4P"/>
+                <outlet property="composeText" destination="TCK-SM-nyr" id="bw4-le-ca3"/>
+                <outlet property="profileImage" destination="l9r-sv-cLr" id="P3K-WO-D4G"/>
+                <outlet property="screenNameLabel" destination="bPi-gx-tlu" id="i17-1S-tYx"/>
+                <outlet property="tweetButton" destination="JZ5-uT-qJz" id="GW5-WZ-qPv"/>
+                <outlet property="userNameLabel" destination="mba-jL-WcT" id="8ii-PH-sGc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,35 +21,97 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3vO-gE-yD3">
+                    <rect key="frame" x="18" y="32" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="Ia3-k7-tX8"/>
+                        <constraint firstAttribute="height" constant="18" id="PrZ-cO-X37"/>
+                    </constraints>
+                    <state key="normal" title="close" image="close">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onTapClose:" destination="-1" eventType="touchUpInside" id="R0V-zl-Dvb"/>
+                    </connections>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l9r-sv-cLr">
-                    <rect key="frame" x="12" y="12" width="32" height="32"/>
+                    <rect key="frame" x="12" y="76" width="32" height="32"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="K2U-cU-hnH"/>
                         <constraint firstAttribute="width" constant="32" id="vO2-3w-baa"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yili Aiwazian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mba-jL-WcT">
-                    <rect key="frame" x="53" y="12" width="81" height="17"/>
+                    <rect key="frame" x="54" y="76" width="81" height="17"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@yiliw" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPi-gx-tlu">
-                    <rect key="frame" x="53" y="35" width="33" height="14"/>
+                    <rect key="frame" x="54" y="95" width="33" height="14"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMY-Ks-2P9">
+                    <rect key="frame" x="490" y="33" width="24" height="17"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZ5-uT-qJz">
+                    <rect key="frame" x="526" y="26" width="64" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="64" id="GF6-VW-Upn"/>
+                        <constraint firstAttribute="height" constant="30" id="wkj-PU-hyu"/>
+                    </constraints>
+                    <state key="normal" backgroundImage="tweet_button_bg">
+                        <attributedString key="attributedTitle">
+                            <fragment content="Tweet">
+                                <attributes>
+                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <font key="NSFont" size="15" name="HelveticaNeue-Bold"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </state>
+                    <connections>
+                        <action selector="onTapTweet:" destination="-1" eventType="touchUpInside" id="CT8-nZ-zMJ"/>
+                    </connections>
+                </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What's happening?" translatesAutoresizingMaskIntoConstraints="NO" id="TCK-SM-nyr">
+                    <rect key="frame" x="10" y="121" width="580" height="400"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="400" id="4QZ-AL-bF0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="l9r-sv-cLr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="12" id="EnZ-oB-5EY"/>
-                <constraint firstItem="mba-jL-WcT" firstAttribute="top" secondItem="l9r-sv-cLr" secondAttribute="top" id="HID-VM-qVf"/>
-                <constraint firstItem="bPi-gx-tlu" firstAttribute="top" secondItem="mba-jL-WcT" secondAttribute="bottom" constant="6" id="TMM-am-dTO"/>
-                <constraint firstItem="bPi-gx-tlu" firstAttribute="leading" secondItem="mba-jL-WcT" secondAttribute="leading" id="XH9-Ko-lTj"/>
-                <constraint firstItem="mba-jL-WcT" firstAttribute="leading" secondItem="l9r-sv-cLr" secondAttribute="trailing" constant="9" id="ieR-y3-XcA"/>
-                <constraint firstItem="l9r-sv-cLr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="qmA-8O-8k4"/>
+                <constraint firstItem="bPi-gx-tlu" firstAttribute="top" secondItem="mba-jL-WcT" secondAttribute="bottom" constant="2" id="2Id-cX-oSR"/>
+                <constraint firstItem="TCK-SM-nyr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="4or-cN-E2S"/>
+                <constraint firstItem="l9r-sv-cLr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="9id-ic-hQu"/>
+                <constraint firstAttribute="trailing" secondItem="TCK-SM-nyr" secondAttribute="trailing" constant="10" id="A95-Ee-l5g"/>
+                <constraint firstItem="l9r-sv-cLr" firstAttribute="top" secondItem="3vO-gE-yD3" secondAttribute="bottom" constant="26" id="Bmp-g7-fuc"/>
+                <constraint firstItem="bPi-gx-tlu" firstAttribute="leading" secondItem="mba-jL-WcT" secondAttribute="leading" id="HP7-Mw-UT9"/>
+                <constraint firstItem="3vO-gE-yD3" firstAttribute="centerY" secondItem="vMY-Ks-2P9" secondAttribute="centerY" id="QvD-Bn-oCs"/>
+                <constraint firstItem="JZ5-uT-qJz" firstAttribute="leading" secondItem="vMY-Ks-2P9" secondAttribute="trailing" constant="12" id="RZu-FM-YT8"/>
+                <constraint firstItem="mba-jL-WcT" firstAttribute="top" secondItem="l9r-sv-cLr" secondAttribute="top" id="XWS-G3-TZE"/>
+                <constraint firstItem="mba-jL-WcT" firstAttribute="leading" secondItem="l9r-sv-cLr" secondAttribute="trailing" constant="10" id="hr5-29-OsE"/>
+                <constraint firstItem="3vO-gE-yD3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="32" id="nja-33-MkA"/>
+                <constraint firstAttribute="trailing" secondItem="JZ5-uT-qJz" secondAttribute="trailing" constant="10" id="qYQ-LS-nPc"/>
+                <constraint firstItem="TCK-SM-nyr" firstAttribute="top" secondItem="bPi-gx-tlu" secondAttribute="bottom" constant="12" id="sc1-2o-eRT"/>
+                <constraint firstItem="3vO-gE-yD3" firstAttribute="centerY" secondItem="JZ5-uT-qJz" secondAttribute="centerY" id="vG6-7N-UbG"/>
+                <constraint firstItem="3vO-gE-yD3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="yJb-Jm-Gvv"/>
             </constraints>
+            <point key="canvasLocation" x="179" y="184"/>
         </view>
     </objects>
+    <resources>
+        <image name="close" width="50" height="50"/>
+        <image name="tweet_button_bg" width="127" height="60"/>
+    </resources>
 </document>

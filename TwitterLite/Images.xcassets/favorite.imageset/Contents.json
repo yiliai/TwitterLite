@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "retweet_light-2.png"
+      "filename" : "favorite.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "retweet_light-1.png"
+      "filename" : "favorite-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "retweet_light.png"
+      "filename" : "favorite-2.png"
     }
   ],
   "info" : {
