@@ -61,21 +61,36 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         
         // First check to see if this is a retweet
         if status.retweetedStatus != nil {
-            cell.setRetweetReason("\(status.author!.name!) retweeted")
+            cell.setRetweetReason(status.author!.name)
             
             let retweet = status.retweetedStatus! as Status
-            cell.setAuthorName(retweet.author!.name!)
-            cell.setScreenName("@\(retweet.author!.screenName!)")
-            cell.setStatusText(retweet.text!)
-            cell.setAuthorImage(retweet.author!.profileImageUrl!)
+            cell.setAuthorName(retweet.author!.name)
+            cell.setScreenName(retweet.author!.screenName)
+            cell.setStatusText(retweet.text)
+            cell.setAuthorImage(retweet.author!.profileImageUrl)
+            cell.setRetweetCount(retweet.retweetCount)
+            cell.setFavoriteCount(retweet.favoriteCount)
+            cell.setRetweetButton(retweet.retweeted)
+            cell.setFavoriteButton(retweet.favorited)
         }
         else {
             cell.setRetweetReason(nil)
-            cell.setAuthorName(status.author!.name!)
-            cell.setScreenName("@\(status.author!.screenName!)")
-            cell.setStatusText(status.text!)
-            cell.setAuthorImage(status.author!.profileImageUrl!)
+            cell.setAuthorName(status.author!.name)
+            cell.setScreenName(status.author!.screenName)
+            cell.setStatusText(status.text)
+            cell.setAuthorImage(status.author!.profileImageUrl)
+            cell.setRetweetCount(status.retweetCount)
+            cell.setFavoriteCount(status.favoriteCount)
+            cell.setRetweetButton(status.retweeted)
+            cell.setFavoriteButton(status.favorited)
         }
         return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        /*tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
+        tableView.beginUpdates()
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        tableView.endUpdates()*/
     }
 }

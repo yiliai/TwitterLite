@@ -26,20 +26,14 @@ class User: NSObject {
         // Get the user id
         if let id = dictionary["id"] as? Int {
             self.userId = id
-        } else {
-            self.userId = -1
         }
         // Get the user name
         if let name = dictionary["name"] as? NSString {
             self.name = name
-        } else {
-            self.name = ""
         }
         // Get the user screen name
         if let screen_name = dictionary["screen_name"] as? NSString {
             self.screenName = screen_name
-        } else {
-            self.screenName = ""
         }
         // Get the profile image url
         if let profile_image_url = dictionary["profile_image_url"] as? NSString {
@@ -48,8 +42,6 @@ class User: NSObject {
         // Get whether the signed user is following this user
         if let following = dictionary["following"] as? Int {
             self.following = following == 0 ? false : true
-        } else {
-            self.following = false
         }
     }
     

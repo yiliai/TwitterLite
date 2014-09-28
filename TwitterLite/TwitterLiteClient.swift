@@ -9,6 +9,7 @@
 let BASE_URL = "https://api.twitter.com"
 let CONSUMER_KEY = "twn2AJHjJ1QV8VGldiJws2QlG"
 let CONSUMER_SECRET = "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA"
+let USE_CACHE = true
 
 class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
@@ -90,11 +91,13 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
     // MARK: Get the home timeline with optional parameters
     func getHomeTimelineWithParams(params: NSDictionary?, completion: (statuses: [Status]?, error: NSError?) -> ()) {
-        if let json: AnyObject = JsonDiskCache.cached() {
-            println("Got cache data")
-            var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
-            // Call the completion block
-            completion(statuses: statuses, error: nil)
+        if USE_CACHE {
+            if let json: AnyObject = JsonDiskCache.cached() {
+                println("Got cache data")
+                var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
+                // Call the completion block
+                completion(statuses: statuses, error: nil)
+            }
         }
         else
         {
