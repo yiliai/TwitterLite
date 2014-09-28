@@ -56,7 +56,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func onTapTweet(sender: AnyObject) {
         composeText.resignFirstResponder()
-        composeDelegate?.dismissComposeView(Status.createStatusFromCurrentUser(composeText.text))
+        composeDelegate?.dismissComposeView(Status.createStatus(User.currentUser!, text: composeText.text))
     }
     
     @IBAction func onTapClose(sender: AnyObject) {

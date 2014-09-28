@@ -11,6 +11,8 @@ import UIKit
 class TweetItemViewController: UIViewController {
 
     var status: Status?
+    var retweetReason: String?
+    
     var statusUpdateDelegate: StatusUpdateDelegate?
     var indexPath: NSIndexPath?
     
@@ -37,6 +39,9 @@ class TweetItemViewController: UIViewController {
     @IBOutlet weak var favoritesLabel: UILabel!
     
     @IBOutlet weak var viewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
+    @IBOutlet weak var reasonImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var reasonHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +50,7 @@ class TweetItemViewController: UIViewController {
         if (status != nil) {
             setStatus(self.status!)
         }
+        setRetweetReason(retweetReason)
         
         // Set up text label colors
         reasonLabel.textColor = BLUE_GRAY
@@ -68,7 +74,6 @@ class TweetItemViewController: UIViewController {
         // Set up rounded corners on the profile image
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,6 +113,20 @@ class TweetItemViewController: UIViewController {
     func setAuthorImage(url: NSURL?) {
         if url != nil {
             self.authorImage.fadeInImageFromURL(url!)
+        }
+    }
+    
+    func setRetweetReason(name: String?) {
+        if (name != nil) {
+            reasonLabel.text = "\(name!) retweeted"
+            topMarginConstraint.constant = 12
+            reasonImageHeightConstraint.constant = 15
+            reasonHeightConstraint.constant = 15
+        }
+        else {
+            topMarginConstraint.constant = 4
+            reasonImageHeightConstraint.constant = 0
+            reasonHeightConstraint.constant = 0
         }
     }
     
@@ -160,5 +179,12 @@ class TweetItemViewController: UIViewController {
         setFavoriteCount(status?.favoriteCount)
         setFavoriteButton(status?.favorited)
         statusUpdateDelegate?.toggleFavorite(indexPath!)
+    }
+    
+    @IBAction func onTapRetweet(sender: AnyObject) {
+        status!.toggleRetweet()
+        setRetweetButton(status?.retweeted)
+        setRetweetCount(status?.retweetCount)
+        statusUpdateDelegate?.toggleRetweet(indexPath!)
     }
 }

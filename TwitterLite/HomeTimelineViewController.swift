@@ -14,8 +14,8 @@ protocol ComposeDelegate {
 }
 protocol StatusUpdateDelegate {
     func toggleFavorite(indexPath: NSIndexPath)
-    //func unfavoriteStatus(status: Status)
-    //func retweetStatus(status: Status)
+    func toggleRetweet(indexPath: NSIndexPath)
+    //func retweetStatus(status: Status?)
 }
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
 
@@ -112,9 +112,11 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let status = homeStatuses![indexPath.row] as Status
         if (status.retweetedStatus != nil) {
             itemViewController.status = status.retweetedStatus!
+            itemViewController.retweetReason = status.author!.name
         }
         else {
             itemViewController.status = status
+
         }
         self.navigationController?.pushViewController(itemViewController, animated: true)
         
@@ -138,9 +140,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     func dismissComposeView(newStatus: Status?) {
         if (newStatus != nil) {
-            // Actually post the status to Twitter
-            Status.postStatus(newStatus!)
-
             // Insert the newly posted status in view
             homeStatuses?.insert(newStatus!, atIndex: 0)
             homeTimelineTable.beginUpdates()
@@ -151,11 +150,27 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             println("Dismissed the compose view")
         })
     }
-    
     func toggleFavorite(indexPath: NSIndexPath) {
         
         homeTimelineTable.beginUpdates()
         homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         homeTimelineTable.endUpdates()
     }
+    
+    func toggleRetweet(indexPath: NSIndexPath) {
+        homeTimelineTable.beginUpdates()
+        homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        homeTimelineTable.endUpdates()
+    }
+    
+    /*func retweetStatus(status: Status?) {
+        if status != nil {
+            // Insert the new retweeted status in view
+            homeStatuses?.insert(status!, atIndex: 0)
+            homeTimelineTable.beginUpdates()
+            homeTimelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
+            //homeTimelineTable.reloadRowsAtIndexPaths([updateIndexPath], withRowAnimation: .Automatic)
+            homeTimelineTable.endUpdates()
+        }
+    }*/
 }

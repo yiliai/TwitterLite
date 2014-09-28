@@ -13,7 +13,9 @@
                 <outlet property="favoriteCount" destination="beh-dZ-KMX" id="BQj-5j-L1r"/>
                 <outlet property="favoritesLabel" destination="xfL-To-y4I" id="Auf-KJ-u4O"/>
                 <outlet property="moreButton" destination="VC1-gV-yt7" id="xPz-gX-Hs2"/>
+                <outlet property="reasonHeightConstraint" destination="BiI-g3-k2b" id="jdI-dz-nIj"/>
                 <outlet property="reasonImage" destination="Tgn-tB-grV" id="qRt-61-rLr"/>
+                <outlet property="reasonImageHeightConstraint" destination="qOp-Eh-fui" id="S8c-rw-A9X"/>
                 <outlet property="reasonLabel" destination="e10-yU-Vu0" id="QD9-i0-IZ5"/>
                 <outlet property="replyButton" destination="jjU-ao-lb7" id="gUt-XH-W0H"/>
                 <outlet property="retweetButton" destination="Kix-v0-7cQ" id="9OR-NB-jiw"/>
@@ -23,6 +25,7 @@
                 <outlet property="separator2" destination="Ytf-G1-YFS" id="rXD-0e-2Ib"/>
                 <outlet property="statusTextLabel" destination="ML0-3H-UV5" id="EaP-Wj-Djr"/>
                 <outlet property="timeStampLabel" destination="uaY-Kg-PTg" id="EDg-5H-tBh"/>
+                <outlet property="topMarginConstraint" destination="y6P-LG-9MC" id="zKy-Te-zDQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -142,6 +145,9 @@
                             <state key="normal" image="retweet">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="onTapRetweet:" destination="-1" eventType="touchUpInside" id="vRc-AH-gj2"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bzD-Dw-mWD">
                             <rect key="frame" x="186" y="286" width="28" height="28"/>
@@ -180,7 +186,6 @@
                     <constraints>
                         <constraint firstItem="x2E-aD-CQF" firstAttribute="top" secondItem="Tgn-tB-grV" secondAttribute="bottom" constant="12" id="0gp-qa-1ql"/>
                         <constraint firstItem="jjU-ao-lb7" firstAttribute="leading" secondItem="Ytf-G1-YFS" secondAttribute="leading" constant="14" id="19a-pZ-96e"/>
-                        <constraint firstItem="x2E-aD-CQF" firstAttribute="top" secondItem="Tgn-tB-grV" secondAttribute="top" constant="12" id="1O6-xT-rFv"/>
                         <constraint firstItem="5PH-o4-8V7" firstAttribute="top" secondItem="x2E-aD-CQF" secondAttribute="top" id="1fn-fG-YIK"/>
                         <constraint firstItem="5PH-o4-8V7" firstAttribute="leading" secondItem="x2E-aD-CQF" secondAttribute="trailing" constant="9" id="2O5-2J-NOy"/>
                         <constraint firstItem="uLH-Sy-rX3" firstAttribute="leading" secondItem="gtg-GH-Xck" secondAttribute="trailing" constant="3" id="31v-PR-2gz"/>
@@ -190,7 +195,6 @@
                         <constraint firstItem="uaY-Kg-PTg" firstAttribute="top" secondItem="ML0-3H-UV5" secondAttribute="bottom" constant="18" id="642-2D-U7C"/>
                         <constraint firstItem="gtg-GH-Xck" firstAttribute="centerY" secondItem="beh-dZ-KMX" secondAttribute="centerY" id="8fc-m5-Gk4"/>
                         <constraint firstAttribute="trailing" secondItem="ML0-3H-UV5" secondAttribute="trailing" constant="12" id="D5j-D2-9aB"/>
-                        <constraint firstItem="e10-yU-Vu0" firstAttribute="leading" secondItem="7hv-Qv-vqP" secondAttribute="leading" constant="10" id="EeB-pm-UBD"/>
                         <constraint firstItem="jjU-ao-lb7" firstAttribute="top" secondItem="Ytf-G1-YFS" secondAttribute="bottom" constant="7" id="J1a-1M-UCG"/>
                         <constraint firstItem="gtg-GH-Xck" firstAttribute="leading" secondItem="Z3u-nO-n5H" secondAttribute="leading" id="Jnc-rp-758"/>
                         <constraint firstItem="gtg-GH-Xck" firstAttribute="top" secondItem="Z3u-nO-n5H" secondAttribute="top" id="S3v-kA-vY3"/>
@@ -214,18 +218,10 @@
                         <constraint firstItem="x2E-aD-CQF" firstAttribute="leading" secondItem="ML0-3H-UV5" secondAttribute="leading" id="qHG-zh-nKr"/>
                         <constraint firstItem="Ytf-G1-YFS" firstAttribute="leading" secondItem="Z3u-nO-n5H" secondAttribute="leading" id="rm4-Oa-iNb"/>
                         <constraint firstItem="Ytf-G1-YFS" firstAttribute="trailing" secondItem="Z3u-nO-n5H" secondAttribute="trailing" id="sNX-m5-AW8"/>
-                        <constraint firstItem="e10-yU-Vu0" firstAttribute="leading" secondItem="Tgn-tB-grV" secondAttribute="leading" constant="10" id="wSL-w5-sQu"/>
                         <constraint firstItem="uLH-Sy-rX3" firstAttribute="centerY" secondItem="gtg-GH-Xck" secondAttribute="centerY" id="wTD-wA-qP4"/>
                         <constraint firstAttribute="trailing" secondItem="Z3u-nO-n5H" secondAttribute="trailing" constant="12" id="xoY-mx-l5f"/>
                         <constraint firstItem="Tgn-tB-grV" firstAttribute="top" secondItem="7hv-Qv-vqP" secondAttribute="top" constant="12" id="y6P-LG-9MC"/>
                     </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="1O6-xT-rFv"/>
-                            <exclude reference="EeB-pm-UBD"/>
-                            <exclude reference="wSL-w5-sQu"/>
-                        </mask>
-                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>

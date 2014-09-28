@@ -96,6 +96,18 @@ class Status: NSObject {
             favoriteStatus()
         }
     }
+    func toggleRetweet() {
+        if retweeted == true {
+            retweeted = false
+            decrementRetweetCount()
+            undoRetweetStatus()
+        }
+        else {
+            retweeted = true
+            incrementRetweetCount()
+            retweetStatus()
+        }
+    }
     private func incrementFavoriteCount() {
         if self.favoriteCount == nil {
             self.favoriteCount = 1
@@ -107,6 +119,19 @@ class Status: NSObject {
     private func decrementFavoriteCount() {
         if self.favoriteCount != nil && self.favoriteCount > 0 {
             self.favoriteCount = self.favoriteCount! - 1
+        }
+    }
+    private func incrementRetweetCount() {
+        if self.retweetCount == nil {
+            self.retweetCount = 1
+        }
+        else {
+            self.retweetCount = self.retweetCount! + 1
+        }
+    }
+    private func decrementRetweetCount() {
+        if self.retweetCount != nil && self.retweetCount > 0 {
+            self.retweetCount = self.retweetCount! - 1
         }
     }
     
@@ -123,24 +148,42 @@ class Status: NSObject {
         return statusArray
     }
     
-    class func createStatusFromCurrentUser(text: String) -> Status {
+    class func createStatus(fromUser: User, text: String) -> Status {
         let dictionary = NSMutableDictionary()
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = STATUS_DATE_FORMAT
         dictionary["created_at"] = dateFormatter.stringFromDate(NSDate())
         
-        // TODO: Need to add retweet
-        
-        dictionary["user"] = User.currentUserDictionary
+        dictionary["user"] = fromUser.dictionaryReference
         dictionary["text"] = text
         
+        // Actually post it to Twitter
+        postStatus(text)
         return Status(dictionary: dictionary)
     }
     
+    /*func retweetStatus(fromUser: User) -> Status {
+        let dictionary = NSMutableDictionary()
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = STATUS_DATE_FORMAT
+        dictionary["created_at"] = dateFormatter.stringFromDate(NSDate())
+        
+        dictionary["retweeted_status"] = self.dictionaryReference
+        dictionary["user"] = fromUser.dictionaryReference
+        dictionary["text"] = "RT " + "@" + self.author!.screenName! + " " + self.text!
+        
+        self.retweeted = true
+        self.incrementRetweetCount()
+        
+        // Actually post retweet to Twitter
+        retweetStatus()
+        return Status(dictionary: dictionary)
+    }*/
+    
     // TODO: Implement me
-    class func postStatus(status: Status) {
-        println("NOT YET IMPLEMENTED: postStatus(status: Status)")
+    class func postStatus(text: String) {
+        println("NOT YET IMPLEMENTED: postStatus: \(text)")
     }
     
     // TODO: Implement me
@@ -151,5 +194,15 @@ class Status: NSObject {
     // TODO: Implement me
     private func unfavoriteStatus() {
         println("NOT YET IMPLEMENTED: unfavoriteStatus \(self.statusId)")
+    }
+    
+    // TODO: Implement me
+    private func retweetStatus() {
+        println("NOT YET IMPLEMENTED: retweetStatus \(self.statusId)")
+    }
+    
+    // TODO: Implement me
+    private func undoRetweetStatus() {
+        println("NOT YET IMPLEMENTED: undoRetweetStatus \(self.statusId)")
     }
 }

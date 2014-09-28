@@ -158,7 +158,10 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
     @IBAction func onTapRetweet(sender: AnyObject) {
-        println("tapped on retweet")
+        //statusUpdateDelegate?.retweetStatus(status!.retweetStatus(User.currentUser!))
+        status!.toggleRetweet()
+        setRetweetButton(status?.retweeted)
+        setRetweetCount(status?.retweetCount)
     }
     
     @IBAction func onTapFavorite(sender: AnyObject) {
