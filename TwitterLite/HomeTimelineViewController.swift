@@ -29,7 +29,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         // Skin the navigation bar
         let navigationBar = self.navigationController?.navigationBar
         navigationBar?.barTintColor = TWITTER_BLUE
@@ -53,7 +53,9 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         homeTimelineTable.estimatedRowHeight = 90
         homeTimelineTable.dataSource = self
         homeTimelineTable.delegate = self
-        
+        // This will remove extra separators from tableview
+        homeTimelineTable.tableFooterView = UIView(frame: CGRectZero)
+            
         // Setting up the load more progress at the end of the table
         let progressCellNib = UINib(nibName: "ProgressTableViewCell", bundle: nil);
         homeTimelineTable.registerNib(progressCellNib, forCellReuseIdentifier: "progressCell")
@@ -140,10 +142,10 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         }
         self.navigationController?.pushViewController(itemViewController, animated: true)
         
-        /*tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
+        tableView.cellForRowAtIndexPath(indexPath)?.highlighted = false
         tableView.beginUpdates()
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        tableView.endUpdates()*/
+        tableView.endUpdates()
     }
     
     func signout() {

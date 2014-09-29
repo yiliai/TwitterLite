@@ -76,6 +76,7 @@ class TweetTableViewCell: UITableViewCell {
         setFavoriteCount(status.favoriteCount)
         setRetweetButton(status.retweeted)
         setFavoriteButton(status.favorited)
+        setTimeStamp(status.createdAt)
     }
     
     func setAuthorName(name: String?) {
@@ -157,6 +158,16 @@ class TweetTableViewCell: UITableViewCell {
             self.favoriteCount.textColor = BLUE_GRAY
         }
     }
+    
+    func setTimeStamp(createdAt: NSDate?) {
+        if createdAt != nil {
+            self.timeSinceCreation.text = createdAt!.prettyTimeElapsed()
+        }
+        else {
+            self.timeSinceCreation.text = ""
+        }
+    }
+    
     @IBAction func onTapRetweet(sender: AnyObject) {
         //statusUpdateDelegate?.retweetStatus(status!.retweetStatus(User.currentUser!))
         status!.toggleRetweet()

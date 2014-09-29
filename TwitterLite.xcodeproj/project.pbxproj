@@ -11,6 +11,7 @@
 		3A4896EC19D8E0B4008E522C /* StatusArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896EB19D8E0B4008E522C /* StatusArray.swift */; };
 		3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */; };
 		3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */; };
+		3A4896F219D8FED0008E522C /* NSDate+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */; };
 		3A9D8F4519D775E3009B741A /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */; };
 		3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */; };
 		3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */; };
@@ -49,6 +50,7 @@
 		3A4896EB19D8E0B4008E522C /* StatusArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusArray.swift; sourceTree = "<group>"; };
 		3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
+		3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extentions.swift"; sourceTree = "<group>"; };
 		3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
 		3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimelineViewController.xib; sourceTree = "<group>"; };
 		3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			children = (
 				3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */,
 				3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */,
+				3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A4896F219D8FED0008E522C /* NSDate+Extentions.swift in Sources */,
 				3A4896EC19D8E0B4008E522C /* StatusArray.swift in Sources */,
 				3AE56B5619D54DAD000CF0CB /* TwitterLiteClient.swift in Sources */,
 				3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */,

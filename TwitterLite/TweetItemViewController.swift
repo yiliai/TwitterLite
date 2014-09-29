@@ -90,6 +90,7 @@ class TweetItemViewController: UIViewController {
         setFavoriteCount(status.favoriteCount)
         setRetweetButton(status.retweeted)
         setFavoriteButton(status.favorited)
+        setTimestamp(status.createdAt)
     }
     
     func setAuthorName(name: String?) {
@@ -171,6 +172,17 @@ class TweetItemViewController: UIViewController {
             self.favoriteButton.selected = false
             self.favoriteButton.tintColor = BLUE_GRAY
             self.favoriteCount.textColor = BLUE_GRAY
+        }
+    }
+    
+    func setTimestamp(createdAt: NSDate?) {
+        if (createdAt != nil) {
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "M/d/yy, HH:mm a"
+            self.timeStampLabel.text = dateFormatter.stringFromDate(createdAt!)
+        }
+        else {
+            self.timeStampLabel.text = " "
         }
     }
     

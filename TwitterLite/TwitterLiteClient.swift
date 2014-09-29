@@ -9,7 +9,7 @@
 let BASE_URL = "https://api.twitter.com"
 let CONSUMER_KEY = "twn2AJHjJ1QV8VGldiJws2QlG"
 let CONSUMER_SECRET = "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA"
-let USE_CACHE = false
+let USE_CACHE = true
 
 class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     

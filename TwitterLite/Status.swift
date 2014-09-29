@@ -38,6 +38,7 @@ class Status: NSObject {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = STATUS_DATE_FORMAT
             self.createdAt = dateFormatter.dateFromString(created_at)
+            //println(self.createdAt?.prettyTimeElapsed())
         }
         // Get the retweeted status, if it exists
         if let retweeted_status = dictionary["retweeted_status"] as? NSDictionary {
