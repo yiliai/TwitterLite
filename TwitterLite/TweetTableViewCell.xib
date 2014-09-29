@@ -82,6 +82,9 @@
                         <state key="normal" title="replyButton" image="reply">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="onTapReply:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="EvH-cE-Akf"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k8F-6c-C1J">
                         <rect key="frame" x="138" y="122" width="20" height="20"/>

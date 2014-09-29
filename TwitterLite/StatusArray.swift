@@ -76,7 +76,7 @@ class StatusArray: NSObject {
     
     // Insert a new status to the beginning of the array
     func addToBeginning(newStatus: Status) {
-        if (statusArray.count > 0 && newStatus.statusId? < newestStatusId) {
+        if (statusArray.count > 0 && newStatus.statusId != nil && newStatus.statusId? < newestStatusId) {
             println("Error: Cannot add a new status with a smaller status ID than the one at the beginning of the array")
             return
         }

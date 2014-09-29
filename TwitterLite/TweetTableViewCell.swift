@@ -37,6 +37,7 @@ class TweetTableViewCell: UITableViewCell {
 
     var status: Status?
     var statusUpdateDelegate: StatusUpdateDelegate?
+    var indexPath: NSIndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -166,6 +167,10 @@ class TweetTableViewCell: UITableViewCell {
         else {
             self.timeSinceCreation.text = ""
         }
+    }
+    
+    @IBAction func onTapReply(sender: AnyObject) {
+        statusUpdateDelegate?.tapReply(indexPath!)
     }
     
     @IBAction func onTapRetweet(sender: AnyObject) {

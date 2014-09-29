@@ -15,6 +15,7 @@ protocol ComposeDelegate {
 protocol StatusUpdateDelegate {
     func toggleFavorite(indexPath: NSIndexPath)
     func toggleRetweet(indexPath: NSIndexPath)
+    func tapReply(indexPath: NSIndexPath)
     //func retweetStatus(status: Status?)
 }
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
@@ -100,15 +101,14 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             
             // load older here
             loadMore()
-            
             return cell
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("statusCell", forIndexPath: indexPath) as TweetTableViewCell
         cell.statusUpdateDelegate = self
+        cell.indexPath = indexPath
+        
         let status = homeStatuses!.getStatus(indexPath.row)
-        //let status = homeStatuses![indexPath.row] as Status
-
         // First check to see if this is a retweet
         if status!.retweetedStatus != nil {
             cell.setRetweetReason(status!.author!.name)
@@ -173,18 +173,25 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         })
     }
     func toggleFavorite(indexPath: NSIndexPath) {
-        
         homeTimelineTable.beginUpdates()
         homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         homeTimelineTable.endUpdates()
     }
-    
     func toggleRetweet(indexPath: NSIndexPath) {
         homeTimelineTable.beginUpdates()
         homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
         homeTimelineTable.endUpdates()
     }
-    
+    func tapReply(indexPath: NSIndexPath) {
+        self.composeViewController = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
+        self.composeViewController!.composeDelegate = self
+        let status = homeStatuses?.getStatus(indexPath.row)
+        composeViewController?.replyToScreenName = status?.author?.screenName!
+        //self.composeViewController!.composeText.text = status!.author!.screenName
+        self.navigationController?.presentViewController(composeViewController!, animated: true, completion: { () -> Void in
+            println("Launched the compose view")
+        })
+    }
     func refresh() {
         println(" ")
         println("Pulled down to refresh")

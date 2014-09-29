@@ -22,6 +22,8 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var composeText: UITextView!
     
     var composeDelegate: ComposeDelegate?
+    var replyToScreenName: String?
+    var replyToId: Int?
     
     
     override func viewDidLoad() {
@@ -43,6 +45,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         composeText.textColor = LIGHT_GRAY
         composeText.delegate = self
         composeText.selectedTextRange = composeText.textRangeFromPosition(composeText.beginningOfDocument, toPosition: composeText.beginningOfDocument)
+        
+        // Pre-populate the reply to information if this is a reply
+        if (replyToScreenName != nil) {
+            composeText.text = "@" + replyToScreenName!
+        }
         
         // Tweet button is diabled at first
         tweetButton.enabled = false
