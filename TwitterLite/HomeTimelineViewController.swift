@@ -46,7 +46,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let composeButton = UIBarButtonItem(image: UIImage(named: "compose"), style: UIBarButtonItemStyle.Plain, target: self, action: "compose")
         self.navigationItem.setRightBarButtonItem(composeButton, animated: true)
         
-        
         // Setting up the table view and table cells
         let statusCellNib = UINib(nibName: "TweetTableViewCell", bundle: nil);
         homeTimelineTable.registerNib(statusCellNib, forCellReuseIdentifier: "statusCell")
@@ -54,6 +53,10 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         homeTimelineTable.estimatedRowHeight = 90
         homeTimelineTable.dataSource = self
         homeTimelineTable.delegate = self
+        
+        // Setting up the load more progress at the end of the table
+        let progressCellNib = UINib(nibName: "ProgressTableViewCell", bundle: nil);
+        homeTimelineTable.registerNib(progressCellNib, forCellReuseIdentifier: "progressCell")
         
         // Do any additional setup after loading the view.
         TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(nil, completion: { (statuses, error) -> () in
@@ -82,14 +85,21 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (homeStatuses != nil) ? homeStatuses!.count : 0
-        //return (homeStatuses != nil) ? homeStatuses!.count : 0
+        return (homeStatuses != nil) ? homeStatuses!.count + 1 : 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (homeStatuses == nil || homeStatuses?.count == 0) {
-            return UITableViewCell(style: .Default, reuseIdentifier: nil)
+        if (homeStatuses == nil || indexPath.row == homeStatuses!.count) {
+            
+            println("At the end of the list")
+            let cell = tableView.dequeueReusableCellWithIdentifier("progressCell", forIndexPath: indexPath) as ProgressTableViewCell
+            cell.progressIndicator.startAnimating()
+            
+            // load older here
+            loadMore()
+            
+            return cell
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier("statusCell", forIndexPath: indexPath) as TweetTableViewCell
@@ -174,6 +184,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func refresh() {
+        println(" ")
         println("Pulled down to refresh")
 
         homeStatuses?.loadNewerWithCompletion({ (success, error) -> () in
@@ -185,5 +196,17 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             }
         })
     }
-    
+    func loadMore() {
+        println(" ")
+        println("loading more...")
+        
+        homeStatuses?.loadOlderWithCompletion({ (success, error) -> () in
+            if (success == true) {
+                
+                println("BACK to the home timeline view controller with success")
+                self.homeTimelineTable.reloadData()
+            }
+        })
+    }
+
 }

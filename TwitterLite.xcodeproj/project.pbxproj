@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2D305A0965814BE48C042B7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9A89D9C664C748C17B06E /* libPods.a */; };
 		3A4896EC19D8E0B4008E522C /* StatusArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896EB19D8E0B4008E522C /* StatusArray.swift */; };
+		3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */; };
+		3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */; };
 		3A9D8F4519D775E3009B741A /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */; };
 		3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */; };
 		3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		3A4896EB19D8E0B4008E522C /* StatusArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusArray.swift; sourceTree = "<group>"; };
+		3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
+		3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
 		3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimelineViewController.xib; sourceTree = "<group>"; };
 		3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				3AE56B3719D29455000CF0CB /* TweetTableViewCell.xib */,
 				3AE56B4719D408CE000CF0CB /* TweetItemViewController.xib */,
 				3AE56B4F19D4C54C000CF0CB /* ComposeViewController.xib */,
+				3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				3AE56B3619D29455000CF0CB /* TweetTableViewCell.swift */,
 				3AE56B4619D408CE000CF0CB /* TweetItemViewController.swift */,
 				3AE56B4E19D4C54C000CF0CB /* ComposeViewController.swift */,
+				3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -307,6 +313,7 @@
 			files = (
 				3AE56B4919D408CE000CF0CB /* TweetItemViewController.xib in Resources */,
 				3AE56B4D19D4135E000CF0CB /* LogInViewController.xib in Resources */,
+				3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */,
 				3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */,
 				3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */,
 				3AE56B5119D4C54C000CF0CB /* ComposeViewController.xib in Resources */,
@@ -364,6 +371,7 @@
 			files = (
 				3A4896EC19D8E0B4008E522C /* StatusArray.swift in Sources */,
 				3AE56B5619D54DAD000CF0CB /* TwitterLiteClient.swift in Sources */,
+				3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */,
 				3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */,
 				3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */,
 				3AE56B3819D29455000CF0CB /* TweetTableViewCell.swift in Sources */,

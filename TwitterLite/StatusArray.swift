@@ -84,7 +84,6 @@ class StatusArray: NSObject {
     }
     
     func addToBeginning(newStatusArray: StatusArray) {
-        
         // First remove all the fake statuses at the beginning of the array
         let index = newestStatusIndex
         if index != nil {
@@ -100,15 +99,44 @@ class StatusArray: NSObject {
         }
     }
     
+    func addToEnd(newStatusArray: StatusArray) {
+        for item in newStatusArray.statusArray {
+            self.statusArray.append(item)
+        }
+    }
+    
     func loadNewerWithCompletion(completion:(success: Bool, error: NSError?) ->() ) {
+        
         let params = NSMutableDictionary()
-        params["since_id"] = newestStatusId
+        if (newestStatusId != nil) {
+            params["since_id"] = newestStatusId
+        }
         
         TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(params, completion: { (statuses, error) -> () in
             if (statuses? != nil) {
                 self.addToBeginning(statuses!)
             
                 println("LOAD MORE SUCCESS, new count: \(statuses!.count)")
+                completion(success: true, error: nil)
+            }
+            else {
+                println("error: \(error)")
+                completion(success: false, error: error)
+            }
+        })
+    }
+    
+    func loadOlderWithCompletion(completion:(success: Bool, error: NSError?) ->() ) {
+        let params = NSMutableDictionary()
+        if (oldestStatusId != nil) {
+            params["max_id"] = oldestStatusId! - 1
+        }
+        
+        TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(params, completion: { (statuses, error) -> () in
+            if (statuses? != nil) {
+                self.addToEnd(statuses!)
+            
+                println("LOAD OLDER SUCCESS, new count: \(statuses!.count)")
                 completion(success: true, error: nil)
             }
             else {
