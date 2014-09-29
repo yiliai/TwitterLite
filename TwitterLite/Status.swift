@@ -136,12 +136,12 @@ class Status: NSObject {
         }
     }
     
-    class func parseStatusesFromArray(array: [NSDictionary]) -> [Status] {
-        var statusArray = [Status]()
+    class func parseStatusesFromArray(array: [NSDictionary]) -> StatusArray {
+        var statusArray = StatusArray()
         
         for item in array {
             let status = Status(dictionary: item)
-            statusArray.append(status)
+            statusArray.addToEnd(status)
             println(statusArray.count)
             println(status.description())
         }
@@ -163,24 +163,6 @@ class Status: NSObject {
         postStatus(text)
         return Status(dictionary: dictionary)
     }
-    
-    /*func retweetStatus(fromUser: User) -> Status {
-        let dictionary = NSMutableDictionary()
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = STATUS_DATE_FORMAT
-        dictionary["created_at"] = dateFormatter.stringFromDate(NSDate())
-        
-        dictionary["retweeted_status"] = self.dictionaryReference
-        dictionary["user"] = fromUser.dictionaryReference
-        dictionary["text"] = "RT " + "@" + self.author!.screenName! + " " + self.text!
-        
-        self.retweeted = true
-        self.incrementRetweetCount()
-        
-        // Actually post retweet to Twitter
-        retweetStatus()
-        return Status(dictionary: dictionary)
-    }*/
     
     // MARK: Posting a new status update
     private class func postStatus(text: String) {

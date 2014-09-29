@@ -22,7 +22,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     @IBOutlet weak var homeNavigationBar: UINavigationBar!
     @IBOutlet weak var homeTimelineTable: UITableView!
     
-    var homeStatuses: [Status]?
+    var homeStatuses: StatusArray?
     var composeViewController: ComposeViewController?
     
     override func viewDidLoad() {
@@ -76,6 +76,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (homeStatuses != nil) ? homeStatuses!.count : 0
+        //return (homeStatuses != nil) ? homeStatuses!.count : 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -86,17 +87,18 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         
         let cell = tableView.dequeueReusableCellWithIdentifier("statusCell", forIndexPath: indexPath) as TweetTableViewCell
         cell.statusUpdateDelegate = self
-        let status = homeStatuses![indexPath.row] as Status
-        
+        let status = homeStatuses!.getStatus(indexPath.row)
+        //let status = homeStatuses![indexPath.row] as Status
+
         // First check to see if this is a retweet
-        if status.retweetedStatus != nil {
-            cell.setRetweetReason(status.author!.name)
-            let retweet = status.retweetedStatus! as Status
+        if status!.retweetedStatus != nil {
+            cell.setRetweetReason(status!.author!.name)
+            let retweet = status!.retweetedStatus! as Status
             cell.setStatus(retweet)
         }
         else {
             cell.setRetweetReason(nil)
-            cell.setStatus(status)
+            cell.setStatus(status!)
         }
         return cell
     }
@@ -109,14 +111,15 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         itemViewController.statusUpdateDelegate = self
         itemViewController.indexPath = indexPath
 
-        let status = homeStatuses![indexPath.row] as Status
-        if (status.retweetedStatus != nil) {
-            itemViewController.status = status.retweetedStatus!
-            itemViewController.retweetReason = status.author!.name
+        //let status = homeStatuses![indexPath.row] as Status
+        let status = homeStatuses!.getStatus(indexPath.row)
+
+        if (status!.retweetedStatus != nil) {
+            itemViewController.status = status!.retweetedStatus!
+            itemViewController.retweetReason = status!.author!.name
         }
         else {
-            itemViewController.status = status
-
+            itemViewController.status = status!
         }
         self.navigationController?.pushViewController(itemViewController, animated: true)
         
@@ -141,7 +144,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     func dismissComposeView(newStatus: Status?) {
         if (newStatus != nil) {
             // Insert the newly posted status in view
-            homeStatuses?.insert(newStatus!, atIndex: 0)
+            homeStatuses?.addToBeginning(newStatus!)
             homeTimelineTable.beginUpdates()
             homeTimelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
             homeTimelineTable.endUpdates()
