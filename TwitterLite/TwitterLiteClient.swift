@@ -9,7 +9,7 @@
 let BASE_URL = "https://api.twitter.com"
 let CONSUMER_KEY = "twn2AJHjJ1QV8VGldiJws2QlG"
 let CONSUMER_SECRET = "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA"
-let USE_CACHE = true
+let USE_CACHE = false
 
 class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
@@ -100,7 +100,6 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
                 return
             }
         }
-       
         self.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             // Cache the response
             if response != nil {
@@ -126,4 +125,56 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
         failure: ((operation: AFHTTPRequestOperation!, error: NSError!)->())) -> AFHTTPRequestOperation {
             return self.GET("1.1/account/verify_credentials.json", parameters: nil, success: success, failure: failure)
     }
+    
+    // MARK: Post a new status update
+    func postStatusWithParams(params: NSDictionary?, completion: (status: Status?, error: NSError?) -> ()) {
+        self.POST("1.1/statuses/update.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+                if (response != nil) {
+                    var status = Status(dictionary: response as NSDictionary)
+                    
+                    println("Posted: \(status)")
+                    completion(status: status, error: nil)
+                }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error posting status")
+                completion(status: nil, error: error)
+        })
+    }
+    
+    // MARK: Favorite a status
+    func favoriteStatusWithParams(params: NSDictionary?, completion: (status: Status?, error: NSError?) -> ()) {
+        self.POST("1.1/favorites/create.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+                if (response != nil) {
+                    var status = Status(dictionary: response as NSDictionary)
+                
+                    println("Favorited: \(status)")
+                    completion(status: status, error: nil)
+                }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error favoriting status")
+                completion(status:nil, error: error)
+        })
+    }
+    
+    // MARK: Favorite a status
+    func unfavoriteStatusWithParams(params: NSDictionary?, completion: (status: Status?, error: NSError?) -> ()) {
+        self.POST("1.1/favorites/destroy.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            
+            if (response != nil) {
+                var status = Status(dictionary: response as NSDictionary)
+                
+                println("Unfavorited: \(status)")
+                completion(status: status, error: nil)
+            }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error unfavoriting status")
+                completion(status:nil, error: error)
+        })
+    }
+    
+    
+
+    
 }

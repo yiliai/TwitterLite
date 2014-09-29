@@ -181,19 +181,41 @@ class Status: NSObject {
         return Status(dictionary: dictionary)
     }*/
     
-    // TODO: Implement me
-    class func postStatus(text: String) {
-        println("NOT YET IMPLEMENTED: postStatus: \(text)")
+    // MARK: Posting a new status update
+    private class func postStatus(text: String) {
+        
+        println("")
+        println("POSTING STATUS...")
+        
+        let params = NSMutableDictionary()
+        params["status"] = text
+        TwitterLiteClient.sharedInstance.postStatusWithParams(params, completion: { (status, error) -> () in
+            println("Status.postStatus - completed")
+        })
     }
     
-    // TODO: Implement me
+    // MARK: Favorite this status
     private func favoriteStatus() {
-        println("NOT YET IMPLEMENTED: favoriteStatus: \(self.statusId)")
+        println("")
+        println("FAVORITING STATUS...\(self.statusId)")
+        
+        let params = NSMutableDictionary()
+        params["id"] = self.statusId
+        TwitterLiteClient.sharedInstance.favoriteStatusWithParams(params, completion: { (status, error) -> () in
+            println("Status.favoriteStatus - completed")
+        })
     }
     
-    // TODO: Implement me
+    // MARK: Favorite this status
     private func unfavoriteStatus() {
-        println("NOT YET IMPLEMENTED: unfavoriteStatus \(self.statusId)")
+        println("")
+        println("UNFAVORITING STATUS...\(self.statusId)")
+        
+        let params = NSMutableDictionary()
+        params["id"] = self.statusId
+        TwitterLiteClient.sharedInstance.unfavoriteStatusWithParams(params, completion: { (status, error) -> () in
+            println("Status.unfavoriteStatus - completed")
+        })
     }
     
     // TODO: Implement me
