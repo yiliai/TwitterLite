@@ -25,6 +25,7 @@ class Status: NSObject {
     var retweetCount: Int?
     var favorited: Bool?
     var retweeted: Bool?
+    var retweetId: Int?
 
     init(dictionary: NSDictionary) {
         self.dictionaryReference = dictionary
@@ -218,13 +219,31 @@ class Status: NSObject {
         })
     }
     
-    // TODO: Implement me
+    // MARK: Retweet this status
     private func retweetStatus() {
-        println("NOT YET IMPLEMENTED: retweetStatus \(self.statusId)")
+        println("")
+        println("RETWEETING STATUS...\(self.statusId)")
+        
+        let statusString = String(self.statusId!)
+        TwitterLiteClient.sharedInstance.retweetStatusWithCompletion(statusString, completion: { (status, error) -> () in
+            self.retweetId = status?.statusId
+            println("Status.retweetStatus - completed. Retweet id:\(self.retweetId)")
+        })
     }
     
     // TODO: Implement me
     private func undoRetweetStatus() {
-        println("NOT YET IMPLEMENTED: undoRetweetStatus \(self.statusId)")
+        println("")
+        println("UNDO RETWEETING STATUS...\(self.statusId)")
+        
+        if (retweetId != nil) {
+            let statusString = String(self.retweetId!)
+            TwitterLiteClient.sharedInstance.undoRetweetWithCompletion(statusString, completion: { (status, error) -> () in
+                println("Undo retweet - completed")
+            })
+        }
+        else {
+            println("There's no retweet id - TODO: Figure out how to look up the id")
+        }
     }
 }

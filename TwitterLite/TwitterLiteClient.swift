@@ -174,7 +174,35 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
         })
     }
     
-    
+    // MARK: Retweet a status
+    func retweetStatusWithCompletion(statusId: String, completion: (status: Status?, error: NSError?) -> ()) {
+        
+        let url = "1.1/statuses/retweet/" + statusId + ".json"
+        self.POST(url, parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            if (response != nil) {
+                var status = Status(dictionary: response as NSDictionary)
+                
+                println("Retweeted: \(status)")
+                completion(status: status, error: nil)
+            }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error retweeting status")
+                completion(status:nil, error: error)
+        })
+    }
 
-    
+    func undoRetweetWithCompletion(statusId: String, completion: (status: Status?, error: NSError?) -> ()) {
+        let url = "1.1/statuses/destroy/" + statusId + ".json"
+        self.POST(url, parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+            if (response != nil) {
+                var status = Status(dictionary: response as NSDictionary)
+                
+                println("Undo retweet: \(status)")
+                completion(status: status, error: nil)
+            }
+            }, failure: { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+                println("Error undo retweet status")
+                completion(status:nil, error: error)
+        })
+    }
 }
