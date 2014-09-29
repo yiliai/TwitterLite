@@ -91,7 +91,7 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
     // MARK: Get the home timeline with optional parameters
     func getHomeTimelineWithParams(params: NSDictionary?, completion: (statuses: StatusArray?, error: NSError?) -> ()) {
-        if USE_CACHE {
+        if USE_CACHE  && params == nil {
             if let json: AnyObject = JsonDiskCache.cached() {
                 println("Got cache data")
                 var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
@@ -100,7 +100,7 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
                 return
             }
         }
-        self.GET("1.1/statuses/home_timeline.json", parameters: nil, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        self.GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             // Cache the response
             if response != nil {
                 println("======================")

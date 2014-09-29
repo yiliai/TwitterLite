@@ -21,9 +21,11 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
 
     @IBOutlet weak var homeNavigationBar: UINavigationBar!
     @IBOutlet weak var homeTimelineTable: UITableView!
+    @IBOutlet var homeView: UIView!
     
     var homeStatuses: StatusArray?
     var composeViewController: ComposeViewController?
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +61,11 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             self.homeStatuses = statuses
             self.homeTimelineTable.reloadData()
         })
+        
+        // Set up the pull to refresh control
+        refreshControl.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
+        homeTimelineTable.addSubview(refreshControl)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -166,14 +173,17 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         homeTimelineTable.endUpdates()
     }
     
-    /*func retweetStatus(status: Status?) {
-        if status != nil {
-            // Insert the new retweeted status in view
-            homeStatuses?.insert(status!, atIndex: 0)
-            homeTimelineTable.beginUpdates()
-            homeTimelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
-            //homeTimelineTable.reloadRowsAtIndexPaths([updateIndexPath], withRowAnimation: .Automatic)
-            homeTimelineTable.endUpdates()
-        }
-    }*/
+    func refresh() {
+        println("Pulled down to refresh")
+
+        homeStatuses?.loadNewerWithCompletion({ (success, error) -> () in
+            if (success == true) {
+                
+                println("BACK to the home timeline view controller with success")
+                self.refreshControl.endRefreshing()
+                self.homeTimelineTable.reloadData()
+            }
+        })
+    }
+    
 }

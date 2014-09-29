@@ -82,4 +82,39 @@ class StatusArray: NSObject {
         }
         statusArray.insert(newStatus, atIndex: 0)
     }
+    
+    func addToBeginning(newStatusArray: StatusArray) {
+        
+        // First remove all the fake statuses at the beginning of the array
+        let index = newestStatusIndex
+        if index != nil {
+            while (newestStatusIndex != 0) {
+                statusArray.removeAtIndex(0)
+            }
+        }
+        // Insert all the new items in order
+        var i = 0
+        for item in newStatusArray.statusArray {
+            self.statusArray.insert(item, atIndex: i)
+            i = i+1
+        }
+    }
+    
+    func loadNewerWithCompletion(completion:(success: Bool, error: NSError?) ->() ) {
+        let params = NSMutableDictionary()
+        params["since_id"] = newestStatusId
+        
+        TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(params, completion: { (statuses, error) -> () in
+            if (statuses? != nil) {
+                self.addToBeginning(statuses!)
+            
+                println("LOAD MORE SUCCESS, new count: \(statuses!.count)")
+                completion(success: true, error: nil)
+            }
+            else {
+                println("error: \(error)")
+                completion(success: false, error: error)
+            }
+        })
+    }
 }
