@@ -150,7 +150,7 @@ class Status: NSObject {
         return statusArray
     }
     
-    class func createStatus(fromUser: User, text: String) -> Status {
+    class func createStatus(fromUser: User, text: String, replyToId: Int?) -> Status {
         let dictionary = NSMutableDictionary()
         
         let dateFormatter = NSDateFormatter()
@@ -161,18 +161,24 @@ class Status: NSObject {
         dictionary["text"] = text
         
         // Actually post it to Twitter
-        postStatus(text)
+        postStatus(text, replyToId: replyToId)
         return Status(dictionary: dictionary)
     }
     
     // MARK: Posting a new status update
-    private class func postStatus(text: String) {
+    private class func postStatus(text: String, replyToId: Int?) {
         
         println("")
         println("POSTING STATUS...")
         
         let params = NSMutableDictionary()
         params["status"] = text
+        
+        // Check to see if the new tweet is in reply to another tweet
+        if (replyToId != nil) {
+            params["in_reply_to_status_id"] = replyToId!
+        }
+        
         TwitterLiteClient.sharedInstance.postStatusWithParams(params, completion: { (status, error) -> () in
             println("Status.postStatus - completed")
         })

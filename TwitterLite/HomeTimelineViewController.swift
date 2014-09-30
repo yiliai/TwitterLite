@@ -187,6 +187,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         self.composeViewController!.composeDelegate = self
         let status = homeStatuses?.getStatus(indexPath.row)
         composeViewController?.replyToScreenName = status?.author?.screenName!
+        composeViewController?.replyToId = status?.statusId
         //self.composeViewController!.composeText.text = status!.author!.screenName
         self.navigationController?.presentViewController(composeViewController!, animated: true, completion: { () -> Void in
             println("Launched the compose view")

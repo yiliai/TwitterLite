@@ -42,17 +42,22 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         characterCountLabel.textColor = LIGHT_GRAY
         
         // Set up the text compose field
-        composeText.textColor = LIGHT_GRAY
         composeText.delegate = self
-        composeText.selectedTextRange = composeText.textRangeFromPosition(composeText.beginningOfDocument, toPosition: composeText.beginningOfDocument)
-        
         // Pre-populate the reply to information if this is a reply
         if (replyToScreenName != nil) {
             composeText.text = "@" + replyToScreenName!
+            composeText.textColor = UIColor.blackColor()
+            characterCountLabel.text = String(MAX_LENGTH - countElements(composeText.text))
+        }
+        else {
+            composeText.textColor = LIGHT_GRAY
+            composeText.selectedTextRange = composeText.textRangeFromPosition(composeText.beginningOfDocument, toPosition: composeText.beginningOfDocument)
         }
         
         // Tweet button is diabled at first
         tweetButton.enabled = false
+        
+        println(replyToId)
         
     }
 
@@ -63,7 +68,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func onTapTweet(sender: AnyObject) {
         composeText.resignFirstResponder()
-        composeDelegate?.dismissComposeView(Status.createStatus(User.currentUser!, text: composeText.text))
+        composeDelegate?.dismissComposeView(Status.createStatus(User.currentUser!, text: composeText.text, replyToId: replyToId))
     }
     
     @IBAction func onTapClose(sender: AnyObject) {
@@ -74,7 +79,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(textView: UITextView) {
         composeText.becomeFirstResponder()
         composeText.textColor = UIColor.blackColor()
-        composeText.text = ""
+        
+        // Clear the helper text for a brand new tweet
+        if (replyToScreenName == nil) {
+            composeText.text = ""
+        }
     }
     
     func textViewDidChange(textView: UITextView) {
