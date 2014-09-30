@@ -26,6 +26,9 @@ class Status: NSObject {
     var favorited: Bool?
     var retweeted: Bool?
     var retweetId: Int?
+    
+    var textUrls: [URL]
+    var mediaUrls: [URL]
 
     init(dictionary: NSDictionary) {
         self.dictionaryReference = dictionary
@@ -67,6 +70,22 @@ class Status: NSObject {
         // Get whether the signed in user as retweeted the status
         if let retweeted = dictionary["retweeted"] as? Int {
             self.retweeted = retweeted == 0 ? false : true
+        }
+        // Get the URL entities
+        textUrls = [URL]()
+        mediaUrls = [URL]()
+        if let entities = dictionary["entities"] as? NSDictionary {
+            if let urls = entities["urls"] as? [NSDictionary] {
+                for url in urls {
+                    self.textUrls.append(URL(dictionary: url, type: URLType.Text))
+                }
+            }
+            if let mediaUrls = entities["media"] as? [NSDictionary] {
+                for mediaUrl in mediaUrls {
+                    self.mediaUrls.append(URL(dictionary: mediaUrl, type: URLType.Media))
+                    println("MEDIA URL")
+                }
+            }
         }
     }
     

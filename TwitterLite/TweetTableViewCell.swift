@@ -12,6 +12,7 @@ let BLUE_GRAY = UIColor(red: 0.53333, green: 0.6, blue: 0.65, alpha: 1.0)
 let LIGHT_GRAY = UIColor(red: 0.8, green: 0.8392, blue: 0.8666, alpha: 1.0)
 let YELLOW_HIGHLIGHT = UIColor(red: 1.0, green: 0.6745, blue: 0.2, alpha: 1.0)
 let GREEN_HIGHLIGHT = UIColor(red: 0.46667, green: 0.698, blue: 0.3333, alpha: 1.0)
+let LINK_BLUE = UIColor(red: 0.1686, green: 0.4823, blue: 0.7254, alpha: 1.0)
 let decimalFormatter = NSNumberFormatter()
 
 class TweetTableViewCell: UITableViewCell {
@@ -22,8 +23,9 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var authorImage: UIImageView!
     @IBOutlet weak var authorNameLabel: UILabel!
     @IBOutlet weak var authorScreenNameLabel: UILabel!
-    @IBOutlet weak var statusTextLabel: UILabel!
+    @IBOutlet weak var statusTextLabel: TTTAttributedLabel!
     @IBOutlet weak var timeSinceCreation: UILabel!
+    @IBOutlet weak var mediaImage: UIImageView!
     
     @IBOutlet weak var replyButton: UIButton!
     @IBOutlet weak var retweetButton: UIButton!
@@ -36,6 +38,10 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var reasonImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var reasonHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var mediaHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var mediaTopMarginConstraint: NSLayoutConstraint!
+    
+    
     var status: Status?
     var statusUpdateDelegate: StatusUpdateDelegate?
     var indexPath: NSIndexPath?
@@ -49,6 +55,17 @@ class TweetTableViewCell: UITableViewCell {
         reasonLabel.textColor = BLUE_GRAY
         authorScreenNameLabel.textColor = BLUE_GRAY
         timeSinceCreation.textColor = BLUE_GRAY
+        
+        // Automatically detect links when the label text is subsequently changed
+        statusTextLabel.enabledTextCheckingTypes = NSTextCheckingType.Link.toRaw()
+        let linkAttributes = NSMutableDictionary()
+        linkAttributes[kCTForegroundColorAttributeName] = LINK_BLUE
+        statusTextLabel.linkAttributes = linkAttributes
+        
+        mediaHeightConstraint.constant = 0
+        mediaTopMarginConstraint.constant = 0
+        mediaImage.layer.cornerRadius = 4.0
+        mediaImage.layer.masksToBounds = true
         
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
@@ -72,7 +89,7 @@ class TweetTableViewCell: UITableViewCell {
         self.status = status
         setAuthorName(status.author!.name)
         setScreenName(status.author!.screenName)
-        setStatusText(status.text)
+        setStatusText(status.text, mediaUrls: status.mediaUrls)
         setAuthorImage(status.author!.profileImageUrl)
         setRetweetCount(status.retweetCount)
         setFavoriteCount(status.favoriteCount)
@@ -91,9 +108,31 @@ class TweetTableViewCell: UITableViewCell {
         self.authorScreenNameLabel.text = screenName != nil ? "@\(screenName!)" : ""
     }
     
-    func setStatusText(text: String?) {
+    func setStatusText(text: String?, mediaUrls: [URL]) {
         self.statusTextLabel.numberOfLines = 0
-        self.statusTextLabel.text = text ?? ""
+        var newText = NSString()
+        
+        if text != nil {
+            newText = text!
+            
+            for url in mediaUrls {
+                let length = url.endIndex! - url.startIndex!
+                let nsRange = NSMakeRange(url.startIndex!, length)
+                println("\(url.startIndex!)...\(url.endIndex!)")
+                newText = newText.stringByReplacingCharactersInRange(nsRange, withString: "")
+                println(newText)
+                mediaImage.fadeInImageFromURL(url.mediaUrl!)
+                mediaHeightConstraint.constant = 140
+                mediaTopMarginConstraint.constant = 8
+                break
+            }
+            if (mediaUrls.count == 0) {
+                mediaHeightConstraint.constant = 0
+                mediaTopMarginConstraint.constant = 0
+            }
+        }
+        
+        self.statusTextLabel.text = newText ?? ""
         self.statusTextLabel.sizeToFit()
     }
     

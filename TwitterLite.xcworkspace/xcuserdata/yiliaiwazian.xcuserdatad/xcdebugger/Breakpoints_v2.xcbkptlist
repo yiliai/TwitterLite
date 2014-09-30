@@ -29,5 +29,67 @@
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/TweetTableViewCell.swift"
+            timestampString = "433757216.146816"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "setStatusText(_:mediaUrls:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterLite.TweetTableViewCell.setStatusText (TwitterLite.TweetTableViewCell)(Swift.Optional&lt;Swift.String&gt;) -&gt; ()"
+                  moduleName = "TwitterLite"
+                  urlString = "file:///Users/yiliaiwazian/Documents/Developer/codepath/TwitterLite/TwitterLite/TweetTableViewCell.swift"
+                  timestampString = "433754949.488447"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "285">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TwitterLite.TweetTableViewCell.(setStatusText (TwitterLite.TweetTableViewCell) -&gt; (Swift.Optional&lt;Swift.String&gt;) -&gt; ()).(implicit closure #1)"
+                  moduleName = "TwitterLite"
+                  urlString = "file:///Users/yiliaiwazian/Documents/Developer/codepath/TwitterLite/TwitterLite/TweetTableViewCell.swift"
+                  timestampString = "433754949.488643"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/TweetTableViewCell.swift"
+            timestampString = "433757216.146816"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "setStatusText(_:mediaUrls:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
