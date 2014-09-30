@@ -23,13 +23,16 @@ PODS:
   - BDBOAuth1Manager (1.4.0):
     - AFNetworking/NSURLConnection (~> 2.4.0)
     - AFNetworking/NSURLSession (~> 2.4.0)
+  - TTTAttributedLabel (1.10.1)
 
 DEPENDENCIES:
   - AFNetworking
   - BDBOAuth1Manager
+  - TTTAttributedLabel
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   BDBOAuth1Manager: 4f0967110286edd4c7961cf48a4eb242c64137a1
+  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
 
 COCOAPODS: 0.33.1

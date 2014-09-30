@@ -153,8 +153,8 @@ class TweetItemViewController: UIViewController {
     func setRetweetButton(retweeted: Bool?) {
         if (retweeted != nil && retweeted == true) {
             self.retweetButton.selected = true
-            self.retweetButton.tintColor = HIGHLIGHT
-            self.retweetCount.textColor = HIGHLIGHT
+            self.retweetButton.tintColor = GREEN_HIGHLIGHT
+            self.retweetCount.textColor = GREEN_HIGHLIGHT
         }
         else {
             self.retweetButton.selected = false
@@ -165,8 +165,8 @@ class TweetItemViewController: UIViewController {
     func setFavoriteButton(favorited: Bool?) {
         if (favorited != nil && favorited == true) {
             self.favoriteButton.selected = true
-            self.favoriteButton.tintColor = HIGHLIGHT
-            self.favoriteCount.textColor = HIGHLIGHT
+            self.favoriteButton.tintColor = YELLOW_HIGHLIGHT
+            self.favoriteCount.textColor = YELLOW_HIGHLIGHT
         }
         else {
             self.favoriteButton.selected = false

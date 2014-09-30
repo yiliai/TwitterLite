@@ -10,7 +10,8 @@ import UIKit
 
 let BLUE_GRAY = UIColor(red: 0.53333, green: 0.6, blue: 0.65, alpha: 1.0)
 let LIGHT_GRAY = UIColor(red: 0.8, green: 0.8392, blue: 0.8666, alpha: 1.0)
-let HIGHLIGHT = UIColor(red: 1.0, green: 0.6745, blue: 0.2, alpha: 1.0)
+let YELLOW_HIGHLIGHT = UIColor(red: 1.0, green: 0.6745, blue: 0.2, alpha: 1.0)
+let GREEN_HIGHLIGHT = UIColor(red: 0.46667, green: 0.698, blue: 0.3333, alpha: 1.0)
 let decimalFormatter = NSNumberFormatter()
 
 class TweetTableViewCell: UITableViewCell {
@@ -138,8 +139,8 @@ class TweetTableViewCell: UITableViewCell {
     func setRetweetButton(retweeted: Bool?) {
         if (retweeted != nil && retweeted == true) {
             self.retweetButton.selected = true
-            self.retweetButton.tintColor = HIGHLIGHT
-            self.retweetCount.textColor = HIGHLIGHT
+            self.retweetButton.tintColor = GREEN_HIGHLIGHT
+            self.retweetCount.textColor = GREEN_HIGHLIGHT
         }
         else {
             self.retweetButton.selected = false
@@ -150,8 +151,8 @@ class TweetTableViewCell: UITableViewCell {
     func setFavoriteButton(favorited: Bool?) {
         if (favorited != nil && favorited == true) {
             self.favoriteButton.selected = true
-            self.favoriteButton.tintColor = HIGHLIGHT
-            self.favoriteCount.textColor = HIGHLIGHT
+            self.favoriteButton.tintColor = YELLOW_HIGHLIGHT
+            self.favoriteCount.textColor = YELLOW_HIGHLIGHT
         }
         else {
             self.favoriteButton.selected = false

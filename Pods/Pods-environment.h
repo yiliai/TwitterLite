@@ -54,3 +54,9 @@
 #define COCOAPODS_VERSION_MINOR_BDBOAuth1Manager 4
 #define COCOAPODS_VERSION_PATCH_BDBOAuth1Manager 0
 
+// TTTAttributedLabel
+#define COCOAPODS_POD_AVAILABLE_TTTAttributedLabel
+#define COCOAPODS_VERSION_MAJOR_TTTAttributedLabel 1
+#define COCOAPODS_VERSION_MINOR_TTTAttributedLabel 10
+#define COCOAPODS_VERSION_PATCH_TTTAttributedLabel 1
+
