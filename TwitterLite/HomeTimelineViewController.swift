@@ -16,6 +16,7 @@ protocol StatusUpdateDelegate {
     func toggleFavorite(indexPath: NSIndexPath)
     func toggleRetweet(indexPath: NSIndexPath)
     func tapReply(indexPath: NSIndexPath)
+    func openImage(indexPath: NSIndexPath, url: NSURL)
     //func retweetStatus(status: Status?)
 }
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
@@ -149,6 +150,11 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         tableView.endUpdates()
     }
     
+    /*func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }*/
+    
+    
     func signout() {
         User.currentUser?.signout()
     }
@@ -217,6 +223,16 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
                 println("BACK to the home timeline view controller with success")
                 self.homeTimelineTable.reloadData()
             }
+        })
+    }
+    func openImage(indexPath: NSIndexPath, url: NSURL) {
+        let imageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
+        
+        imageViewController.imageURL = url
+        
+        imageViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        self.navigationController?.presentViewController(imageViewController, animated: true, completion: { () -> Void in
+            println("Launched the image view")
         })
     }
 }

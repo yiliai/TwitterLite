@@ -66,6 +66,10 @@ class TweetTableViewCell: UITableViewCell {
         mediaTopMarginConstraint.constant = 0
         mediaImage.layer.cornerRadius = 4.0
         mediaImage.layer.masksToBounds = true
+        mediaImage.userInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onTapImage")
+        tapGestureRecognizer.delegate = self
+        mediaImage.addGestureRecognizer(tapGestureRecognizer)
         
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
@@ -224,5 +228,13 @@ class TweetTableViewCell: UITableViewCell {
         status!.toggleFavorite()
         setFavoriteCount(status?.favoriteCount)
         setFavoriteButton(status?.favorited)
+    }
+    
+    func onTapImage() {
+        let urlElement = status?.mediaUrls[0]
+        let imageUrl = urlElement?.mediaUrl
+        
+        statusUpdateDelegate?.openImage(indexPath!, url: imageUrl!)
+        println("Tapped on image!!!!")
     }
 }
