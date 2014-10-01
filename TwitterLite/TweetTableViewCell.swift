@@ -62,8 +62,8 @@ class TweetTableViewCell: UITableViewCell {
         linkAttributes[kCTForegroundColorAttributeName] = LINK_BLUE
         statusTextLabel.linkAttributes = linkAttributes
         
-        mediaHeightConstraint.constant = 0
-        mediaTopMarginConstraint.constant = 0
+        //mediaHeightConstraint.constant = 0
+        //mediaTopMarginConstraint.constant = 0
         mediaImage.layer.cornerRadius = 4.0
         mediaImage.layer.masksToBounds = true
         mediaImage.userInteractionEnabled = true
@@ -234,7 +234,9 @@ class TweetTableViewCell: UITableViewCell {
         let urlElement = status?.mediaUrls[0]
         let imageUrl = urlElement?.mediaUrl
         
-        statusUpdateDelegate?.openImage(indexPath!, url: imageUrl!)
+        println("cell: \(mediaImage?.frame)")
+        
+        statusUpdateDelegate?.openImage(indexPath!, url: imageUrl!, rect: mediaImage!.frame)
         println("Tapped on image!!!!")
     }
 }

@@ -16,7 +16,7 @@ protocol StatusUpdateDelegate {
     func toggleFavorite(indexPath: NSIndexPath)
     func toggleRetweet(indexPath: NSIndexPath)
     func tapReply(indexPath: NSIndexPath)
-    func openImage(indexPath: NSIndexPath, url: NSURL)
+    func openImage(indexPath: NSIndexPath, url: NSURL, rect: CGRect)
     //func retweetStatus(status: Status?)
 }
 class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
@@ -225,11 +225,18 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             }
         })
     }
-    func openImage(indexPath: NSIndexPath, url: NSURL) {
+    func openImage(indexPath: NSIndexPath, url: NSURL, rect: CGRect) {
         let imageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
-        
         imageViewController.imageURL = url
         
+        let cell = tableView(homeTimelineTable, cellForRowAtIndexPath: indexPath)
+        let cellRect = homeTimelineTable.convertRect(homeTimelineTable.rectForRowAtIndexPath(indexPath), toView: homeTimelineTable.superview)
+        
+        println(rect)
+        println(cellRect)
+        let imageRect = CGRectMake(rect.origin.x+cellRect.origin.x, rect.origin.y+cellRect.origin.y, rect.width, rect.height)
+        
+        imageViewController.imageStartRect = imageRect
         imageViewController.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         self.navigationController?.presentViewController(imageViewController, animated: true, completion: { () -> Void in
             println("Launched the image view")

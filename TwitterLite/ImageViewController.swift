@@ -11,10 +11,10 @@ import UIKit
 class ImageViewController: UIViewController {
 
     var imageURL: NSURL?
+    var imageStartRect: CGRect?
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet var backgroundView: UIView!
-    
     @IBOutlet var tapRecognizer: UITapGestureRecognizer!
 
     override func viewDidLoad() {
@@ -25,7 +25,17 @@ class ImageViewController: UIViewController {
             imageView.fadeInImageFromURL(imageURL!)
         }
         
-        //UIView.animateWithDuration(1.0, animations: { () -> Void in
+        
+        /*if imageStartRect != nil {
+            imageView.frame = CGRect(origin: imageStartRect!.origin, size: imageStartRect!.size)
+            println(imageView.frame)
+            self.imageView.fadeInImageFromURL(self.imageURL!)
+            UIView.animateWithDuration(5.0, animations: { () -> Void in
+                //self.imageView.fadeInImageFromURL(self.imageURL!)
+
+            })
+        }*/
+        
         
         //    self.backgroundView.backgroundColor = UIColor.blackColor()
         
