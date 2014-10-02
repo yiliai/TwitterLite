@@ -53,7 +53,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let statusCellNib = UINib(nibName: "TweetTableViewCell", bundle: nil);
         homeTimelineTable.registerNib(statusCellNib, forCellReuseIdentifier: "statusCell")
         homeTimelineTable.rowHeight = UITableViewAutomaticDimension
-        homeTimelineTable.estimatedRowHeight = 90
+        //homeTimelineTable.estimatedRowHeight = 90
         homeTimelineTable.dataSource = self
         homeTimelineTable.delegate = self
         // This will remove extra separators from tableview
@@ -121,8 +121,21 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             cell.setRetweetReason(nil)
             cell.setStatus(status!)
         }
+        cell.containerView.setNeedsLayout()
+        println("CELL height:\(cell.frame.height)")
         return cell
     }
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let status = homeStatuses?.getStatus(indexPath.row)
+        if (status?.mediaUrls.count != 0) {
+            return 260
+        }
+        else {
+            return 120
+        }
+    }
+    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -232,8 +245,8 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let cell = tableView(homeTimelineTable, cellForRowAtIndexPath: indexPath)
         let cellRect = homeTimelineTable.convertRect(homeTimelineTable.rectForRowAtIndexPath(indexPath), toView: homeTimelineTable.superview)
         
-        println(rect)
-        println(cellRect)
+        //println(rect)
+        //println(cellRect)
         let imageRect = CGRectMake(rect.origin.x+cellRect.origin.x, rect.origin.y+cellRect.origin.y, rect.width, rect.height)
         
         imageViewController.imageStartRect = imageRect

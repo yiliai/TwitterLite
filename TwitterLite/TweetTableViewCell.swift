@@ -17,6 +17,8 @@ let decimalFormatter = NSNumberFormatter()
 
 class TweetTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
+    
     @IBOutlet weak var reasonImage: UIImageView!
     @IBOutlet weak var reasonLabel: UILabel!
     
@@ -62,8 +64,6 @@ class TweetTableViewCell: UITableViewCell {
         linkAttributes[kCTForegroundColorAttributeName] = LINK_BLUE
         statusTextLabel.linkAttributes = linkAttributes
         
-        //mediaHeightConstraint.constant = 0
-        //mediaTopMarginConstraint.constant = 0
         mediaImage.layer.cornerRadius = 4.0
         mediaImage.layer.masksToBounds = true
         mediaImage.userInteractionEnabled = true
@@ -122,17 +122,20 @@ class TweetTableViewCell: UITableViewCell {
             for url in mediaUrls {
                 let length = url.endIndex! - url.startIndex!
                 let nsRange = NSMakeRange(url.startIndex!, length)
-                println("\(url.startIndex!)...\(url.endIndex!)")
+                //println("\(url.startIndex!)...\(url.endIndex!)")
                 newText = newText.stringByReplacingCharactersInRange(nsRange, withString: "")
-                println(newText)
                 mediaImage.fadeInImageFromURL(url.mediaUrl!)
+                self.invalidateIntrinsicContentSize()
                 mediaHeightConstraint.constant = 140
                 mediaTopMarginConstraint.constant = 8
+                containerView.layoutIfNeeded()
+                println(mediaImage.frame)
                 break
             }
             if (mediaUrls.count == 0) {
                 mediaHeightConstraint.constant = 0
                 mediaTopMarginConstraint.constant = 0
+                containerView.layoutIfNeeded()
             }
         }
         
@@ -158,6 +161,7 @@ class TweetTableViewCell: UITableViewCell {
             reasonImageHeightConstraint.constant = 0
             reasonHeightConstraint.constant = 0
         }
+        containerView.layoutIfNeeded()
     }
     
     func setRetweetCount(count: Int?) {
@@ -239,4 +243,5 @@ class TweetTableViewCell: UITableViewCell {
         statusUpdateDelegate?.openImage(indexPath!, url: imageUrl!, rect: mediaImage!.frame)
         println("Tapped on image!!!!")
     }
+    
 }

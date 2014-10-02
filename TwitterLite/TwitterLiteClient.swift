@@ -103,8 +103,8 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
         self.GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             // Cache the response
             if response != nil {
-                println("======================")
-                println("Home Timeline: \(response)")
+                //println("======================")
+                //println("Home Timeline: \(response)")
                 
                 let result = JsonDiskCache.cache(response)
                 println("Cache home timeline")

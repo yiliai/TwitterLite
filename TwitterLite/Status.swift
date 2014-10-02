@@ -83,7 +83,7 @@ class Status: NSObject {
             if let mediaUrls = entities["media"] as? [NSDictionary] {
                 for mediaUrl in mediaUrls {
                     self.mediaUrls.append(URL(dictionary: mediaUrl, type: URLType.Media))
-                    println("MEDIA URL")
+                    //println("MEDIA URL")
                 }
             }
         }
@@ -162,8 +162,8 @@ class Status: NSObject {
         for item in array {
             let status = Status(dictionary: item)
             statusArray.addToEnd(status)
-            println(statusArray.count)
-            println(status.description())
+            //println(statusArray.count)
+            //println(status.description())
         }
         NSLog ("Finished parsing status array")
         return statusArray
