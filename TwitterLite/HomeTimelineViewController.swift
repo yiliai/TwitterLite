@@ -39,7 +39,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         navigationBar?.topItem?.title = "Home"
         let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationBar?.titleTextAttributes = titleSytle
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        navigationBar?.barStyle = UIBarStyle.Black
         
         // Add the signout button
         let signoutButton = UIBarButtonItem(title: "Sign Out", style: .Plain, target: self, action: "signout")

@@ -19,15 +19,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidSignout", name: userDidSignoutNotification, object: nil)
         
         if User.currentUser != nil {
             // Go to the home timeline screen
             println("current user detected: \(User.currentUser?.name)")
-            let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
-            let navController = UINavigationController(rootViewController: homeViewController)
-            self.window!.rootViewController = navController
+            //let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
+            //let navController = UINavigationController(rootViewController: homeViewController)
+            //self.window!.rootViewController = navController
+
+            let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
+            //let navController = UINavigationController(rootViewController: containerViewController)
+            self.window!.rootViewController = containerViewController
         }
         else {
             let loginViewController = LogInViewController(nibName: "LogInViewController", bundle: nil)

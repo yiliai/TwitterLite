@@ -19,6 +19,10 @@
 		3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */; };
 		3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */; };
 		3A9D8F4B19D79216009B741A /* NSURL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */; };
+		3AA789FB19E08B8800404C9F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA789F919E08B8800404C9F /* ContainerViewController.swift */; };
+		3AA789FC19E08B8800404C9F /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA789FA19E08B8800404C9F /* ContainerViewController.xib */; };
+		3AA789FF19E08BF600404C9F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA789FD19E08BF600404C9F /* MenuViewController.swift */; };
+		3AA78A0019E08BF600404C9F /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA789FE19E08BF600404C9F /* MenuViewController.xib */; };
 		3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B1519D292C9000CF0CB /* AppDelegate.swift */; };
 		3AE56B1D19D292C9000CF0CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B1C19D292C9000CF0CB /* Images.xcassets */; };
 		3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B1E19D292C9000CF0CB /* LaunchScreen.xib */; };
@@ -61,6 +65,10 @@
 		3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimelineViewController.xib; sourceTree = "<group>"; };
 		3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Extensions.swift"; sourceTree = "<group>"; };
+		3AA789F919E08B8800404C9F /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		3AA789FA19E08B8800404C9F /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
+		3AA789FD19E08BF600404C9F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		3AA789FE19E08BF600404C9F /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		3AE56B1019D292C9000CF0CB /* TwitterLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE56B1419D292C9000CF0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE56B1519D292C9000CF0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				3AE56B4B19D4135E000CF0CB /* LogInViewController.xib */,
+				3AA789FA19E08B8800404C9F /* ContainerViewController.xib */,
+				3AA789FE19E08BF600404C9F /* MenuViewController.xib */,
 				3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */,
 				3AE56B3719D29455000CF0CB /* TweetTableViewCell.xib */,
 				3AE56B4719D408CE000CF0CB /* TweetItemViewController.xib */,
@@ -201,6 +211,8 @@
 			isa = PBXGroup;
 			children = (
 				3AE56B4A19D4135E000CF0CB /* LogInViewController.swift */,
+				3AA789F919E08B8800404C9F /* ContainerViewController.swift */,
+				3AA789FD19E08BF600404C9F /* MenuViewController.swift */,
 				3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */,
 				3AE56B3619D29455000CF0CB /* TweetTableViewCell.swift */,
 				3AE56B4619D408CE000CF0CB /* TweetItemViewController.swift */,
@@ -327,8 +339,10 @@
 				3A44F9EF19DBC39A00CC8FB7 /* ImageViewController.xib in Resources */,
 				3AE56B4D19D4135E000CF0CB /* LogInViewController.xib in Resources */,
 				3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */,
+				3AA789FC19E08B8800404C9F /* ContainerViewController.xib in Resources */,
 				3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */,
 				3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */,
+				3AA78A0019E08BF600404C9F /* MenuViewController.xib in Resources */,
 				3AE56B5119D4C54C000CF0CB /* ComposeViewController.xib in Resources */,
 				3AE56B1D19D292C9000CF0CB /* Images.xcassets in Resources */,
 				3AE56B3919D29455000CF0CB /* TweetTableViewCell.xib in Resources */,
@@ -396,8 +410,10 @@
 				3A9D8F4519D775E3009B741A /* HomeTimelineViewController.swift in Sources */,
 				3AE56B5019D4C54C000CF0CB /* ComposeViewController.swift in Sources */,
 				3A9D8F4B19D79216009B741A /* NSURL+Extensions.swift in Sources */,
+				3AA789FF19E08BF600404C9F /* MenuViewController.swift in Sources */,
 				3AE78DD819D6836600C008EF /* JsonDiskCache.m in Sources */,
 				3AE56B4C19D4135E000CF0CB /* LogInViewController.swift in Sources */,
+				3AA789FB19E08B8800404C9F /* ContainerViewController.swift in Sources */,
 				3AE56B4819D408CE000CF0CB /* TweetItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
