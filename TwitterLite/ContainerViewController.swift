@@ -90,7 +90,7 @@ class ContainerViewController: UIViewController {
         }
         
         setupViewControllers()
-        setViewController(1)
+        setViewController(0)
         
         // Set the menu view controller
         let menu = MenuViewController(nibName: "MenuViewController", bundle: nil)

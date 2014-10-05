@@ -28,9 +28,14 @@ class ProfileHeaderView: UIView {
     @IBOutlet weak var locationLabel: UILabel!
     
     @IBOutlet weak var bannerImage: UIImageView!
+    @IBOutlet weak var gradientImage: UIImageView!
     
     @IBOutlet weak var line: UIView!
     @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
+    
+    var portraitYOffset: CGFloat?
+    var landscapeYOffset: CGFloat?
+    
     var user: User?
     
     override func awakeFromNib() {

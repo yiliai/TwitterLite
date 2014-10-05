@@ -87,6 +87,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             navigationBar?.shadowImage = UIImage()
             navigationBar?.translucent = true
             println("HEADER HEIGHT:\(self.tableHeaderView!.frame)  \(self.tableHeaderView!.bounds)")
+
         }
         else {
             navigationBar?.setBackgroundImage(nil, forBarMetrics: .Default)
@@ -297,6 +298,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         if self.tableHeaderView != nil {
             if toInterfaceOrientation == UIInterfaceOrientation.Portrait {
                 self.tableHeaderView!.topMarginConstraint.constant = -64
+                self.tableHeaderView?.layoutIfNeeded()
             }
             else {
                 self.tableHeaderView!.topMarginConstraint.constant = -32
@@ -308,7 +310,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if (timelineTable.tableHeaderView != nil) {
-            let frame = tableHeaderView?.line.convertRect(CGRectZero, toView: self.view)
+            
+            let view = timelineTable.tableHeaderView! as ProfileHeaderView
+            let frame = view.line.convertRect(CGRectZero, toView: self.view)
             println(frame)
             var offset: CGFloat
             if UIDevice.currentDevice().orientation == .Portrait {
@@ -317,7 +321,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             else {
                 offset = CGFloat(32)
             }
-            timelineTable.tableHeaderView!.frame = CGRectMake(0, 0, self.view.frame.width, frame!.origin.y - offset)
+            timelineTable.tableHeaderView!.frame = CGRectMake(0, 0, self.view.frame.width, frame.origin.y-offset)
         }
         return 0
     }
@@ -345,6 +349,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 
             if (offset >= 0) {
                 self.tableHeaderView!.bannerImage.transform = CGAffineTransformMakeScale(1+offset/50, 1+offset/50)
+                self.tableHeaderView!.gradientImage.transform =
+                    CGAffineTransformMakeScale(1+offset/50, 1+offset/50)
             }
             else if (offset > -44) {
                 self.tableHeaderView!.profileImage.transform = CGAffineTransformMakeScale(1+offset/88, 1+offset/88)
