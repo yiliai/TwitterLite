@@ -73,6 +73,11 @@ class TweetTableViewCell: UITableViewCell {
         
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
+        authorImage.userInteractionEnabled = true
+        let tapProfileGestureRecognizer = UITapGestureRecognizer(target: self, action: "onTapProfileImage")
+        tapProfileGestureRecognizer.delegate = self
+        authorImage.addGestureRecognizer(tapProfileGestureRecognizer)
+
 
         // Set up images to allow tint color
         reasonImage.image = UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
@@ -243,5 +248,9 @@ class TweetTableViewCell: UITableViewCell {
         statusUpdateDelegate?.openImage(indexPath!, url: imageUrl!, rect: mediaImage!.frame)
         println("Tapped on image!!!!")
     }
-    
+
+    func onTapProfileImage() {
+        println("tapped on profile image")
+        statusUpdateDelegate?.openProfile(status!.author!)
+    }
 }

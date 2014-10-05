@@ -126,18 +126,17 @@ class StatusArray: NSObject {
         })
     }
     
-    func loadOlderWithCompletion(timelineType: TimelineType, completion:(success: Bool, error: NSError?) ->() ) {
+    func loadOlderWithCompletion(timelineType: TimelineType, user: User, completion:(success: Bool, error: NSError?) ->() ) {
         let params = NSMutableDictionary()
         if (oldestStatusId != nil) {
             params["max_id"] = oldestStatusId! - 1
         }
         
         if (timelineType == TimelineType.Profile) {
-            params["user_id"] = User.currentUser?.userId!
+            params["user_id"] = user.userId!
         }
         
         println(params)
-        
         
         TwitterLiteClient.sharedInstance.getTimelineWithParams(timelineType, params: params, completion: { (statuses, error) -> () in
             if (statuses != nil) {

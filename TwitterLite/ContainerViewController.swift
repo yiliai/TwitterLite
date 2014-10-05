@@ -66,15 +66,11 @@ class ContainerViewController: UIViewController {
         // 2. Profile Timeline
         let profileViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
         profileViewController.timelineType = .Profile
-        
         let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
-        headerView.sizeToFit()
         headerView.layoutIfNeeded()
-        let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y
-        println(headerView.convertRect(CGRectZero, toView: self.view))
-        
-        headerView.frame = CGRectMake(0, 0, headerView.frame.width, height)
-        
+        let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y - 32
+        //println(headerView.convertRect(CGRectZero, toView: self.view))
+        headerView.bounds = CGRectMake(0, 0, headerView.frame.width, height)
         headerView.setUserInfo(User.currentUser!)
         profileViewController.setProfileHeaderView(headerView)
         

@@ -17,6 +17,7 @@ protocol StatusUpdateDelegate {
     func toggleRetweet(indexPath: NSIndexPath)
     func tapReply(indexPath: NSIndexPath)
     func openImage(indexPath: NSIndexPath, url: NSURL, rect: CGRect)
+    func openProfile(user: User)
 }
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate, UIScrollViewDelegate {
 
@@ -29,24 +30,27 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     var statusTimeline = StatusArray()
     var composeViewController: ComposeViewController?
     let refreshControl = UIRefreshControl()
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        // Skin the navigation bar
-        let navigationBar = self.navigationController?.navigationBar
-        navigationBar?.barTintColor = TWITTER_BLUE
-        navigationBar?.tintColor = UIColor.whiteColor()
-        navigationBar?.topItem?.title = timelineType?.getTitle()
-        
-        let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        navigationBar?.titleTextAttributes = titleSytle
-        navigationBar?.barStyle = UIBarStyle.Black
-                
-        // Add the menu button
-        let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: "openCloseMenu")
-        self.navigationItem.setLeftBarButtonItem(menuButton, animated: true)
 
+        if (self == self.navigationController?.viewControllers[0] as UIViewController) {
+            // Add the menu button
+            let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: "openCloseMenu")
+            self.navigationItem.setLeftBarButtonItem(menuButton, animated: true)
+        }
+        else {
+            let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: UIBarButtonItemStyle.Plain, target: self, action: "back")
+            var negativeSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+            negativeSpacer.width = -4;
+            self.navigationItem.setLeftBarButtonItems([negativeSpacer, backButton], animated: false)
+        }
+        
+        if user == nil {
+            user = User.currentUser!
+        }
+        
         // Add the compose button
         let composeButton = UIBarButtonItem(image: UIImage(named: "compose"), style: UIBarButtonItemStyle.Plain, target: self, action: "compose")
         self.navigationItem.setRightBarButtonItem(composeButton, animated: true)
@@ -57,15 +61,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineTable.rowHeight = UITableViewAutomaticDimension
         timelineTable.dataSource = self
         timelineTable.delegate = self
-        
-        // Setting the profile view header
-        if (self.tableHeaderView != nil) {
-            timelineTable.tableHeaderView = self.tableHeaderView
-            navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
-            navigationBar?.shadowImage = UIImage()
-            navigationBar?.translucent = true
-            //tableViewTopConstraint.constant = -64
-        }
         
         // This will remove extra separators from tableview
         timelineTable.tableFooterView = UIView(frame: CGRectZero)
@@ -80,6 +75,31 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
 
+    override func viewWillAppear(animated: Bool) {
+        // Skin the navigation bar
+        println("view will appear!!!!")
+        let navigationBar = self.navigationController?.navigationBar
+
+        // Setting the profile view header
+        if (self.tableHeaderView != nil) {
+            timelineTable.tableHeaderView = self.tableHeaderView
+            navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            navigationBar?.shadowImage = UIImage()
+            navigationBar?.translucent = true
+            println("HEADER HEIGHT:\(self.tableHeaderView!.frame)  \(self.tableHeaderView!.bounds)")
+        }
+        else {
+            navigationBar?.setBackgroundImage(nil, forBarMetrics: .Default)
+            navigationBar?.shadowImage = nil
+            navigationBar?.barTintColor = TWITTER_BLUE
+            navigationBar?.tintColor = UIColor.whiteColor()
+            let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+            navigationBar?.titleTextAttributes = titleSytle
+            navigationBar?.topItem?.title = timelineType!.getTitle()
+            navigationBar?.barStyle = UIBarStyle.Black
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,7 +126,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.progressIndicator.startAnimating()
             
             // load older here
-            loadMore(cell)
+            loadMore(cell, user: user)
             return cell
         }
         
@@ -228,11 +248,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         })
     }
-    func loadMore(cell: ProgressTableViewCell) {
+    func loadMore(cell: ProgressTableViewCell, user: User) {
         println(" ")
-        println("loading more...")
+        println("loading more...\(user.userId!)")
         
-        statusTimeline.loadOlderWithCompletion(timelineType!, { (success, error) -> () in
+        statusTimeline.loadOlderWithCompletion(timelineType!, user: user, { (success, error) -> () in
             if (success == true) {
                 self.timelineTable.reloadData()
             }
@@ -255,26 +275,42 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         })
     }
     
+    func openProfile(user: User) {
+        
+        println("open profile from table view controller")
+        let profileViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
+        profileViewController.timelineType = .Profile
+        let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
+        headerView.sizeToFit()
+        headerView.layoutIfNeeded()
+        let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y + 108
+        //println(headerView.convertRect(CGRectZero, toView: self.view))
+        headerView.bounds = CGRectMake(0, 0, headerView.frame.width, height)
+        headerView.setUserInfo(user)
+        profileViewController.user = user
+        profileViewController.setProfileHeaderView(headerView)
+        self.navigationController?.pushViewController(profileViewController, animated: true)
+    }
+    
     func openCloseMenu() {
         let parentVC = self.parentViewController?.parentViewController as ContainerViewController
         parentVC.openCloseMenu()
     }
     
     func setProfileHeaderView(profileHeader: ProfileHeaderView) {
-        //timelineTable.tableHeaderView = profileHeader
         self.tableHeaderView = profileHeader
     }
     
+
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if self.tableHeaderView != nil {
-            
             if toInterfaceOrientation == UIInterfaceOrientation.Portrait {
                 self.tableHeaderView!.topMarginConstraint.constant = -64
             }
             else {
                 self.tableHeaderView!.topMarginConstraint.constant = -32
+                self.tableHeaderView?.layoutIfNeeded()
             }
-            
         }
     }
     
@@ -290,14 +326,14 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 offset += CGFloat(32)
             }
             offset = offset*(-1)
-            println(offset)
-
             if (offset > 0) {
                 self.tableHeaderView!.bannerImage.transform = CGAffineTransformMakeScale(1+offset/50, 1+offset/50)
             }
         }
-        
-        
     }
     
+    func back() {
+        println("back")
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 }

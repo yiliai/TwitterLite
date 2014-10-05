@@ -43,7 +43,6 @@ class ProfileHeaderView: UIView {
         profileImage.layer.borderColor = UIColor.whiteColor().CGColor
         profileImage.layer.borderWidth = 3.0
     }
-
     
     func setUserInfo(user: User) {
         self.user = user
@@ -52,7 +51,13 @@ class ProfileHeaderView: UIView {
         screenNameLabel.text = user.screenName!
         followersCount.text = String(user.followersCount!)
         followingCount.text = String(user.friendsCount!)
-        bannerImage.fadeInImageFromURL(user.profileBannerUrl!)
+        
+        if (user.profileBannerUrl != nil) {
+            bannerImage.fadeInImageFromURL(user.profileBannerUrl!)
+        }
+        else {
+            bannerImage.backgroundColor = TWITTER_BLUE
+        }
     }
     
 }
