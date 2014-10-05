@@ -26,12 +26,10 @@ class LogInViewController: UIViewController {
         TwitterLiteClient.sharedInstance.signinWithCompletion() {
             (user: User?, error: NSError?) in
             if user != nil {
-                
-                let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
-                let navController = UINavigationController(rootViewController: homeViewController)
-                
-                self.presentViewController(navController, animated: true, completion: { () -> Void in
-                    NSLog("Successfully pushed the home view")
+
+                let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
+                self.presentViewController(containerViewController, animated: true, completion: { () -> Void in
+                    NSLog("Successfully pushed the container view")
                 })
             }
             else {

@@ -24,12 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if User.currentUser != nil {
             // Go to the home timeline screen
             println("current user detected: \(User.currentUser?.name)")
-            //let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
-            //let navController = UINavigationController(rootViewController: homeViewController)
-            //self.window!.rootViewController = navController
 
             let containerViewController = ContainerViewController(nibName: "ContainerViewController", bundle: nil)
-            //let navController = UINavigationController(rootViewController: containerViewController)
             self.window!.rootViewController = containerViewController
         }
         else {

@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="contentView" destination="7M6-Nf-VXa" id="m50-Ga-FDa"/>
                 <outlet property="contentViewXConstraint" destination="qr0-J4-dxW" id="OmB-fs-rF0"/>
+                <outlet property="menuView" destination="LkY-CH-Yop" id="83S-tz-Zfv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

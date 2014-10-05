@@ -42,9 +42,13 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         navigationBar?.barStyle = UIBarStyle.Black
         
         // Add the signout button
-        let signoutButton = UIBarButtonItem(title: "Sign Out", style: .Plain, target: self, action: "signout")
-        self.navigationItem.setLeftBarButtonItem(signoutButton, animated: true)
+        //let signoutButton = UIBarButtonItem(title: "Sign Out", style: .Plain, target: self, action: "signout")
+        //self.navigationItem.setLeftBarButtonItem(signoutButton, animated: true)
         
+        // Add the menu button
+        let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: "openCloseMenu")
+        self.navigationItem.setLeftBarButtonItem(menuButton, animated: true)
+
         // Add the compose button
         let composeButton = UIBarButtonItem(image: UIImage(named: "compose"), style: UIBarButtonItemStyle.Plain, target: self, action: "compose")
         self.navigationItem.setRightBarButtonItem(composeButton, animated: true)
@@ -255,4 +259,10 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             println("Launched the image view")
         })
     }
+    
+    func openCloseMenu() {
+        let parentVC = self.parentViewController?.parentViewController as ContainerViewController
+        parentVC.openCloseMenu()
+    }
+    
 }

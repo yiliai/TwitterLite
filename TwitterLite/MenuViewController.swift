@@ -10,10 +10,17 @@ import UIKit
 
 class MenuViewController: UIViewController {
 
+    @IBOutlet weak var userProfileImage: UIImageView!
+    @IBOutlet weak var userName: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+//        let user = User.currentUser
+        userProfileImage.layer.cornerRadius = 24.0
+        userProfileImage.layer.masksToBounds = true
+        userProfileImage.fadeInImageFromURL(User.currentUser!.profileImageUrl!)
+        userName.titleLabel?.text = User.currentUser!.name
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +29,18 @@ class MenuViewController: UIViewController {
     }
     
 
+    @IBAction func onTapHome(sender: AnyObject) {
+    }
+    
+    @IBAction func onTapProfile(sender: AnyObject) {
+    }
+    
+    @IBAction func onTapMentions(sender: AnyObject) {
+    }
+    
+    @IBAction func onTapSignOut(sender: AnyObject) {
+        User.currentUser?.signout()
+    }
     /*
     // MARK: - Navigation
 

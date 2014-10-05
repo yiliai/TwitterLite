@@ -16,7 +16,8 @@ class ContainerViewController: UIViewController {
     @IBOutlet weak var contentViewXConstraint: NSLayoutConstraint!
     @IBOutlet weak var contentView: UIView!
     var menuOpen = false
-
+    @IBOutlet weak var menuView: UIView!
+    
     var viewControllers = [UIViewController]()
     var activeViewController: UIViewController? {
         didSet(oldViewControllerOrNil) {
@@ -34,7 +35,22 @@ class ContainerViewController: UIViewController {
             }
         }
     }
-    
+    var menuViewController: UIViewController? {
+        didSet(oldViewControllerOrNil) {
+            if let oldVC = oldViewControllerOrNil {
+                oldVC.willMoveToParentViewController(nil)
+                oldVC.view.removeFromSuperview()
+                oldVC.removeFromParentViewController()
+            }
+            if let newVC = menuViewController {
+                self.addChildViewController(newVC)
+                newVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                newVC.view.frame = menuView.bounds
+                menuView.addSubview(newVC.view)
+                newVC.didMoveToParentViewController(self)
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,6 +64,9 @@ class ContainerViewController: UIViewController {
         let navController = UINavigationController(rootViewController: homeViewController)
         viewControllers.append(navController)
         activeViewController = navController
+        
+        let menu = MenuViewController(nibName: "MenuViewController", bundle: nil)
+        menuViewController = menu
         
     }
 
@@ -112,12 +131,20 @@ class ContainerViewController: UIViewController {
             }, completion: nil)
         menuOpen = false
     }
-    
     func openMenu() {
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.contentViewXConstraint.constant = -OPEN_MAX_WIDTH
             self.contentView.layoutIfNeeded()
             }, completion: nil)
         menuOpen = true
+    }
+    
+    func openCloseMenu() {
+        if menuOpen {
+            closeMenu()
+        }
+        else {
+            openMenu()
+        }
     }
 }
