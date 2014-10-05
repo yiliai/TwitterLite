@@ -24,7 +24,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet var timelineView: UIView!
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     
-    var tableHeaderView: UIView?
+    var tableHeaderView: ProfileHeaderView?
     var timelineType: TimelineType?
     var statusTimeline = StatusArray()
     var composeViewController: ComposeViewController?
@@ -64,7 +64,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navigationBar?.shadowImage = UIImage()
             navigationBar?.translucent = true
-            tableViewTopConstraint.constant = -64
+            //tableViewTopConstraint.constant = -64
         }
         
         // This will remove extra separators from tableview
@@ -264,5 +264,19 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         //timelineTable.tableHeaderView = profileHeader
         self.tableHeaderView = profileHeader
     }
+    
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if self.tableHeaderView != nil {
+            
+            if toInterfaceOrientation == UIInterfaceOrientation.Portrait {
+                self.tableHeaderView!.topMarginConstraint.constant = -64
+            }
+            else {
+                self.tableHeaderView!.topMarginConstraint.constant = -32
+            }
+            
+        }
+    }
+    
     
 }

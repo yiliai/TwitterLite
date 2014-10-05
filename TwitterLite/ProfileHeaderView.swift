@@ -26,6 +26,9 @@ class ProfileHeaderView: UIView {
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     
+    @IBOutlet weak var bannerImage: UIImageView!
+    
+    @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
     var user: User?
     
     override func awakeFromNib() {
@@ -40,6 +43,7 @@ class ProfileHeaderView: UIView {
         profileImage.layer.borderWidth = 3.0
     }
 
+    
     func setUserInfo(user: User) {
         self.user = user
         profileImage.fadeInImageFromURL(user.profileImageUrl!)
@@ -47,6 +51,7 @@ class ProfileHeaderView: UIView {
         screenNameLabel.text = user.screenName!
         followersCount.text = String(user.followersCount!)
         followingCount.text = String(user.friendsCount!)
+        bannerImage.fadeInImageFromURL(user.profileBannerUrl!)
     }
     
 }
