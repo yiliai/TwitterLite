@@ -115,6 +115,15 @@
                     <exclude reference="mTj-vG-pwh"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="followersCount" destination="QZp-JG-jTd" id="9uJ-c3-sGr"/>
+                <outlet property="followersLabel" destination="kzb-Wm-WAb" id="HoR-CT-BPg"/>
+                <outlet property="followingCount" destination="fuq-Bp-yw6" id="6KK-JU-cQ0"/>
+                <outlet property="followingLabel" destination="sGP-xZ-lUI" id="HYf-FZ-GlC"/>
+                <outlet property="nameLabel" destination="Pc3-Bw-5Tg" id="SDE-nJ-FHM"/>
+                <outlet property="profileImage" destination="DAd-bm-MTB" id="GM2-QV-G1E"/>
+                <outlet property="screenNameLabel" destination="jbj-aH-oUF" id="eJ9-PR-gHM"/>
+            </connections>
             <point key="canvasLocation" x="327" y="-373"/>
         </view>
     </objects>

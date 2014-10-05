@@ -70,6 +70,7 @@ class ContainerViewController: UIViewController {
         let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
         //headerView.sizeToFit()
         //headerView.layoutIfNeeded()
+        headerView.setUserInfo(User.currentUser!)
         profileViewController.setProfileHeaderView(headerView)
         
         let navController2 = UINavigationController(rootViewController: profileViewController)

@@ -96,11 +96,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434176211.529668"
+            timestampString = "434194167.308768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -112,12 +112,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434176211.529668"
+            timestampString = "434194167.308768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "loadMore(_:)"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "openCloseMenu()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -188,12 +188,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434176211.529668"
+            timestampString = "434194167.308768"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "loadMore(_:)"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "openImage(_:url:rect:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -257,6 +257,36 @@
             endingLineNumber = "25"
             landmarkName = "getTitle()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/ContainerViewController.swift"
+            timestampString = "434195391.481786"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "setupViewControllers()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/ProfileHeaderView.swift"
+            timestampString = "434195670.415534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

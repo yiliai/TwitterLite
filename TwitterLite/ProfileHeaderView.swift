@@ -18,11 +18,35 @@ class ProfileHeaderView: UIView {
         // Drawing code
     }
     */
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var followingCount: UILabel!
+    @IBOutlet weak var followersCount: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    
+    var user: User?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        screenNameLabel.textColor = BLUE_GRAY
+        followersLabel.textColor = BLUE_GRAY
+        followingLabel.textColor = BLUE_GRAY
         
-        println("Awake")
+        profileImage.layer.cornerRadius = 4.0
+        profileImage.layer.masksToBounds = true
+        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImage.layer.borderWidth = 3.0
     }
 
+    func setUserInfo(user: User) {
+        self.user = user
+        profileImage.fadeInImageFromURL(user.profileImageUrl!)
+        nameLabel.text = user.name!
+        screenNameLabel.text = user.screenName!
+        followersCount.text = String(user.followersCount!)
+        followingCount.text = String(user.friendsCount!)
+    }
+    
 }

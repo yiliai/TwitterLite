@@ -21,6 +21,9 @@ class User: NSObject {
     var screenName: String?
     var profileImageUrl: NSURL?
     var following: Bool?
+    var friendsCount: Int?
+    var followersCount: Int?
+    var profileBannerUrl: NSURL?
 
     init(dictionary: NSDictionary) {
         self.dictionaryReference = dictionary
@@ -40,9 +43,21 @@ class User: NSObject {
         if let profile_image_url = dictionary["profile_image_url"] as? NSString {
             self.profileImageUrl = NSURL(string: profile_image_url)
         }
+        // Get banner image url
+        if let profile_banner_url = dictionary["profile_banner_url"] as? NSString {
+            self.profileBannerUrl = NSURL(string: profile_banner_url)
+        }
         // Get whether the signed user is following this user
         if let following = dictionary["following"] as? Int {
             self.following = following == 0 ? false : true
+        }
+        // Get friends count (following)
+        if let friends_count = dictionary["friends_count"] as? Int {
+            self.friendsCount = friends_count
+        }
+        // Get followers count
+        if let followers_count = dictionary["followers_count"] as? Int {
+            self.followersCount = followers_count
         }
     }
     
