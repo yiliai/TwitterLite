@@ -132,6 +132,13 @@ class StatusArray: NSObject {
             params["max_id"] = oldestStatusId! - 1
         }
         
+        if (timelineType == TimelineType.Profile) {
+            params["user_id"] = User.currentUser?.userId!
+        }
+        
+        println(params)
+        
+        
         TwitterLiteClient.sharedInstance.getTimelineWithParams(timelineType, params: params, completion: { (statuses, error) -> () in
             if (statuses != nil) {
                 // Success, but no more results

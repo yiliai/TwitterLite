@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimelineViewController" customModule="TwitterLite" customModuleProvider="target">
             <connections>
+                <outlet property="tableViewTopConstraint" destination="orW-yl-OkC" id="dtt-Sn-AtP"/>
                 <outlet property="timelineTable" destination="3wN-Hs-Bas" id="LES-ye-TDr"/>
                 <outlet property="timelineView" destination="i5M-Pr-FkT" id="WPg-MM-abO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

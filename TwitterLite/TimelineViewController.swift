@@ -22,9 +22,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var timelineTable: UITableView!
     @IBOutlet var timelineView: UIView!
+    @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     
+    var tableHeaderView: UIView?
     var timelineType: TimelineType?
-    var statusTimeline: StatusArray?
+    var statusTimeline = StatusArray()
     var composeViewController: ComposeViewController?
     let refreshControl = UIRefreshControl()
     
@@ -40,9 +42,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationBar?.titleTextAttributes = titleSytle
         navigationBar?.barStyle = UIBarStyle.Black
-        
-        println("Skinning the nav bar controller")
-        
+                
         // Add the menu button
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: "openCloseMenu")
         self.navigationItem.setLeftBarButtonItem(menuButton, animated: true)
@@ -58,6 +58,15 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineTable.dataSource = self
         timelineTable.delegate = self
         
+        // Setting the profile view header
+        if (self.tableHeaderView != nil) {
+            timelineTable.tableHeaderView = self.tableHeaderView
+            navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+            navigationBar?.shadowImage = UIImage()
+            navigationBar?.translucent = true
+            tableViewTopConstraint.constant = -64
+        }
+        
         // This will remove extra separators from tableview
         timelineTable.tableFooterView = UIView(frame: CGRectZero)
             
@@ -65,16 +74,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let progressCellNib = UINib(nibName: "ProgressTableViewCell", bundle: nil);
         timelineTable.registerNib(progressCellNib, forCellReuseIdentifier: "progressCell")
         
-        // Do any additional setup after loading the view.
-        TwitterLiteClient.sharedInstance.getTimelineWithParams(timelineType!, params: nil, completion: { (statuses, error) -> () in
-            println("Get \(self.timelineType!.getTitle()) timeline")
-            self.statusTimeline = statuses
-            self.timelineTable.reloadData()
-        })
-        
         // Set up the pull to refresh control
         refreshControl.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
         timelineTable.addSubview(refreshControl)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -91,12 +94,12 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (statusTimeline != nil) ? statusTimeline!.count + 1 : 1
+        return statusTimeline.count + 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (statusTimeline == nil || indexPath.row == statusTimeline!.count) {
+        if (indexPath.row == statusTimeline.count) {
             
             println("At the end of the list")
             let cell = tableView.dequeueReusableCellWithIdentifier("progressCell", forIndexPath: indexPath) as ProgressTableViewCell
@@ -111,7 +114,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.statusUpdateDelegate = self
         cell.indexPath = indexPath
         
-        let status = statusTimeline!.getStatus(indexPath.row)
+        let status = statusTimeline.getStatus(indexPath.row)
         // First check to see if this is a retweet
         if status!.retweetedStatus != nil {
             cell.setRetweetReason(status!.author!.name)
@@ -128,7 +131,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let status = statusTimeline?.getStatus(indexPath.row)
+        let status = statusTimeline.getStatus(indexPath.row)
         if (status?.mediaUrls.count != 0) {
             return 260
         }
@@ -145,7 +148,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         itemViewController.statusUpdateDelegate = self
         itemViewController.indexPath = indexPath
 
-        let status = statusTimeline!.getStatus(indexPath.row)
+        let status = statusTimeline.getStatus(indexPath.row)
 
         if (status!.retweetedStatus != nil) {
             itemViewController.status = status!.retweetedStatus!
@@ -182,7 +185,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func dismissComposeView(newStatus: Status?) {
         if (newStatus != nil) {
             // Insert the newly posted status in view
-            statusTimeline?.addToBeginning(newStatus!)
+            statusTimeline.addToBeginning(newStatus!)
             timelineTable.beginUpdates()
             timelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
             timelineTable.endUpdates()
@@ -204,7 +207,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func tapReply(indexPath: NSIndexPath) {
         self.composeViewController = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
         self.composeViewController!.composeDelegate = self
-        let status = statusTimeline?.getStatus(indexPath.row)
+        let status = statusTimeline.getStatus(indexPath.row)
         composeViewController?.replyToScreenName = status?.author?.screenName!
         composeViewController?.replyToId = status?.statusId
         //self.composeViewController!.composeText.text = status!.author!.screenName
@@ -216,7 +219,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         println(" ")
         println("Pulled down to refresh")
 
-        statusTimeline?.loadNewerWithCompletion(timelineType!, { (success, error) -> () in
+        statusTimeline.loadNewerWithCompletion(timelineType!, { (success, error) -> () in
             if (success == true) {
                 
                 println("BACK to the timeline view controller with success")
@@ -229,7 +232,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         println(" ")
         println("loading more...")
         
-        statusTimeline?.loadOlderWithCompletion(timelineType!, { (success, error) -> () in
+        statusTimeline.loadOlderWithCompletion(timelineType!, { (success, error) -> () in
             if (success == true) {
                 self.timelineTable.reloadData()
             }
@@ -255,6 +258,11 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func openCloseMenu() {
         let parentVC = self.parentViewController?.parentViewController as ContainerViewController
         parentVC.openCloseMenu()
+    }
+    
+    func setProfileHeaderView(profileHeader: ProfileHeaderView) {
+        //timelineTable.tableHeaderView = profileHeader
+        self.tableHeaderView = profileHeader
     }
     
 }

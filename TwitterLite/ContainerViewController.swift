@@ -66,6 +66,12 @@ class ContainerViewController: UIViewController {
         // 2. Profile Timeline
         let profileViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
         profileViewController.timelineType = .Profile
+        
+        let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
+        //headerView.sizeToFit()
+        //headerView.layoutIfNeeded()
+        profileViewController.setProfileHeaderView(headerView)
+        
         let navController2 = UINavigationController(rootViewController: profileViewController)
         viewControllers.append(navController2)
         
@@ -74,8 +80,6 @@ class ContainerViewController: UIViewController {
         mentionsViewController.timelineType = .Mentions
         let navController3 = UINavigationController(rootViewController: mentionsViewController)
         viewControllers.append(navController3)
-        
-        
     }
     
     override func viewDidLoad() {

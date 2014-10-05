@@ -14,8 +14,7 @@ let USE_CACHE = false
 enum TimelineType: String {
     case Home = "1.1/statuses/home_timeline.json"
     case Mentions = "1.1/statuses/mentions_timeline.json"
-    case User = "1.1/statuses/user_timeline.json"
-    case Profile = ""
+    case Profile = "1.1/statuses/user_timeline.json"
     
     func getTitle() -> String {
         switch self {
@@ -23,10 +22,8 @@ enum TimelineType: String {
             return "Home"
         case .Mentions:
             return "Mentions"
-        case .User:
-            return "Profile"
         case .Profile:
-            return "Profile"
+            return " "
         }
     }
 }
@@ -111,9 +108,6 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
     func getTimelineWithParams(url: TimelineType, params: NSDictionary?, completion: (statuses: StatusArray?, error: NSError?) -> ()) {
     
-        if (url == .Profile) {
-            return
-        }
         self.GET(url.toRaw(), parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             if response != nil {
                 //let result = JsonDiskCache.cache(response)
