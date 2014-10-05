@@ -326,8 +326,30 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 offset += CGFloat(32)
             }
             offset = offset*(-1)
+            println(offset)
+            let navigationBar = self.navigationController?.navigationBar
+
             if (offset > 0) {
                 self.tableHeaderView!.bannerImage.transform = CGAffineTransformMakeScale(1+offset/50, 1+offset/50)
+            }
+            else if (offset > -44) {
+                self.tableHeaderView!.profileImage.transform = CGAffineTransformMakeScale(1+offset/88, 1+offset/88)
+                navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
+                navigationBar?.shadowImage = UIImage()
+                navigationBar?.translucent = true
+                navigationBar?.topItem!.title = timelineType?.getTitle()
+            }
+            else if (offset > -108) {
+                navigationBar?.setBackgroundImage(nil, forBarMetrics: .Default)
+                navigationBar?.shadowImage = nil
+                navigationBar?.barTintColor = TWITTER_BLUE
+            }
+            else {
+                navigationBar?.tintColor = UIColor.whiteColor()
+                let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+                navigationBar?.titleTextAttributes = titleSytle
+                navigationBar?.topItem?.title = user.name
+                navigationBar?.barStyle = UIBarStyle.Black
             }
         }
     }
