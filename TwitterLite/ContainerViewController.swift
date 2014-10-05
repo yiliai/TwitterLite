@@ -21,6 +21,9 @@ class ContainerViewController: UIViewController {
     var viewControllers = [UIViewController]()
     var activeViewController: UIViewController? {
         didSet(oldViewControllerOrNil) {
+            if activeViewController == oldViewControllerOrNil? {
+                return
+            }
             if let oldVC = oldViewControllerOrNil {
                 oldVC.willMoveToParentViewController(nil)
                 oldVC.view.removeFromSuperview()
@@ -51,6 +54,30 @@ class ContainerViewController: UIViewController {
             }
         }
     }
+    
+    func setupViewControllers() {
+        
+        // 1. Home Timeline
+        let homeViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
+        homeViewController.timelineType = .Home
+        let navController = UINavigationController(rootViewController: homeViewController)
+        viewControllers.append(navController)
+        
+        // 2. Profile Timeline
+        let profileViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
+        profileViewController.timelineType = .Profile
+        let navController2 = UINavigationController(rootViewController: profileViewController)
+        viewControllers.append(navController2)
+        
+        // 3. Mentions Timeline
+        let mentionsViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
+        mentionsViewController.timelineType = .Mentions
+        let navController3 = UINavigationController(rootViewController: mentionsViewController)
+        viewControllers.append(navController3)
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,16 +87,14 @@ class ContainerViewController: UIViewController {
             contentViewXConstraint.constant = 0
         }
         
-        let homeViewController = HomeTimelineViewController(nibName: "HomeTimelineViewController", bundle: nil)
-        let navController = UINavigationController(rootViewController: homeViewController)
-        viewControllers.append(navController)
-        activeViewController = navController
+        setupViewControllers()
+        setViewController(0)
         
+        // Set the menu view controller
         let menu = MenuViewController(nibName: "MenuViewController", bundle: nil)
         menuViewController = menu
         
     }
-
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
@@ -123,8 +148,8 @@ class ContainerViewController: UIViewController {
             }
         }
     }
-
     func closeMenu() {
+        self.contentView.layoutIfNeeded()
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.contentViewXConstraint.constant = 0
             self.contentView.layoutIfNeeded()
@@ -132,6 +157,7 @@ class ContainerViewController: UIViewController {
         menuOpen = false
     }
     func openMenu() {
+        self.contentView.layoutIfNeeded()
         UIView.animateWithDuration(0.4, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
             self.contentViewXConstraint.constant = -OPEN_MAX_WIDTH
             self.contentView.layoutIfNeeded()
@@ -145,6 +171,15 @@ class ContainerViewController: UIViewController {
         }
         else {
             openMenu()
+        }
+    }
+    
+    func setViewController(index: Int) {
+        if (index < viewControllers.count) {
+            activeViewController = viewControllers[index]
+        }
+        else {
+            println("ERROR")
         }
     }
 }

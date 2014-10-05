@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTimelineViewController" customModule="TwitterLite" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimelineViewController" customModule="TwitterLite" customModuleProvider="target">
             <connections>
-                <outlet property="homeTimelineTable" destination="3wN-Hs-Bas" id="utD-MN-plw"/>
-                <outlet property="homeView" destination="i5M-Pr-FkT" id="xKS-vC-Iow"/>
+                <outlet property="timelineTable" destination="3wN-Hs-Bas" id="LES-ye-TDr"/>
+                <outlet property="timelineView" destination="i5M-Pr-FkT" id="WPg-MM-abO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

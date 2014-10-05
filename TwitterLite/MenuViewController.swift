@@ -30,12 +30,21 @@ class MenuViewController: UIViewController {
     
 
     @IBAction func onTapHome(sender: AnyObject) {
+        let containerVC = self.parentViewController as ContainerViewController
+        containerVC.setViewController(0)
+        containerVC.closeMenu()
     }
     
     @IBAction func onTapProfile(sender: AnyObject) {
+        let containerVC = self.parentViewController as ContainerViewController
+        containerVC.setViewController(1)
+        containerVC.closeMenu()
     }
     
     @IBAction func onTapMentions(sender: AnyObject) {
+        let containerVC = self.parentViewController as ContainerViewController
+        containerVC.setViewController(2)
+        containerVC.closeMenu()
     }
     
     @IBAction func onTapSignOut(sender: AnyObject) {

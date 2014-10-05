@@ -15,14 +15,14 @@
 		3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */; };
 		3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */; };
 		3A4896F219D8FED0008E522C /* NSDate+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */; };
-		3A9D8F4519D775E3009B741A /* HomeTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */; };
-		3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */; };
 		3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */; };
 		3A9D8F4B19D79216009B741A /* NSURL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */; };
 		3AA789FB19E08B8800404C9F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA789F919E08B8800404C9F /* ContainerViewController.swift */; };
 		3AA789FC19E08B8800404C9F /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA789FA19E08B8800404C9F /* ContainerViewController.xib */; };
 		3AA789FF19E08BF600404C9F /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA789FD19E08BF600404C9F /* MenuViewController.swift */; };
 		3AA78A0019E08BF600404C9F /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA789FE19E08BF600404C9F /* MenuViewController.xib */; };
+		3AA78A0319E0D2CD00404C9F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA78A0119E0D2CD00404C9F /* TimelineViewController.swift */; };
+		3AA78A0419E0D2CD00404C9F /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA78A0219E0D2CD00404C9F /* TimelineViewController.xib */; };
 		3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B1519D292C9000CF0CB /* AppDelegate.swift */; };
 		3AE56B1D19D292C9000CF0CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B1C19D292C9000CF0CB /* Images.xcassets */; };
 		3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B1E19D292C9000CF0CB /* LaunchScreen.xib */; };
@@ -61,14 +61,14 @@
 		3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extentions.swift"; sourceTree = "<group>"; };
-		3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineViewController.swift; sourceTree = "<group>"; };
-		3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimelineViewController.xib; sourceTree = "<group>"; };
 		3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Extensions.swift"; sourceTree = "<group>"; };
 		3AA789F919E08B8800404C9F /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		3AA789FA19E08B8800404C9F /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
 		3AA789FD19E08BF600404C9F /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		3AA789FE19E08BF600404C9F /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		3AA78A0119E0D2CD00404C9F /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		3AA78A0219E0D2CD00404C9F /* TimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
 		3AE56B1019D292C9000CF0CB /* TwitterLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE56B1419D292C9000CF0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE56B1519D292C9000CF0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 				3AE56B4B19D4135E000CF0CB /* LogInViewController.xib */,
 				3AA789FA19E08B8800404C9F /* ContainerViewController.xib */,
 				3AA789FE19E08BF600404C9F /* MenuViewController.xib */,
-				3A9D8F4419D775E3009B741A /* HomeTimelineViewController.xib */,
+				3AA78A0219E0D2CD00404C9F /* TimelineViewController.xib */,
 				3AE56B3719D29455000CF0CB /* TweetTableViewCell.xib */,
 				3AE56B4719D408CE000CF0CB /* TweetItemViewController.xib */,
 				3AE56B4F19D4C54C000CF0CB /* ComposeViewController.xib */,
@@ -213,7 +213,7 @@
 				3AE56B4A19D4135E000CF0CB /* LogInViewController.swift */,
 				3AA789F919E08B8800404C9F /* ContainerViewController.swift */,
 				3AA789FD19E08BF600404C9F /* MenuViewController.swift */,
-				3A9D8F4319D775E3009B741A /* HomeTimelineViewController.swift */,
+				3AA78A0119E0D2CD00404C9F /* TimelineViewController.swift */,
 				3AE56B3619D29455000CF0CB /* TweetTableViewCell.swift */,
 				3AE56B4619D408CE000CF0CB /* TweetItemViewController.swift */,
 				3AE56B4E19D4C54C000CF0CB /* ComposeViewController.swift */,
@@ -337,10 +337,10 @@
 			files = (
 				3AE56B4919D408CE000CF0CB /* TweetItemViewController.xib in Resources */,
 				3A44F9EF19DBC39A00CC8FB7 /* ImageViewController.xib in Resources */,
+				3AA78A0419E0D2CD00404C9F /* TimelineViewController.xib in Resources */,
 				3AE56B4D19D4135E000CF0CB /* LogInViewController.xib in Resources */,
 				3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */,
 				3AA789FC19E08B8800404C9F /* ContainerViewController.xib in Resources */,
-				3A9D8F4619D775E3009B741A /* HomeTimelineViewController.xib in Resources */,
 				3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */,
 				3AA78A0019E08BF600404C9F /* MenuViewController.xib in Resources */,
 				3AE56B5119D4C54C000CF0CB /* ComposeViewController.xib in Resources */,
@@ -403,11 +403,11 @@
 				3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */,
 				3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */,
 				3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */,
+				3AA78A0319E0D2CD00404C9F /* TimelineViewController.swift in Sources */,
 				3AE56B3819D29455000CF0CB /* TweetTableViewCell.swift in Sources */,
 				3A44F9E719DA8CC100CC8FB7 /* URL.swift in Sources */,
 				3AE78DC319D6549200C008EF /* Status.swift in Sources */,
 				3AE78DC519D6558A00C008EF /* User.swift in Sources */,
-				3A9D8F4519D775E3009B741A /* HomeTimelineViewController.swift in Sources */,
 				3AE56B5019D4C54C000CF0CB /* ComposeViewController.swift in Sources */,
 				3A9D8F4B19D79216009B741A /* NSURL+Extensions.swift in Sources */,
 				3AA789FF19E08BF600404C9F /* MenuViewController.swift in Sources */,

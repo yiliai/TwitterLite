@@ -11,6 +11,26 @@ let CONSUMER_KEY = "twn2AJHjJ1QV8VGldiJws2QlG"
 let CONSUMER_SECRET = "eQrJ0cVeShk8SLiX80lGyEhcSZU2fc6Q3hJKRYfjKOW5oMewcA"
 let USE_CACHE = false
 
+enum TimelineType: String {
+    case Home = "1.1/statuses/home_timeline.json"
+    case Mentions = "1.1/statuses/mentions_timeline.json"
+    case User = "1.1/statuses/user_timeline.json"
+    case Profile = ""
+    
+    func getTitle() -> String {
+        switch self {
+        case .Home:
+            return "Home"
+        case .Mentions:
+            return "Mentions"
+        case .User:
+            return "Profile"
+        case .Profile:
+            return "Profile"
+        }
+    }
+}
+
 class TwitterLiteClient: BDBOAuth1RequestOperationManager {
     
     //var statusArray = [Status]()
@@ -89,26 +109,16 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
         }
     }
     
-    // MARK: Get the home timeline with optional parameters
-    func getHomeTimelineWithParams(params: NSDictionary?, completion: (statuses: StatusArray?, error: NSError?) -> ()) {
-        if USE_CACHE  && params == nil {
-            if let json: AnyObject = JsonDiskCache.cached() {
-                println("Got cache data")
-                var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
-                // Call the completion block
-                completion(statuses: statuses, error: nil)
-                return
-            }
+    func getTimelineWithParams(url: TimelineType, params: NSDictionary?, completion: (statuses: StatusArray?, error: NSError?) -> ()) {
+    
+        if (url == .Profile) {
+            return
         }
-        self.GET("1.1/statuses/home_timeline.json", parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-            // Cache the response
+        self.GET(url.toRaw(), parameters: params, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
             if response != nil {
-                //println("======================")
-                //println("Home Timeline: \(response)")
+                //let result = JsonDiskCache.cache(response)
+                //println("Cache home timeline")
                 
-                let result = JsonDiskCache.cache(response)
-                println("Cache home timeline")
-                    
                 var statuses = Status.parseStatusesFromArray(response as [NSDictionary])
                 // Call the completion block
                 completion(statuses: statuses, error: nil)
@@ -117,6 +127,22 @@ class TwitterLiteClient: BDBOAuth1RequestOperationManager {
                 // Call the completion block with error
                 completion(statuses: nil, error: error)
         })
+    }
+    
+    
+    
+    // MARK: Get the home timeline with optional parameters
+    func getHomeTimelineWithParams(params: NSDictionary?, completion: (statuses: StatusArray?, error: NSError?) -> ()) {
+        /*if USE_CACHE  && params == nil {
+            if let json: AnyObject = JsonDiskCache.cached() {
+                println("Got cache data")
+                var statuses = Status.parseStatusesFromArray(json as [NSDictionary])
+                // Call the completion block
+                completion(statuses: statuses, error: nil)
+                return
+            }
+        }*/
+        getTimelineWithParams(TimelineType.Home, params: params, completion: completion)
     }
     
     // MARK: Get user info

@@ -105,15 +105,15 @@ class StatusArray: NSObject {
         }
     }
     
-    func loadNewerWithCompletion(completion:(success: Bool, error: NSError?) ->() ) {
+    func loadNewerWithCompletion(timelineType: TimelineType, completion:(success: Bool, error: NSError?) ->() ) {
         
         let params = NSMutableDictionary()
         if (newestStatusId != nil) {
             params["since_id"] = newestStatusId
         }
         
-        TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(params, completion: { (statuses, error) -> () in
-            if (statuses? != nil) {
+        TwitterLiteClient.sharedInstance.getTimelineWithParams(timelineType, params: params, completion: { (statuses, error) -> () in
+            if (statuses != nil) {
                 self.addToBeginning(statuses!)
             
                 println("LOAD MORE SUCCESS, new count: \(statuses!.count)")
@@ -126,18 +126,24 @@ class StatusArray: NSObject {
         })
     }
     
-    func loadOlderWithCompletion(completion:(success: Bool, error: NSError?) ->() ) {
+    func loadOlderWithCompletion(timelineType: TimelineType, completion:(success: Bool, error: NSError?) ->() ) {
         let params = NSMutableDictionary()
         if (oldestStatusId != nil) {
             params["max_id"] = oldestStatusId! - 1
         }
         
-        TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(params, completion: { (statuses, error) -> () in
-            if (statuses? != nil) {
-                self.addToEnd(statuses!)
-            
-                println("LOAD OLDER SUCCESS, new count: \(statuses!.count)")
-                completion(success: true, error: nil)
+        TwitterLiteClient.sharedInstance.getTimelineWithParams(timelineType, params: params, completion: { (statuses, error) -> () in
+            if (statuses != nil) {
+                // Success, but no more results
+                if (statuses!.count == 0) {
+                    println("LOAD OLDER ... NO MORE ITEMS")
+                    completion(success: false, error: nil)
+                }
+                else {
+                    self.addToEnd(statuses!)
+                    println("LOAD OLDER SUCCESS, new count: \(statuses!.count)")
+                    completion(success: true, error: nil)
+                }
             }
             else {
                 println("error: \(error)")

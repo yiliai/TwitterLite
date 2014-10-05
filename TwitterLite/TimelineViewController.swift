@@ -1,5 +1,5 @@
 //
-//  HomeTimelineViewController.swift
+//  TimelineViewController.swift
 //  TwitterLite
 //
 //  Created by Yili Aiwazian on 9/27/14.
@@ -17,15 +17,14 @@ protocol StatusUpdateDelegate {
     func toggleRetweet(indexPath: NSIndexPath)
     func tapReply(indexPath: NSIndexPath)
     func openImage(indexPath: NSIndexPath, url: NSURL, rect: CGRect)
-    //func retweetStatus(status: Status?)
 }
-class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
+class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
 
-    @IBOutlet weak var homeNavigationBar: UINavigationBar!
-    @IBOutlet weak var homeTimelineTable: UITableView!
-    @IBOutlet var homeView: UIView!
+    @IBOutlet weak var timelineTable: UITableView!
+    @IBOutlet var timelineView: UIView!
     
-    var homeStatuses: StatusArray?
+    var timelineType: TimelineType?
+    var statusTimeline: StatusArray?
     var composeViewController: ComposeViewController?
     let refreshControl = UIRefreshControl()
     
@@ -36,14 +35,13 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         let navigationBar = self.navigationController?.navigationBar
         navigationBar?.barTintColor = TWITTER_BLUE
         navigationBar?.tintColor = UIColor.whiteColor()
-        navigationBar?.topItem?.title = "Home"
+        navigationBar?.topItem?.title = timelineType?.getTitle()
+        
         let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         navigationBar?.titleTextAttributes = titleSytle
         navigationBar?.barStyle = UIBarStyle.Black
         
-        // Add the signout button
-        //let signoutButton = UIBarButtonItem(title: "Sign Out", style: .Plain, target: self, action: "signout")
-        //self.navigationItem.setLeftBarButtonItem(signoutButton, animated: true)
+        println("Skinning the nav bar controller")
         
         // Add the menu button
         let menuButton = UIBarButtonItem(image: UIImage(named: "menu"), style: UIBarButtonItemStyle.Plain, target: self, action: "openCloseMenu")
@@ -55,29 +53,28 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         
         // Setting up the table view and table cells
         let statusCellNib = UINib(nibName: "TweetTableViewCell", bundle: nil);
-        homeTimelineTable.registerNib(statusCellNib, forCellReuseIdentifier: "statusCell")
-        homeTimelineTable.rowHeight = UITableViewAutomaticDimension
-        //homeTimelineTable.estimatedRowHeight = 90
-        homeTimelineTable.dataSource = self
-        homeTimelineTable.delegate = self
+        timelineTable.registerNib(statusCellNib, forCellReuseIdentifier: "statusCell")
+        timelineTable.rowHeight = UITableViewAutomaticDimension
+        timelineTable.dataSource = self
+        timelineTable.delegate = self
+        
         // This will remove extra separators from tableview
-        homeTimelineTable.tableFooterView = UIView(frame: CGRectZero)
+        timelineTable.tableFooterView = UIView(frame: CGRectZero)
             
         // Setting up the load more progress at the end of the table
         let progressCellNib = UINib(nibName: "ProgressTableViewCell", bundle: nil);
-        homeTimelineTable.registerNib(progressCellNib, forCellReuseIdentifier: "progressCell")
+        timelineTable.registerNib(progressCellNib, forCellReuseIdentifier: "progressCell")
         
         // Do any additional setup after loading the view.
-        TwitterLiteClient.sharedInstance.getHomeTimelineWithParams(nil, completion: { (statuses, error) -> () in
-            println("Get home timeline")
-            self.homeStatuses = statuses
-            self.homeTimelineTable.reloadData()
+        TwitterLiteClient.sharedInstance.getTimelineWithParams(timelineType!, params: nil, completion: { (statuses, error) -> () in
+            println("Get \(self.timelineType!.getTitle()) timeline")
+            self.statusTimeline = statuses
+            self.timelineTable.reloadData()
         })
         
         // Set up the pull to refresh control
         refreshControl.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
-        homeTimelineTable.addSubview(refreshControl)
-        
+        timelineTable.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,19 +91,19 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (homeStatuses != nil) ? homeStatuses!.count + 1 : 1
+        return (statusTimeline != nil) ? statusTimeline!.count + 1 : 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if (homeStatuses == nil || indexPath.row == homeStatuses!.count) {
+        if (statusTimeline == nil || indexPath.row == statusTimeline!.count) {
             
             println("At the end of the list")
             let cell = tableView.dequeueReusableCellWithIdentifier("progressCell", forIndexPath: indexPath) as ProgressTableViewCell
             cell.progressIndicator.startAnimating()
             
             // load older here
-            loadMore()
+            loadMore(cell)
             return cell
         }
         
@@ -114,7 +111,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         cell.statusUpdateDelegate = self
         cell.indexPath = indexPath
         
-        let status = homeStatuses!.getStatus(indexPath.row)
+        let status = statusTimeline!.getStatus(indexPath.row)
         // First check to see if this is a retweet
         if status!.retweetedStatus != nil {
             cell.setRetweetReason(status!.author!.name)
@@ -131,7 +128,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let status = homeStatuses?.getStatus(indexPath.row)
+        let status = statusTimeline?.getStatus(indexPath.row)
         if (status?.mediaUrls.count != 0) {
             return 260
         }
@@ -139,7 +136,6 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
             return 120
         }
     }
-    
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
@@ -149,8 +145,7 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         itemViewController.statusUpdateDelegate = self
         itemViewController.indexPath = indexPath
 
-        //let status = homeStatuses![indexPath.row] as Status
-        let status = homeStatuses!.getStatus(indexPath.row)
+        let status = statusTimeline!.getStatus(indexPath.row)
 
         if (status!.retweetedStatus != nil) {
             itemViewController.status = status!.retweetedStatus!
@@ -187,29 +182,29 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
     func dismissComposeView(newStatus: Status?) {
         if (newStatus != nil) {
             // Insert the newly posted status in view
-            homeStatuses?.addToBeginning(newStatus!)
-            homeTimelineTable.beginUpdates()
-            homeTimelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
-            homeTimelineTable.endUpdates()
+            statusTimeline?.addToBeginning(newStatus!)
+            timelineTable.beginUpdates()
+            timelineTable.insertRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: .Bottom)
+            timelineTable.endUpdates()
         }
         self.composeViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
             println("Dismissed the compose view")
         })
     }
     func toggleFavorite(indexPath: NSIndexPath) {
-        homeTimelineTable.beginUpdates()
-        homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        homeTimelineTable.endUpdates()
+        timelineTable.beginUpdates()
+        timelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        timelineTable.endUpdates()
     }
     func toggleRetweet(indexPath: NSIndexPath) {
-        homeTimelineTable.beginUpdates()
-        homeTimelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        homeTimelineTable.endUpdates()
+        timelineTable.beginUpdates()
+        timelineTable.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        timelineTable.endUpdates()
     }
     func tapReply(indexPath: NSIndexPath) {
         self.composeViewController = ComposeViewController(nibName: "ComposeViewController", bundle: nil)
         self.composeViewController!.composeDelegate = self
-        let status = homeStatuses?.getStatus(indexPath.row)
+        let status = statusTimeline?.getStatus(indexPath.row)
         composeViewController?.replyToScreenName = status?.author?.screenName!
         composeViewController?.replyToId = status?.statusId
         //self.composeViewController!.composeText.text = status!.author!.screenName
@@ -221,36 +216,33 @@ class HomeTimelineViewController: UIViewController, UITableViewDataSource, UITab
         println(" ")
         println("Pulled down to refresh")
 
-        homeStatuses?.loadNewerWithCompletion({ (success, error) -> () in
+        statusTimeline?.loadNewerWithCompletion(timelineType!, { (success, error) -> () in
             if (success == true) {
                 
-                println("BACK to the home timeline view controller with success")
+                println("BACK to the timeline view controller with success")
                 self.refreshControl.endRefreshing()
-                self.homeTimelineTable.reloadData()
+                self.timelineTable.reloadData()
             }
         })
     }
-    func loadMore() {
+    func loadMore(cell: ProgressTableViewCell) {
         println(" ")
         println("loading more...")
         
-        homeStatuses?.loadOlderWithCompletion({ (success, error) -> () in
+        statusTimeline?.loadOlderWithCompletion(timelineType!, { (success, error) -> () in
             if (success == true) {
-                
-                println("BACK to the home timeline view controller with success")
-                self.homeTimelineTable.reloadData()
+                self.timelineTable.reloadData()
             }
+            cell.progressIndicator.stopAnimating()
         })
     }
+    
     func openImage(indexPath: NSIndexPath, url: NSURL, rect: CGRect) {
         let imageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
         imageViewController.imageURL = url
         
-        let cell = tableView(homeTimelineTable, cellForRowAtIndexPath: indexPath)
-        let cellRect = homeTimelineTable.convertRect(homeTimelineTable.rectForRowAtIndexPath(indexPath), toView: homeTimelineTable.superview)
-        
-        //println(rect)
-        //println(cellRect)
+        let cell = tableView(timelineTable, cellForRowAtIndexPath: indexPath)
+        let cellRect = timelineTable.convertRect(timelineTable.rectForRowAtIndexPath(indexPath), toView: timelineTable.superview)
         let imageRect = CGRectMake(rect.origin.x+cellRect.origin.x, rect.origin.y+cellRect.origin.y, rect.width, rect.height)
         
         imageViewController.imageStartRect = imageRect
