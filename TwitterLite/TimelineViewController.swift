@@ -26,7 +26,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableViewTopConstraint: NSLayoutConstraint!
     
     var tableHeaderView: ProfileHeaderView?
-    var timelineType: TimelineType?
+    var timelineType=TimelineType.Home
     var statusTimeline = StatusArray()
     var composeViewController: ComposeViewController?
     let refreshControl = UIRefreshControl()
@@ -77,7 +77,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewWillAppear(animated: Bool) {
         // Skin the navigation bar
-        println("view will appear!!!!")
         let navigationBar = self.navigationController?.navigationBar
 
         // Setting the profile view header
@@ -95,7 +94,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             navigationBar?.tintColor = UIColor.whiteColor()
             let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
             navigationBar?.titleTextAttributes = titleSytle
-            navigationBar?.topItem?.title = timelineType!.getTitle()
+            self.navigationItem.title = timelineType.getTitle()
             navigationBar?.barStyle = UIBarStyle.Black
         }
     }
@@ -146,7 +145,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             cell.setStatus(status!)
         }
         cell.containerView.setNeedsLayout()
-        println("CELL height:\(cell.frame.height)")
         return cell
     }
     
@@ -184,11 +182,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         tableView.endUpdates()
     }
-    
-    /*func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }*/
-    
     
     func signout() {
         User.currentUser?.signout()
@@ -239,7 +232,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         println(" ")
         println("Pulled down to refresh")
 
-        statusTimeline.loadNewerWithCompletion(timelineType!, { (success, error) -> () in
+        statusTimeline.loadNewerWithCompletion(timelineType, { (success, error) -> () in
             if (success == true) {
                 
                 println("BACK to the timeline view controller with success")
@@ -252,9 +245,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         println(" ")
         println("loading more...\(user.userId!)")
         
-        statusTimeline.loadOlderWithCompletion(timelineType!, user: user, { (success, error) -> () in
+        statusTimeline.loadOlderWithCompletion(timelineType, user: user, { (success, error) -> () in
             if (success == true) {
                 self.timelineTable.reloadData()
+                println("timeline view controller: load older success")
             }
             cell.progressIndicator.stopAnimating()
         })
@@ -298,6 +292,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func setProfileHeaderView(profileHeader: ProfileHeaderView) {
+        println("SET TABLE VIEW HEADER")
         self.tableHeaderView = profileHeader
     }
     
@@ -316,6 +311,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
+        if (timelineType != .Profile) {
+            return
+        }
         if self.tableHeaderView != nil {
 
             var offset = scrollView.contentOffset.y
@@ -326,7 +324,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 offset += CGFloat(32)
             }
             offset = offset*(-1)
-            println(offset)
             let navigationBar = self.navigationController?.navigationBar
 
             if (offset > 0) {
@@ -337,7 +334,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
                 navigationBar?.shadowImage = UIImage()
                 navigationBar?.translucent = true
-                navigationBar?.topItem!.title = timelineType?.getTitle()
+                navigationBar?.topItem!.title = timelineType.getTitle()
             }
             else if (offset > -108) {
                 navigationBar?.setBackgroundImage(nil, forBarMetrics: .Default)

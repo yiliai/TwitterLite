@@ -134,7 +134,6 @@ class TweetTableViewCell: UITableViewCell {
                 mediaHeightConstraint.constant = 140
                 mediaTopMarginConstraint.constant = 8
                 containerView.layoutIfNeeded()
-                println(mediaImage.frame)
                 break
             }
             if (mediaUrls.count == 0) {

@@ -116,7 +116,7 @@ class StatusArray: NSObject {
             if (statuses != nil) {
                 self.addToBeginning(statuses!)
             
-                println("LOAD MORE SUCCESS, new count: \(statuses!.count)")
+                println("LOAD NEWER SUCCESS, new count: \(statuses!.count)")
                 completion(success: true, error: nil)
             }
             else {
