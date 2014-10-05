@@ -68,8 +68,13 @@ class ContainerViewController: UIViewController {
         profileViewController.timelineType = .Profile
         
         let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
-        //headerView.sizeToFit()
-        //headerView.layoutIfNeeded()
+        headerView.sizeToFit()
+        headerView.layoutIfNeeded()
+        let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y
+        println(headerView.convertRect(CGRectZero, toView: self.view))
+        
+        headerView.frame = CGRectMake(0, 0, headerView.frame.width, height)
+        
         headerView.setUserInfo(User.currentUser!)
         profileViewController.setProfileHeaderView(headerView)
         
@@ -186,5 +191,9 @@ class ContainerViewController: UIViewController {
         else {
             println("ERROR")
         }
+    }
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        self.view.layoutSubviews()
+    
     }
 }

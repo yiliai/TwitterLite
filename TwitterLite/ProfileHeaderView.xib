@@ -123,6 +123,7 @@
                 <outlet property="followersLabel" destination="kzb-Wm-WAb" id="HoR-CT-BPg"/>
                 <outlet property="followingCount" destination="fuq-Bp-yw6" id="6KK-JU-cQ0"/>
                 <outlet property="followingLabel" destination="sGP-xZ-lUI" id="HYf-FZ-GlC"/>
+                <outlet property="line" destination="QFn-gs-viE" id="OSc-7j-6Ud"/>
                 <outlet property="nameLabel" destination="Pc3-Bw-5Tg" id="SDE-nJ-FHM"/>
                 <outlet property="profileImage" destination="DAd-bm-MTB" id="GM2-QV-G1E"/>
                 <outlet property="screenNameLabel" destination="jbj-aH-oUF" id="eJ9-PR-gHM"/>

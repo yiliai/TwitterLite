@@ -18,7 +18,7 @@ protocol StatusUpdateDelegate {
     func tapReply(indexPath: NSIndexPath)
     func openImage(indexPath: NSIndexPath, url: NSURL, rect: CGRect)
 }
-class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate {
+class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeDelegate, StatusUpdateDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var timelineTable: UITableView!
     @IBOutlet var timelineView: UIView!
@@ -278,5 +278,26 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        if self.tableHeaderView != nil {
+
+            var offset = scrollView.contentOffset.y
+            if UIDevice.currentDevice().orientation == .Portrait {
+                offset += CGFloat(64)
+            }
+            else {
+                offset += CGFloat(32)
+            }
+            offset = offset*(-1)
+            println(offset)
+
+            if (offset > 0) {
+                self.tableHeaderView!.bannerImage.transform = CGAffineTransformMakeScale(1+offset/50, 1+offset/50)
+            }
+        }
+        
+        
+    }
     
 }

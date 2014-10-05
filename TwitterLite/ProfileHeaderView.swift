@@ -28,6 +28,7 @@ class ProfileHeaderView: UIView {
     
     @IBOutlet weak var bannerImage: UIImageView!
     
+    @IBOutlet weak var line: UIView!
     @IBOutlet weak var topMarginConstraint: NSLayoutConstraint!
     var user: User?
     
