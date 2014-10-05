@@ -82,6 +82,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         // Setting the profile view header
         if (self.tableHeaderView != nil) {
             timelineTable.tableHeaderView = self.tableHeaderView
+
             navigationBar?.setBackgroundImage(UIImage(), forBarMetrics: .Default)
             navigationBar?.shadowImage = UIImage()
             navigationBar?.translucent = true
@@ -223,7 +224,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let status = statusTimeline.getStatus(indexPath.row)
         composeViewController?.replyToScreenName = status?.author?.screenName!
         composeViewController?.replyToId = status?.statusId
-        //self.composeViewController!.composeText.text = status!.author!.screenName
         self.navigationController?.presentViewController(composeViewController!, animated: true, completion: { () -> Void in
             println("Launched the compose view")
         })
@@ -275,11 +275,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let profileViewController = TimelineViewController(nibName: "TimelineViewController", bundle: nil)
         profileViewController.timelineType = .Profile
         let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
-        headerView.sizeToFit()
         headerView.layoutIfNeeded()
-        let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y + 108
+        //let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y + 108
         //println(headerView.convertRect(CGRectZero, toView: self.view))
-        headerView.bounds = CGRectMake(0, 0, headerView.frame.width, height)
+        //headerView.bounds = CGRectMake(0, 0, headerView.frame.width, height)
         headerView.setUserInfo(user)
         profileViewController.user = user
         profileViewController.setProfileHeaderView(headerView)
@@ -308,15 +307,34 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
     }
+
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if (timelineTable.tableHeaderView != nil) {
+            let frame =  timelineTable.tableHeaderView!.frame
+            var offset: CGFloat
+            if UIDevice.currentDevice().orientation == .Portrait {
+                offset = CGFloat(64)
+            }
+            else {
+                offset = CGFloat(32)
+            }
+            timelineTable.tableHeaderView!.frame = CGRectMake(0, 0, frame.width, 288 - offset)
+        }
+        return 0
+    }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
         if (timelineType != .Profile) {
             return
         }
-        if self.tableHeaderView != nil {
-
+        if timelineTable.tableHeaderView != nil {
             var offset = scrollView.contentOffset.y
+            if (offset == 0) {
+                return
+            }
+
             if UIDevice.currentDevice().orientation == .Portrait {
                 offset += CGFloat(64)
             }
@@ -326,7 +344,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             offset = offset*(-1)
             let navigationBar = self.navigationController?.navigationBar
 
-            if (offset > 0) {
+            if (offset >= 0) {
                 self.tableHeaderView!.bannerImage.transform = CGAffineTransformMakeScale(1+offset/50, 1+offset/50)
             }
             else if (offset > -44) {

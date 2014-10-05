@@ -68,12 +68,8 @@ class ContainerViewController: UIViewController {
         profileViewController.timelineType = .Profile
         let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
         headerView.layoutIfNeeded()
-        let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y - 32
-        //println(headerView.convertRect(CGRectZero, toView: self.view))
-        headerView.bounds = CGRectMake(0, 0, headerView.frame.width, height)
         headerView.setUserInfo(User.currentUser!)
         profileViewController.setProfileHeaderView(headerView)
-        
         let navController2 = UINavigationController(rootViewController: profileViewController)
         viewControllers.append(navController2)
         
@@ -94,7 +90,7 @@ class ContainerViewController: UIViewController {
         }
         
         setupViewControllers()
-        setViewController(0)
+        setViewController(1)
         
         // Set the menu view controller
         let menu = MenuViewController(nibName: "MenuViewController", bundle: nil)
