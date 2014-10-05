@@ -25,6 +25,7 @@ class User: NSObject {
     var followersCount: Int?
     var profileBannerUrl: NSURL?
     var location: String?
+    var tagline: String?
 
     init(dictionary: NSDictionary) {
         self.dictionaryReference = dictionary
@@ -63,6 +64,10 @@ class User: NSObject {
         // Get the user location
         if let location = dictionary["location"] as? String {
             self.location = location
+        }
+        // Get the user description
+        if let tagline = dictionary["description"] as? String {
+            self.tagline = tagline
         }
     }
     

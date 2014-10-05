@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D305A0965814BE48C042B7A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BFC9A89D9C664C748C17B06E /* libPods.a */; };
+		3A1A503919E2004D005AFD4C /* Int+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A503819E2004D005AFD4C /* Int+Extentions.swift */; };
 		3A44F9E719DA8CC100CC8FB7 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A44F9E619DA8CC100CC8FB7 /* URL.swift */; };
 		3A44F9EE19DBC39A00CC8FB7 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A44F9EC19DBC39A00CC8FB7 /* ImageViewController.swift */; };
 		3A44F9EF19DBC39A00CC8FB7 /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A44F9ED19DBC39A00CC8FB7 /* ImageViewController.xib */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3A1A503819E2004D005AFD4C /* Int+Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extentions.swift"; sourceTree = "<group>"; };
 		3A44F9E619DA8CC100CC8FB7 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		3A44F9EC19DBC39A00CC8FB7 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		3A44F9ED19DBC39A00CC8FB7 /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */,
 				3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */,
 				3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */,
+				3A1A503819E2004D005AFD4C /* Int+Extentions.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */,
 				3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */,
 				3AA78A0619E0E90A00404C9F /* ProfileHeaderView.swift in Sources */,
+				3A1A503919E2004D005AFD4C /* Int+Extentions.swift in Sources */,
 				3AA78A0319E0D2CD00404C9F /* TimelineViewController.swift in Sources */,
 				3AE56B3819D29455000CF0CB /* TweetTableViewCell.swift in Sources */,
 				3A44F9E719DA8CC100CC8FB7 /* URL.swift in Sources */,

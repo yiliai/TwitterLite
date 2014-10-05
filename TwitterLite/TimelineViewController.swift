@@ -276,9 +276,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         profileViewController.timelineType = .Profile
         let headerView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as ProfileHeaderView
         headerView.layoutIfNeeded()
-        //let height = headerView.line.convertRect(CGRectZero, toView: self.view).origin.y + 108
-        //println(headerView.convertRect(CGRectZero, toView: self.view))
-        //headerView.bounds = CGRectMake(0, 0, headerView.frame.width, height)
         headerView.setUserInfo(user)
         profileViewController.user = user
         profileViewController.setProfileHeaderView(headerView)
@@ -311,7 +308,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if (timelineTable.tableHeaderView != nil) {
-            let frame =  timelineTable.tableHeaderView!.frame
+            let frame = tableHeaderView?.line.convertRect(CGRectZero, toView: self.view)
+            println(frame)
             var offset: CGFloat
             if UIDevice.currentDevice().orientation == .Portrait {
                 offset = CGFloat(64)
@@ -319,7 +317,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             else {
                 offset = CGFloat(32)
             }
-            timelineTable.tableHeaderView!.frame = CGRectMake(0, 0, frame.width, 288 - offset)
+            timelineTable.tableHeaderView!.frame = CGRectMake(0, 0, self.view.frame.width, frame!.origin.y - offset)
         }
         return 0
     }

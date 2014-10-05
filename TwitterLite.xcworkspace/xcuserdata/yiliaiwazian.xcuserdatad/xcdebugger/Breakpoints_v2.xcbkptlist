@@ -112,11 +112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434237471.460832"
+            timestampString = "434239369.480225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "openCloseMenu()"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/ProfileHeaderView.swift"
-            timestampString = "434238595.559439"
+            timestampString = "434241023.858846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90">
+            startingLineNumber = "97"
+            endingLineNumber = "97">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434238770.15356"
+            timestampString = "434240886.15501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "347"
+            endingLineNumber = "347"
             landmarkName = "scrollViewDidScroll(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -312,11 +312,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434237471.460832"
+            timestampString = "434239369.480225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "305"
-            endingLineNumber = "305"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "willRotateToInterfaceOrientation(_:duration:)"
             landmarkType = "5">
             <Locations>
@@ -358,11 +358,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434237471.460832"
+            timestampString = "434239369.480225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "openProfile(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -390,11 +390,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/ProfileHeaderView.swift"
-            timestampString = "434238595.559439"
+            timestampString = "434241023.858846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "setUserInfo(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -406,11 +406,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/ProfileHeaderView.swift"
-            timestampString = "434238595.559439"
+            timestampString = "434241023.858846"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "setUserInfo(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -438,11 +438,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434238770.15356"
+            timestampString = "434240886.15501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "scrollViewDidScroll(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -454,11 +454,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434237471.460832"
+            timestampString = "434240886.15501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "scrollViewDidScroll(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -580,11 +580,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434237471.460832"
+            timestampString = "434239369.480225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
             landmarkName = "setProfileHeaderView(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -612,12 +612,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TwitterLite/TimelineViewController.swift"
-            timestampString = "434238770.15356"
+            timestampString = "434240886.15501"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
             landmarkName = "scrollViewDidScroll(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TwitterLite/ProfileHeaderView.swift"
+            timestampString = "434241023.858846"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "setUserInfo(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

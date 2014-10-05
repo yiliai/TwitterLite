@@ -7,7 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProfileHeaderView" customModule="TwitterLite" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="533" height="233"/>
+            <rect key="frame" x="0.0" y="0.0" width="533" height="223"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yq8-ZL-MOc" userLabel="banner">
@@ -17,7 +17,7 @@
                     </constraints>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TC4-p1-7f6">
-                    <rect key="frame" x="0.0" y="44" width="533" height="183"/>
+                    <rect key="frame" x="0.0" y="44" width="533" height="162"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yili Aiwazian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pc3-Bw-5Tg">
                             <rect key="frame" x="12" y="58" width="108" height="22"/>
@@ -32,38 +32,38 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSD-DM-6ja">
-                            <rect key="frame" x="12" y="110" width="509" height="17"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                            <rect key="frame" x="12" y="104" width="509" height="16"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuq-Bp-yw6">
-                            <rect key="frame" x="12" y="147" width="14" height="15"/>
+                            <rect key="frame" x="12" y="130" width="14" height="15"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="40" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZp-JG-jTd">
-                            <rect key="frame" x="129" y="147" width="14" height="15"/>
+                            <rect key="frame" x="131" y="130" width="14" height="15"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWING" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGP-xZ-lUI">
-                            <rect key="frame" x="28" y="148" width="71" height="14"/>
+                            <rect key="frame" x="30" y="131" width="71" height="14"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLLOWERS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzb-Wm-WAb">
-                            <rect key="frame" x="145" y="148" width="73" height="14"/>
+                            <rect key="frame" x="149" y="131" width="73" height="14"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFn-gs-viE" userLabel="line">
-                            <rect key="frame" x="0.0" y="182" width="533" height="1"/>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <rect key="frame" x="0.0" y="161" width="533" height="1"/>
+                            <color key="backgroundColor" red="0.86880181760204078" green="0.86880181760204078" blue="0.86880181760204078" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Z8h-vc-IaK"/>
                             </constraints>
@@ -74,17 +74,17 @@
                         <constraint firstItem="QZp-JG-jTd" firstAttribute="centerY" secondItem="sGP-xZ-lUI" secondAttribute="centerY" id="4mn-in-UIG"/>
                         <constraint firstItem="QZp-JG-jTd" firstAttribute="leading" secondItem="sGP-xZ-lUI" secondAttribute="trailing" constant="30" id="4qs-Be-18Y"/>
                         <constraint firstAttribute="bottom" secondItem="QFn-gs-viE" secondAttribute="bottom" id="DVR-yR-dDJ"/>
-                        <constraint firstItem="QFn-gs-viE" firstAttribute="top" secondItem="fuq-Bp-yw6" secondAttribute="bottom" constant="20" id="HZI-Li-FXk"/>
+                        <constraint firstItem="QFn-gs-viE" firstAttribute="top" secondItem="fuq-Bp-yw6" secondAttribute="bottom" constant="16" id="HZI-Li-FXk"/>
                         <constraint firstItem="QFn-gs-viE" firstAttribute="leading" secondItem="TC4-p1-7f6" secondAttribute="leading" id="MLn-PG-eO8"/>
-                        <constraint firstItem="KSD-DM-6ja" firstAttribute="top" secondItem="jbj-aH-oUF" secondAttribute="bottom" constant="16" id="QZ0-mr-qwA"/>
+                        <constraint firstItem="KSD-DM-6ja" firstAttribute="top" secondItem="jbj-aH-oUF" secondAttribute="bottom" constant="10" id="QZ0-mr-qwA"/>
                         <constraint firstAttribute="bottom" secondItem="QFn-gs-viE" secondAttribute="bottom" constant="1" id="c1O-XI-q7Q"/>
                         <constraint firstItem="sGP-xZ-lUI" firstAttribute="centerY" secondItem="fuq-Bp-yw6" secondAttribute="centerY" id="e6S-Iz-T9h"/>
-                        <constraint firstItem="fuq-Bp-yw6" firstAttribute="top" secondItem="KSD-DM-6ja" secondAttribute="bottom" constant="20" id="gHb-r7-Rs4"/>
-                        <constraint firstItem="kzb-Wm-WAb" firstAttribute="leading" secondItem="QZp-JG-jTd" secondAttribute="trailing" constant="2" id="iCD-3a-vE7"/>
+                        <constraint firstItem="fuq-Bp-yw6" firstAttribute="top" secondItem="KSD-DM-6ja" secondAttribute="bottom" constant="10" id="gHb-r7-Rs4"/>
+                        <constraint firstItem="kzb-Wm-WAb" firstAttribute="leading" secondItem="QZp-JG-jTd" secondAttribute="trailing" constant="4" id="iCD-3a-vE7"/>
                         <constraint firstItem="kzb-Wm-WAb" firstAttribute="centerY" secondItem="fuq-Bp-yw6" secondAttribute="centerY" id="iWL-vf-FV0"/>
                         <constraint firstAttribute="trailing" secondItem="QFn-gs-viE" secondAttribute="trailing" id="shO-at-1N8"/>
                         <constraint firstItem="jbj-aH-oUF" firstAttribute="top" secondItem="Pc3-Bw-5Tg" secondAttribute="bottom" id="tGF-gG-WKr"/>
-                        <constraint firstItem="sGP-xZ-lUI" firstAttribute="leading" secondItem="fuq-Bp-yw6" secondAttribute="trailing" constant="2" id="y0V-Zv-4Cw"/>
+                        <constraint firstItem="sGP-xZ-lUI" firstAttribute="leading" secondItem="fuq-Bp-yw6" secondAttribute="trailing" constant="4" id="y0V-Zv-4Cw"/>
                         <constraint firstAttribute="trailing" secondItem="KSD-DM-6ja" secondAttribute="trailing" constant="12" id="yWw-KD-Pvd"/>
                     </constraints>
                     <variation key="default">
@@ -131,7 +131,7 @@
                 <outlet property="screenNameLabel" destination="jbj-aH-oUF" id="eJ9-PR-gHM"/>
                 <outlet property="topMarginConstraint" destination="MFQ-ux-IlK" id="s6N-VC-EK7"/>
             </connections>
-            <point key="canvasLocation" x="293.5" y="-406.5"/>
+            <point key="canvasLocation" x="293.5" y="-411.5"/>
         </view>
     </objects>
 </document>

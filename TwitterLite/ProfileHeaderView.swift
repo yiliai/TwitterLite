@@ -49,10 +49,17 @@ class ProfileHeaderView: UIView {
         self.user = user
         profileImage.fadeInImageFromURL(user.profileImageUrl!)
         nameLabel.text = user.name!
-        screenNameLabel.text = user.screenName!
-        followersCount.text = String(user.followersCount!)
-        followingCount.text = String(user.friendsCount!)
-        locationLabel.text = user.location == nil ? "" : user.location
+        screenNameLabel.text = "@" + user.screenName!
+        followersCount.text = (user.followersCount!).prettyNumber()
+        followingCount.text = (user.friendsCount!).prettyNumber()
+       
+        let linebreak = "\n"
+        let tagline = user.tagline == "" ? "" : user.tagline! + linebreak
+        let location = user.location == "" ? "" : user.location
+        
+        locationLabel.numberOfLines = 0
+        locationLabel.text = tagline + location!
+        locationLabel.sizeToFit()
         
         if (user.profileBannerUrl != nil) {
             bannerImage.fadeInImageFromURL(user.profileBannerUrl!)
