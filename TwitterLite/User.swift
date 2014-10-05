@@ -24,6 +24,7 @@ class User: NSObject {
     var friendsCount: Int?
     var followersCount: Int?
     var profileBannerUrl: NSURL?
+    var location: String?
 
     init(dictionary: NSDictionary) {
         self.dictionaryReference = dictionary
@@ -58,6 +59,10 @@ class User: NSObject {
         // Get followers count
         if let followers_count = dictionary["followers_count"] as? Int {
             self.followersCount = followers_count
+        }
+        // Get the user location
+        if let location = dictionary["location"] as? String {
+            self.location = location
         }
     }
     

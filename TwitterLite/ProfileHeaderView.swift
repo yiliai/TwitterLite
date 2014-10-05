@@ -25,6 +25,7 @@ class ProfileHeaderView: UIView {
     @IBOutlet weak var followersCount: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     
     @IBOutlet weak var bannerImage: UIImageView!
     
@@ -51,6 +52,7 @@ class ProfileHeaderView: UIView {
         screenNameLabel.text = user.screenName!
         followersCount.text = String(user.followersCount!)
         followingCount.text = String(user.friendsCount!)
+        locationLabel.text = user.location == nil ? "" : user.location
         
         if (user.profileBannerUrl != nil) {
             bannerImage.fadeInImageFromURL(user.profileBannerUrl!)

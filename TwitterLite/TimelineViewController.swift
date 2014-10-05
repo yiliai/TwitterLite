@@ -331,6 +331,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if timelineTable.tableHeaderView != nil {
             var offset = scrollView.contentOffset.y
+            println(offset)
             if (offset == 0) {
                 return
             }
@@ -363,7 +364,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 navigationBar?.tintColor = UIColor.whiteColor()
                 let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
                 navigationBar?.titleTextAttributes = titleSytle
-                navigationBar?.topItem?.title = user.name
+                self.navigationItem.title = user.name
                 navigationBar?.barStyle = UIBarStyle.Black
             }
         }
