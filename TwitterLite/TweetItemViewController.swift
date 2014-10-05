@@ -74,6 +74,22 @@ class TweetItemViewController: UIViewController {
         // Set up rounded corners on the profile image
         authorImage.layer.cornerRadius = 6.0
         authorImage.layer.masksToBounds = true
+        
+        // Set up the nav bar
+        let navigationBar = self.navigationController?.navigationBar
+        navigationBar?.setBackgroundImage(nil, forBarMetrics: .Default)
+        navigationBar?.shadowImage = nil
+        navigationBar?.barTintColor = TWITTER_BLUE
+        navigationBar?.tintColor = UIColor.whiteColor()
+        let titleSytle: NSDictionary = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationBar?.titleTextAttributes = titleSytle
+        self.navigationItem.title = "Tweet"
+        navigationBar?.barStyle = UIBarStyle.Black
+        
+        let backButton = UIBarButtonItem(image: UIImage(named: "back"), style: UIBarButtonItemStyle.Plain, target: self, action: "back")
+        var negativeSpacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -4;
+        self.navigationItem.setLeftBarButtonItems([negativeSpacer, backButton], animated: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -198,5 +214,10 @@ class TweetItemViewController: UIViewController {
         setRetweetButton(status?.retweeted)
         setRetweetCount(status?.retweetCount)
         statusUpdateDelegate?.toggleRetweet(indexPath!)
+    }
+    
+    func back() {
+        println("back")
+        self.navigationController?.popViewControllerAnimated(true)
     }
 }

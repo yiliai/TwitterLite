@@ -31,8 +31,6 @@
 		3AE56B2C19D292CA000CF0CB /* TwitterLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B2B19D292CA000CF0CB /* TwitterLiteTests.swift */; };
 		3AE56B3819D29455000CF0CB /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B3619D29455000CF0CB /* TweetTableViewCell.swift */; };
 		3AE56B3919D29455000CF0CB /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B3719D29455000CF0CB /* TweetTableViewCell.xib */; };
-		3AE56B3F19D3BA41000CF0CB /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE56B3E19D3BA41000CF0CB /* Accounts.framework */; };
-		3AE56B4119D3BA45000CF0CB /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE56B4019D3BA45000CF0CB /* Social.framework */; };
 		3AE56B4819D408CE000CF0CB /* TweetItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B4619D408CE000CF0CB /* TweetItemViewController.swift */; };
 		3AE56B4919D408CE000CF0CB /* TweetItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B4719D408CE000CF0CB /* TweetItemViewController.xib */; };
 		3AE56B4C19D4135E000CF0CB /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B4A19D4135E000CF0CB /* LogInViewController.swift */; };
@@ -43,6 +41,7 @@
 		3AE78DC319D6549200C008EF /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE78DC219D6549200C008EF /* Status.swift */; };
 		3AE78DC519D6558A00C008EF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE78DC419D6558A00C008EF /* User.swift */; };
 		3AE78DD819D6836600C008EF /* JsonDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE78DD719D6836600C008EF /* JsonDiskCache.m */; };
+		3AFA8E7319E1E1A100FE0065 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFA8E7219E1E1A100FE0065 /* CoreImage.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,8 +82,6 @@
 		3AE56B2B19D292CA000CF0CB /* TwitterLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterLiteTests.swift; sourceTree = "<group>"; };
 		3AE56B3619D29455000CF0CB /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		3AE56B3719D29455000CF0CB /* TweetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetTableViewCell.xib; sourceTree = "<group>"; };
-		3AE56B3E19D3BA41000CF0CB /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		3AE56B4019D3BA45000CF0CB /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3AE56B4619D408CE000CF0CB /* TweetItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetItemViewController.swift; sourceTree = "<group>"; };
 		3AE56B4719D408CE000CF0CB /* TweetItemViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetItemViewController.xib; sourceTree = "<group>"; };
 		3AE56B4A19D4135E000CF0CB /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +94,7 @@
 		3AE78DC419D6558A00C008EF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3AE78DD719D6836600C008EF /* JsonDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonDiskCache.m; sourceTree = "<group>"; };
 		3AE78DD919D6839100C008EF /* JsonDiskCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonDiskCache.h; sourceTree = "<group>"; };
+		3AFA8E7219E1E1A100FE0065 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		90498C6D4447471C889746A6 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		BFC9A89D9C664C748C17B06E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,8 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AE56B4119D3BA45000CF0CB /* Social.framework in Frameworks */,
-				3AE56B3F19D3BA41000CF0CB /* Accounts.framework in Frameworks */,
+				3AFA8E7319E1E1A100FE0065 /* CoreImage.framework in Frameworks */,
 				2D305A0965814BE48C042B7A /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,8 +132,6 @@
 		3AE56B0719D292C9000CF0CB = {
 			isa = PBXGroup;
 			children = (
-				3AE56B4019D3BA45000CF0CB /* Social.framework */,
-				3AE56B3E19D3BA41000CF0CB /* Accounts.framework */,
 				3AE56B1219D292C9000CF0CB /* TwitterLite */,
 				3AE56B2819D292CA000CF0CB /* TwitterLiteTests */,
 				3AE56B1119D292C9000CF0CB /* Products */,
@@ -254,6 +249,7 @@
 		E77ACA8BC8834284B68173DE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AFA8E7219E1E1A100FE0065 /* CoreImage.framework */,
 				BFC9A89D9C664C748C17B06E /* libPods.a */,
 			);
 			name = Frameworks;
