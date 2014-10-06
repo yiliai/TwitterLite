@@ -11,10 +11,13 @@ import UIKit
 class ProgressTableViewCell: UITableViewCell {
 
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var twitterIcon: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        twitterIcon.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -23,4 +26,8 @@ class ProgressTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func endOfList() {
+        progressIndicator.stopAnimating()
+        twitterIcon.hidden = false
+    }
 }

@@ -252,6 +252,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 println("timeline view controller: load older success")
             }
             cell.progressIndicator.stopAnimating()
+            cell.endOfList()
         })
     }
     
@@ -333,11 +334,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         if timelineTable.tableHeaderView != nil {
             var offset = scrollView.contentOffset.y
-            println(offset)
+            //println(offset)
             if (offset == 0) {
                 return
             }
-
             if UIDevice.currentDevice().orientation == .Portrait {
                 offset += CGFloat(64)
             }

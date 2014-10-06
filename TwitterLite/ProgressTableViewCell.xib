@@ -13,6 +13,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitter_gray" translatesAutoresizingMaskIntoConstraints="NO" id="a20-5V-nob">
+                        <rect key="frame" x="140" y="2" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Lxj-B3-7xc"/>
+                            <constraint firstAttribute="height" constant="40" id="tQ5-Sw-8Fx"/>
+                        </constraints>
+                    </imageView>
                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fZP-bn-cuj">
                         <rect key="frame" x="150" y="12" width="20" height="20"/>
                     </activityIndicatorView>
@@ -20,11 +27,18 @@
                 <constraints>
                     <constraint firstAttribute="centerX" secondItem="fZP-bn-cuj" secondAttribute="centerX" id="WVd-8d-6RB"/>
                     <constraint firstAttribute="centerY" secondItem="fZP-bn-cuj" secondAttribute="centerY" id="coG-PO-QSM"/>
+                    <constraint firstAttribute="centerX" secondItem="a20-5V-nob" secondAttribute="centerX" id="hFL-6K-7B0"/>
+                    <constraint firstAttribute="centerY" secondItem="a20-5V-nob" secondAttribute="centerY" id="rFt-Lh-jSr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="progressIndicator" destination="fZP-bn-cuj" id="IbW-6I-o0q"/>
+                <outlet property="twitterIcon" destination="a20-5V-nob" id="PKV-Xs-iIU"/>
             </connections>
+            <point key="canvasLocation" x="326" y="326"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="twitter_gray" width="100" height="100"/>
+    </resources>
 </document>
