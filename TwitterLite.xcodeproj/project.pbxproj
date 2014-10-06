@@ -16,6 +16,7 @@
 		3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */; };
 		3A4896F019D8F849008E522C /* ProgressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */; };
 		3A4896F219D8FED0008E522C /* NSDate+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */; };
+		3A660E7619E35BDB00D7E952 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A660E7519E35BDB00D7E952 /* LaunchScreen.xib */; };
 		3A9D8F4919D79159009B741A /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */; };
 		3A9D8F4B19D79216009B741A /* NSURL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */; };
 		3AA789FB19E08B8800404C9F /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA789F919E08B8800404C9F /* ContainerViewController.swift */; };
@@ -28,7 +29,6 @@
 		3AA78A0819E0E92500404C9F /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA78A0719E0E92500404C9F /* ProfileHeaderView.xib */; };
 		3AE56B1619D292C9000CF0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B1519D292C9000CF0CB /* AppDelegate.swift */; };
 		3AE56B1D19D292C9000CF0CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B1C19D292C9000CF0CB /* Images.xcassets */; };
-		3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B1E19D292C9000CF0CB /* LaunchScreen.xib */; };
 		3AE56B2C19D292CA000CF0CB /* TwitterLiteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B2B19D292CA000CF0CB /* TwitterLiteTests.swift */; };
 		3AE56B3819D29455000CF0CB /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE56B3619D29455000CF0CB /* TweetTableViewCell.swift */; };
 		3AE56B3919D29455000CF0CB /* TweetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AE56B3719D29455000CF0CB /* TweetTableViewCell.xib */; };
@@ -64,6 +64,7 @@
 		3A4896ED19D8F849008E522C /* ProgressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProgressTableViewCell.xib; sourceTree = "<group>"; };
 		3A4896EE19D8F849008E522C /* ProgressTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableViewCell.swift; sourceTree = "<group>"; };
 		3A4896F119D8FED0008E522C /* NSDate+Extentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extentions.swift"; sourceTree = "<group>"; };
+		3A660E7519E35BDB00D7E952 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		3A9D8F4819D79159009B741A /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		3A9D8F4A19D79216009B741A /* NSURL+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+Extensions.swift"; sourceTree = "<group>"; };
 		3AA789F919E08B8800404C9F /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		3AE56B1419D292C9000CF0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE56B1519D292C9000CF0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AE56B1C19D292C9000CF0CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		3AE56B1F19D292C9000CF0CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		3AE56B2519D292CA000CF0CB /* TwitterLiteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterLiteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AE56B2A19D292CA000CF0CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3AE56B2B19D292CA000CF0CB /* TwitterLiteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterLiteTests.swift; sourceTree = "<group>"; };
@@ -155,6 +155,7 @@
 		3AE56B1219D292C9000CF0CB /* TwitterLite */ = {
 			isa = PBXGroup;
 			children = (
+				3A660E7519E35BDB00D7E952 /* LaunchScreen.xib */,
 				3A9D8F4719D79054009B741A /* Util */,
 				3AE56B5419D54A99000CF0CB /* API */,
 				3AE56B3D19D3B9D4000CF0CB /* Models */,
@@ -162,7 +163,6 @@
 				3AE56B3A19D2945B000CF0CB /* ViewControllers */,
 				3AE56B1519D292C9000CF0CB /* AppDelegate.swift */,
 				3AE56B1C19D292C9000CF0CB /* Images.xcassets */,
-				3AE56B1E19D292C9000CF0CB /* LaunchScreen.xib */,
 				3AE56B1319D292C9000CF0CB /* Supporting Files */,
 			);
 			path = TwitterLite;
@@ -344,9 +344,9 @@
 				3A44F9EF19DBC39A00CC8FB7 /* ImageViewController.xib in Resources */,
 				3AA78A0419E0D2CD00404C9F /* TimelineViewController.xib in Resources */,
 				3AE56B4D19D4135E000CF0CB /* LogInViewController.xib in Resources */,
+				3A660E7619E35BDB00D7E952 /* LaunchScreen.xib in Resources */,
 				3A4896EF19D8F849008E522C /* ProgressTableViewCell.xib in Resources */,
 				3AA789FC19E08B8800404C9F /* ContainerViewController.xib in Resources */,
-				3AE56B2019D292C9000CF0CB /* LaunchScreen.xib in Resources */,
 				3AA78A0819E0E92500404C9F /* ProfileHeaderView.xib in Resources */,
 				3AA78A0019E08BF600404C9F /* MenuViewController.xib in Resources */,
 				3AE56B5119D4C54C000CF0CB /* ComposeViewController.xib in Resources */,
@@ -443,17 +443,6 @@
 			targetProxy = 3AE56B2619D292CA000CF0CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		3AE56B1E19D292C9000CF0CB /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3AE56B1F19D292C9000CF0CB /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3AE56B2D19D292CA000CF0CB /* Debug */ = {
