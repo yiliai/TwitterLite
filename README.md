@@ -1,3 +1,30 @@
+# CodePath iOS Week 4: Twitter Lite Redux
+
+Time spent: 15 hours spent in total
+
+Completed user stories:
+
+Hamburger menu
+* [x] Dragging anywhere in the view should reveal the menu.
+* [x] The menu should include links to your profile, the home timeline, and the mentions view.
+* [x] The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
+
+Profile page
+* [x] Contains the user header view
+* [x] Contains a section with the users basic stats: # tweets, # following, # followers
+* [ ] Optional: Implement the paging view for the user description.
+* [ ] Optional: As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+* [x] Optional: Pulling down the profile page should blur and resize the header image.
+Home Timeline
+* [x] Tapping on a user image should bring up that user's profile page
+
+Questions and Known Issues:
+* I had a lot of trouble setting the height of the table header on the profile page. That area seems super buggy. For instance, the height calculation breaks when I rotate the device. What's the best way to set the height?
+
+Video Walkthroughs:
+
+![Core experience](Screenshots/twitter2.gif)
+
 # CodePath iOS Week 3: Twitter Lite
 
 Time spent: 20 hours spent in total
